@@ -3,19 +3,23 @@
     <row>
       <top />
 
+      <biography />
+
       <publications />
     </row>
   </div>
 </template>
 
 <script>
-import Top from '../components/Top'
+import Biography from '../components/Biography'
 import Publications from '../components/Publications'
+import Top from '../components/Top'
 
 export default {
   components: {
-    Top,
+    Biography,
     Publications,
+    Top,
   },
 }
 </script>
