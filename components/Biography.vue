@@ -114,26 +114,6 @@
       </b-card>
     </div>
     <!-- end of bio -->
-
-    <div class="awards">
-      <h3>Awards</h3>
-      <!-- YANS -->
-      <b-card
-        title="2018.08: Incentive Award, 13th symposium on Young Research Association for NLP Studies (YANS)."
-        title-tag="h6"
-        class="border-0 bg-transparent mt-n3"
-      >
-      </b-card>
-
-      <!-- Mars -->
-      <b-card
-        title="2017.12: JAXA Special Award, HP Mars Home Planet - Education League JP-."
-        title-tag="h6"
-        class="border-0 bg-transparent mt-n3"
-      >
-      </b-card>
-    </div>
-    <!-- end of bio -->
   </div>
 </template>
 
@@ -153,18 +133,5 @@ h2 {
 .bio p {
   font-size: 14px;
   margin-left: 9rem;
-}
-
-.awards h3 {
-  font-size: 20px;
-}
-
-.awards h6 {
-  font-size: 16px;
-}
-
-.awards p {
-  font-size: 14px;
-  margin-left: 4.5rem;
 }
 </style>

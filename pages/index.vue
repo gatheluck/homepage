@@ -6,18 +6,22 @@
       <biography />
 
       <publications />
+
+      <miscellaneous />
     </row>
   </div>
 </template>
 
 <script>
 import Biography from '../components/Biography'
+import Miscellaneous from '../components/Miscellaneous'
 import Publications from '../components/Publications'
 import Top from '../components/Top'
 
 export default {
   components: {
     Biography,
+    Miscellaneous,
     Publications,
     Top,
   },
