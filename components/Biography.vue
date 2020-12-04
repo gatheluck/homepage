@@ -11,6 +11,7 @@
         title-tag="h6"
         class="border-0 bg-transparent mt-n3"
       >
+        <b-card-text class="mt-n2 mb-n3"> </b-card-text>
       </b-card>
 
       <!-- AIST -->
@@ -19,7 +20,7 @@
         title-tag="h6"
         class="border-0 bg-transparent mt-n4"
       >
-        <b-card-text class="mt-n2">
+        <b-card-text class="mt-n2 mb-n2">
           Supervisor:
           <a href="http://hirokatsukataoka.net/" target="_blank">
             Hirokatsu, Kataoka, Ph.D.
@@ -33,7 +34,7 @@
         title-tag="h6"
         class="border-0 bg-transparent mt-n4"
       >
-        <b-card-text class="mt-n2">
+        <b-card-text class="mt-n2 mb-n2">
           <a href="http://www.leading-sn.waseda.ac.jp/" target="_blank">
             Waseda University Leading Doctoral Course Embodiment Informatics
           </a>
@@ -46,6 +47,7 @@
         title-tag="h6"
         class="border-0 bg-transparent mt-n4"
       >
+        <b-card-text class="mt-n2 mb-n3"> </b-card-text>
       </b-card>
 
       <!-- FOVE -->
@@ -54,6 +56,7 @@
         title-tag="h6"
         class="border-0 bg-transparent mt-n4"
       >
+        <b-card-text class="mt-n2 mb-n3"> </b-card-text>
       </b-card>
 
       <!-- Master -->
@@ -62,7 +65,7 @@
         title-tag="h6"
         class="border-0 bg-transparent mt-n4"
       >
-        <b-card-text class="mt-n2"> Master of Engineering </b-card-text>
+        <b-card-text class="mt-n2 mb-n2"> Master of Engineering </b-card-text>
       </b-card>
 
       <!-- RA -->
@@ -71,7 +74,7 @@
         title-tag="h6"
         class="border-0 bg-transparent mt-n4"
       >
-        <b-card-text class="mt-n2">
+        <b-card-text class="mt-n2 mb-n2">
           Waseda International Dormitory (WID) Kodaira
           <br />
           <a href="https://www.waseda.jp/inst/rlc/assistant/" target="_blank">
@@ -86,7 +89,7 @@
         title-tag="h6"
         class="border-0 bg-transparent mt-n4"
       >
-        <b-card-text class="mt-n2">
+        <b-card-text class="mt-n2 mb-n2">
           <a href="https://www.csst.ucla.edu/" target="_blank">
             Cross-disciplinary Scholars in Science and Technology (CSST)
           </a>
@@ -131,7 +134,8 @@ h2 {
 }
 
 .bio p {
+  color: #6c757d;
   font-size: 14px;
-  margin-left: 9rem;
+  margin-left: 8.9rem;
 }
 </style>

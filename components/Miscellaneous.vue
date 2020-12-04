@@ -65,7 +65,7 @@
       <b-card
         title="2016.07 - 2016.09: University of California, Los Angeles, Cross-disciplinary Scholars in Science and Technology (CSST) Scholarship Program 2016."
         title-tag="h6"
-        class="border-0 bg-transparent mt-n4"
+        class="border-0 bg-transparent mt-n5"
       >
       </b-card>
 
@@ -73,11 +73,42 @@
       <b-card
         title="2012.04 - 2013.03: Waseda University, Okuma Memorial Special Scholarship."
         title-tag="h6"
-        class="border-0 bg-transparent mt-n4"
+        class="border-0 bg-transparent mt-n5"
       >
       </b-card>
     </div>
     <!-- end of Funding -->
+
+    <div class="patent">
+      <h3>Patent</h3>
+      <!-- Leading -->
+      <b-card
+        title="画像処理装置及び画像処理方法"
+        title-tag="h6"
+        class="border-0 bg-transparent mt-n3"
+      >
+        <b-card-text class="mt-n2">
+          特開 2018-195038 (P2018-195038A)
+          <br />
+          <a href="https://ipforce.jp/patent-jp-A-2018-195038" target="_blank">
+            [IP Force]
+          </a>
+        </b-card-text>
+      </b-card>
+    </div>
+    <!-- end of Patent -->
+
+    <div class="certifications">
+      <h3>Certifications</h3>
+      <!-- Leading -->
+      <b-card
+        title="CG-ARTS CG Engineer Examination - Expert"
+        title-tag="h6"
+        class="border-0 bg-transparent mt-n3"
+      >
+      </b-card>
+    </div>
+    <!-- end of Certifications -->
   </div>
 </template>
 
@@ -123,5 +154,29 @@ h2 {
 .talks p {
   font-size: 14px;
   margin-left: 4.3rem;
+}
+
+.patent h3 {
+  font-size: 20px;
+}
+
+.patent h6 {
+  font-size: 16px;
+}
+
+.patent p {
+  font-size: 14px;
+}
+
+.certifications h3 {
+  font-size: 20px;
+}
+
+.certifications h6 {
+  font-size: 16px;
+}
+
+.certifications p {
+  font-size: 14px;
 }
 </style>
