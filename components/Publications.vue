@@ -37,8 +37,7 @@
       class="border-0 bg-transparent mt-n3"
     >
       <b-card-text>
-        Journal of Japan Society for Precision Engineering (JSPE), Vol.87, No.1,
-        pp., 2021.01.
+        Journal of Japan Society for Precision Engineering (JSPE), Vol.87, No.1.
       </b-card-text>
     </b-card>
 

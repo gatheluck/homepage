@@ -11,6 +11,7 @@
         title-tag="h6"
         class="border-0 bg-transparent mt-n3"
       >
+        <b-card-text class="mt-n2 mb-n3"> </b-card-text>
       </b-card>
 
       <!-- Mars -->
@@ -19,6 +20,16 @@
         title-tag="h6"
         class="border-0 bg-transparent mt-n4"
       >
+        <b-card-text class="mt-n2 mb-n3"> </b-card-text>
+      </b-card>
+
+      <!-- VIP -->
+      <b-card
+        title="2015.09: Performance Award, Visual Infromation Processing Camp (VIP), 2015."
+        title-tag="h6"
+        class="border-0 bg-transparent mt-n4"
+      >
+        <b-card-text class="mt-n2 mb-n3"> </b-card-text>
       </b-card>
     </div>
     <!-- end of awards -->
@@ -27,11 +38,13 @@
       <h3>Talks</h3>
       <!-- SSII 2020 -->
       <b-card
-        title="2020.06: Invited Talk, Symposium of Sensing via Image Infomation (SSII), 2020."
+        title="2020.06: Adversarial Examples 研究動向"
         title-tag="h6"
         class="border-0 bg-transparent mt-n3"
       >
-        <b-card-text class="mt-n2">
+        <b-card-text class="mt-n2 mb-n2">
+          Invited Talk, Symposium of Sensing via Image Infomation (SSII), 2020.
+          <br />
           <a
             href="https://confit.atlas.jp/guide/event/ssii2020/static/invited_interactive#IS2"
             target="_blank"
@@ -41,12 +54,29 @@
         </b-card-text>
       </b-card>
 
-      <!-- Mars -->
+      <!-- CVPR 2019 -->
       <b-card
-        title="2017.12: JAXA Special Award, HP Mars Home Planet - Education League JP-."
+        title="2019.09: Adversarial Examples 分野の動向 -History and Trends of Dark Arts-"
         title-tag="h6"
-        class="border-0 bg-transparent mt-n3"
+        class="border-0 bg-transparent mt-n4"
       >
+        <b-card-text class="mt-n2 mb-n2">
+          cvpaper.challenge CVPR 2019 網羅的サーベイ報告会 @日立製作所
+          中央研究所.
+          <br />
+          <a
+            href="https://www.slideshare.net/cvpaperchallenge/adversarial-examples-173590674"
+            target="_blank"
+          >
+            [Slide]
+          </a>
+          <a
+            href="https://www.slideshare.net/cvpaperchallenge/adversarial-examples-229232499"
+            target="_blank"
+          >
+            [Slide(+Meta Survey)]
+          </a>
+        </b-card-text>
       </b-card>
     </div>
     <!-- end of talks -->
@@ -59,22 +89,25 @@
         title-tag="h6"
         class="border-0 bg-transparent mt-n3"
       >
+        <b-card-text class="mt-n2 mb-n3"> </b-card-text>
       </b-card>
 
       <!-- CSST 2016 -->
       <b-card
         title="2016.07 - 2016.09: University of California, Los Angeles, Cross-disciplinary Scholars in Science and Technology (CSST) Scholarship Program 2016."
         title-tag="h6"
-        class="border-0 bg-transparent mt-n5"
+        class="border-0 bg-transparent mt-n4"
       >
+        <b-card-text class="mt-n2 mb-n3"> </b-card-text>
       </b-card>
 
       <!-- CSST 2018 -->
       <b-card
         title="2012.04 - 2013.03: Waseda University, Okuma Memorial Special Scholarship."
         title-tag="h6"
-        class="border-0 bg-transparent mt-n5"
+        class="border-0 bg-transparent mt-n4"
       >
+        <b-card-text class="mt-n2 mb-n3"> </b-card-text>
       </b-card>
     </div>
     <!-- end of Funding -->
@@ -87,7 +120,7 @@
         title-tag="h6"
         class="border-0 bg-transparent mt-n3"
       >
-        <b-card-text class="mt-n2">
+        <b-card-text class="mt-n2 mb-n2">
           特開 2018-195038 (P2018-195038A)
           <br />
           <a href="https://ipforce.jp/patent-jp-A-2018-195038" target="_blank">
@@ -152,6 +185,7 @@ h2 {
 }
 
 .talks p {
+  color: #6c757d;
   font-size: 14px;
   margin-left: 4.3rem;
 }
@@ -165,6 +199,7 @@ h2 {
 }
 
 .patent p {
+  color: #6c757d;
   font-size: 14px;
 }
 
