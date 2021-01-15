@@ -4,7 +4,7 @@
     <hr />
 
     <div class="awards">
-      <h3>Awards</h3>
+      <h3>Award</h3>
       <!-- YANS -->
       <b-card
         title="2018.08: Incentive Award, Symposium on Young Research Association for NLP Studies (YANS), 2018."
@@ -35,7 +35,7 @@
     <!-- end of awards -->
 
     <div class="talks">
-      <h3>Talks</h3>
+      <h3>Talk</h3>
       <!-- SSII 2020 -->
       <b-card
         title="2020.06: Adversarial Examples 研究動向"
@@ -132,7 +132,7 @@
     <!-- end of Patent -->
 
     <div class="certifications">
-      <h3>Certifications</h3>
+      <h3>Certification</h3>
       <!-- Leading -->
       <b-card
         title="CG-ARTS CG Engineer Examination - Expert"
