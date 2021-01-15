@@ -1,40 +1,57 @@
 <template>
-  <div class="mt-2">
+  <div class="top mt-5">
     <b-card
       title="Yoshihiro Fukuhara"
       title-tag="h1"
       img-src="../static/image/icon.png"
-      img-height="250"
+      img-height="200"
       img-left
-      class="mb-3"
+      class="mb-3 border-0"
     >
       <b-card-text>
         <p>
-          I’m currently a third-year PhD student at Waseda University. My
-          current research interests are primarily in Robust Machine Learning.
+          I am currently a third-year PhD student at Waseda University, where I
+          am advised by Professor
+          <a
+            href="https://scholar.google.co.jp/citations?user=4B-C50EAAAAJ&hl=en"
+            target="_blank"
+            >Shigeo Morishima</a
+          >. I am also a member of
+          <a href="http://www.leading-sn.waseda.ac.jp/"
+            >Waseda Innovation Leading Laboratory (WILL)</a
+          >
+          and <a href="http://xpaperchallenge.org/cv/">cvpaper.challenge</a>. My
+          research interests are primarily in Robust Machine Learning to develop
+          ML tools that are robust, reliable and ready for real-world
+          deployment.
+        </p>
+        <p>
+          I prefer to study new things and always try to keep changing. Nothing
+          is permanent.
         </p>
       </b-card-text>
     </b-card>
   </div>
-
-  <!-- <b-row>
-    <b-col cols="3">
-      <b-img left src="../static/image/icon.png" fluid></b-img>
-    </b-col>
-    <b-col>
-      <div class="jumbotron">
-        <h1 class="display-5">Hello, world!</h1>
-        <p class="lead">
-          This is a simple hero unit, a simple jumbotron-style component for
-          calling extra attention to featured content or information.
-        </p>
-        <hr class="my-4" />
-        <p>
-          It uses utility classes for typography and spacing to space content
-          out within the larger container.
-        </p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-      </div>
-    </b-col>
-  </b-row> -->
 </template>
+
+<style>
+.top h1 {
+  font-size: 30px;
+}
+
+.pub h3 {
+  font-size: 20px;
+}
+
+.pub h4 {
+  font-size: 16px;
+}
+
+.pub h6 {
+  font-size: 14px;
+}
+
+.pub p {
+  font-size: 14px;
+}
+</style>
