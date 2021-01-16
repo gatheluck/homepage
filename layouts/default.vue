@@ -1,7 +1,9 @@
 <template>
-  <div class="contaier-fluid">
-    <navbar />
-    <Nuxt />
+  <div>
+    <Navbar />
+    <main>
+      <Nuxt />
+    </main>
     <Footer />
   </div>
 </template>
