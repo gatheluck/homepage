@@ -20,9 +20,14 @@ jobs:
         run: yarn install && yarn generate
 
       - name: SSH key generate
-        run: echo "$SSH_PRIVATE_KEY" > key && chmod 600 key
+        run: echo "$DEPLOY_KEY_SERVER" > key && chmod 600 key
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY_SERVER }}
+          DEPLOY_KEY_SERVER: ${{ secrets.DEPLOY_KEY_SERVER }}
 
       - name: Deploy
-        run: rsync -auzrv -e "ssh -i key -p ${{ secrets.DEPLOY_PORT_SERVER }}" --delete ./dist/* ${{ secrets.DEPLOY_USER_SERVER }}@${{ secrets.DEPLOY_HOST_SERVER }}:${{ secrets.DEPLOY_HOST_PATH }} --exclude .htaccess
+        run: rsync -auzrv -e "ssh -i key -p ${DEPLOY_PORT_SERVER} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" --delete ./dist/* ${DEPLOY_USER_SERVER}@${DEPLOY_HOST_SERVER}:${DEPLOY_HOST_PATH} --exclude .htaccess
+        env:
+          DEPLOY_PORT_SERVER: ${{ secrets.DEPLOY_PORT_SERVER }}
+          DEPLOY_USER_SERVER: ${{ secrets.DEPLOY_USER_SERVER }}
+          DEPLOY_HOST_SERVER: ${{ secrets.DEPLOY_HOST_SERVER }}
+          DEPLOY_HOST_PATH: ${{ secrets.DEPLOY_HOST_PATH }} 
