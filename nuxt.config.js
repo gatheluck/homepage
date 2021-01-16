@@ -47,7 +47,7 @@ export default {
       {
         hid: 'og:url',
         property: 'og:url',
-        content: 'http://xpaperchallenge.org/cv'
+        content: 'http://gatheluck.net'
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
