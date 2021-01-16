@@ -1,0 +1,23 @@
+name: deploy to server
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Setup node env
+        uses: actions/setup-node@v2
+
+      - name: Install dependencies and build
+        run: yarn install && yarn build
+
+      - name: Deploy
+        run: rsync -auzrv -e 'ssh -i ${{ secrets.DEPLOY_KEY_SERVER }} -p ${{ secrets.DEPLOY_PORT_SERVER }}' --delete ./dist/* ${{ secrets.DEPLOY_USER_SERVER }}@${{ secrets.DEPLOY_HOST_SERVER }}:${{ secrets.DEPLOY_HOST_PATH }} --exclude .htaccess
