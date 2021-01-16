@@ -5,7 +5,7 @@
         <b-img
           rounded="circle"
           height="25"
-          src="../static/image/robust_feature_cropped.png"
+          src="~/static/image/robust_feature_cropped.png"
           class="mr-1"
         />
         Yoshihiro Fukuhara

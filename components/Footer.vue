@@ -6,7 +6,7 @@
         <b-img
           rounded="circle"
           height="80"
-          src="../static/image/robust_feature_cropped.png"
+          src="~/static/image/robust_feature_cropped.png"
           class="mx-auto d-block"
         />
         <div class="mt-4 pb-2">

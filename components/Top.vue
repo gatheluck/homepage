@@ -4,7 +4,7 @@
       <b-row no-gutters>
         <b-col class="col-2">
           <b-card-img
-            src="../static/image/icon.png"
+            src="~/static/image/icon.png"
             alt="Image"
             class="rounded-circle"
           ></b-card-img>
