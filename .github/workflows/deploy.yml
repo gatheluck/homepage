@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-node@v2
 
       - name: Install dependencies and build
-        run: yarn install && yarn build
+        run: yarn install && yarn generate
 
       - name: Deploy
         run: rsync -auzrv -e 'ssh -i ${{ secrets.DEPLOY_KEY_SERVER }} -p ${{ secrets.DEPLOY_PORT_SERVER }}' --delete ./dist/* ${{ secrets.DEPLOY_USER_SERVER }}@${{ secrets.DEPLOY_HOST_SERVER }}:${{ secrets.DEPLOY_HOST_PATH }} --exclude .htaccess
