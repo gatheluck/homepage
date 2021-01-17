@@ -6,49 +6,50 @@ export default {
       { charset: 'utf-8' },
       {
         name: 'keywords',
-        content: 'yoshihiro fukuhara, yoshihiro, fukuhara, gatheluck, robust, adversarial, AEs, machine learning, ml, ai, computer vision'
+        content:
+          'yoshihiro fukuhara, yoshihiro, fukuhara, gatheluck, robust, adversarial, AEs, machine learning, ml, ai, computer vision',
       },
       {
         hid: 'description',
         name: 'description',
-        content: 'Yoshihiro Fukuhara\'s page.'
+        content: "Yoshihiro Fukuhara's page.",
       },
       {
         name: 'author',
-        content: 'Yoshihiro Fukuhara'
+        content: 'Yoshihiro Fukuhara',
       },
       {
         name: 'viewport',
-        content: 'width=device-width, initial-scale=1'
+        content: 'width=device-width, initial-scale=1',
       },
       {
         hid: 'og:type',
-        content: 'website'
+        content: 'website',
       },
       {
         property: 'og:site_name',
-        content: 'Yoshihiro Fukuhara\'s page'
+        content: "Yoshihiro Fukuhara's page",
       },
       {
         hid: 'og:title',
         property: 'og:title',
-        content: 'Yoshihiro Fukuhara'
+        content: 'Yoshihiro Fukuhara',
       },
       {
         hid: 'og:description',
         name: 'og:description',
-        content: 'Yoshihiro Fukuhara\'s page.'
+        content: "Yoshihiro Fukuhara's page.",
       },
       {
         hid: 'og:image',
         property: 'og:image',
-        content: '/image/icon.png'
+        content: '/image/icon.png',
       },
       {
         hid: 'og:url',
         property: 'og:url',
-        content: 'http://gatheluck.net'
-      }
+        content: 'http://gatheluck.net',
+      },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
@@ -87,7 +88,7 @@ export default {
   build: {},
 
   router: {
-    base: '/home/'
+    base: '/home/',
   },
 
   fontawesome: {

@@ -37,7 +37,19 @@
       class="border-0 bg-transparent mt-n3"
     >
       <b-card-text>
-        Journal of Japan Society for Precision Engineering (JSPE), Vol.87, No.1.
+        Journal of Japan Society for Precision Engineering (JSPE), 2021, Vol.87,
+        Issue 1, Pages 83-91.
+        <br />
+        <a
+          href="https://www.jstage.jst.go.jp/article/jjspe/87/1/87_83/_article/-char/en"
+          target="_blank"
+          >[J-STAGE]</a
+        >
+        <a
+          href="https://www.jstage.jst.go.jp/article/jjspe/87/1/87_83/_pdf/-char/en"
+          target="_blank"
+          >[PDF]</a
+        >
       </b-card-text>
     </b-card>
 
