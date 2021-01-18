@@ -25,14 +25,15 @@
                   target="_blank"
                   >Shigeo Morishima</a
                 >. I am also a member of
-                <a href="http://www.leading-sn.waseda.ac.jp/"
+                <a href="http://www.leading-sn.waseda.ac.jp/" target="_blank"
                   >Waseda Innovation Leading Laboratory (WILL)</a
                 >
                 and
-                <a href="http://xpaperchallenge.org/cv/">cvpaper.challenge</a>.
-                My research interests are primarily in Robust Machine Learning
-                to develop ML tools that are robust, reliable and ready for
-                real-world deployment.
+                <a href="http://xpaperchallenge.org/cv/" target="_blank"
+                  >cvpaper.challenge</a
+                >. My research interests are primarily in Robust Machine
+                Learning to develop ML tools that are robust, reliable and ready
+                for real-world deployment.
               </p>
               <p>
                 I prefer to study new things and always try to keep changing.
