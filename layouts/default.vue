@@ -68,4 +68,13 @@ html {
   color: #fff;
   background-color: #35495e;
 }
+
+/* global font setting */
+h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 20px;
+}
 </style>
