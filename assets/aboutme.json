@@ -1,0 +1,62 @@
+{
+  "biography": [
+    {
+      "date": "2020.06 - ongoing",
+      "title": "<a href='https://myproduct.co.jp/' target='_blank'>myProduct Inc</a>. AI Engineer.",
+      "texts": []
+    },
+    {
+      "date": "2020.04 - ongoing",
+      "title": "<a href='https://www.aist.go.jp/index_en.html' target='_blank'>The National Institute of Advanced Industrial Science and Technology (AIST)</a>. Research Assistant.",
+      "texts": [
+        "Supervisor: <a href='http://hirokatsukataoka.net/' target='_blank'>Hirokatsu, Kataoka, Ph.D.</a>"
+      ]
+    },
+    {
+      "date": "2018.04 - ongoing",
+      "title": "Department of Applied Physics, <a href='https://www.waseda.jp/top/en/' target='_blank'>Waseda University</a>, Japan.",
+      "texts": [
+        "<a href='http://www.leading-sn.waseda.ac.jp/' target='_blank'>Waseda University Leading Doctoral Course Embodiment Informatics</a>"
+      ]
+    },
+    {
+      "date": "2018.10 - 2020.03",
+      "title": "<a href='https://www.se4.space/' target='_blank'>SE4 Inc</a>. Research Internship.",
+      "texts": []
+    },
+    {
+      "date": "2018.02 - 2018.09",
+      "title": "<a href='https://fove-inc.com/' target='_blank'>Fove Inc</a>. Research Internship.",
+      "texts": []
+    },
+    {
+      "date": "2016.04 - 2018.03",
+      "title": "Department of Applied Physics, <a href='https://www.waseda.jp/top/en/' target='_blank'>Waseda University</a>, Japan.",
+      "texts": [
+        "Master of Engineering"
+      ]
+    },
+    {
+      "date": "2014.06 - 2018.03",
+      "title": "<a href='https://www.waseda.jp/top/en/' target='_blank'>Waseda University</a>, Japan. Resident Assistant (RA).",
+      "texts": [
+        "Waseda International Dormitory (WID) Kodaira",
+        "<a href='https://www.waseda.jp/inst/rlc/assistant/' target='_blank'>[About RA]</a>"
+      ]
+    },
+    {
+      "date": "2016.07 - 2016.09",
+      "title": "<a href='https://www.ucla.edu/' target='_blank'>University of California, Los Angeles (UCLA)</a>. Visiting Student.",
+      "texts": [
+        "<a href='https://www.csst.ucla.edu/' target='_blank'>Cross-disciplinary Scholars in Science and Technology (CSST)</a>, 2016 Participants",
+        "<a href='https://www.csst.ucla.edu/alumni' target='_blank'>[Alumni List]</a> (Acceptance rate of Japanese Students:0.1%）",
+        "Supervisor: <a href='http://web.cs.ucla.edu/~soatto/' target='_blank'>Prof. Stefano Soatto</a>"
+      ]
+    },
+    {
+      "date": "2012.04 - 2016.03",
+      "title": "Department of Applied Physics, <a href='https://www.waseda.jp/top/en/' target='_blank'>Waseda University</a>, Japan.",
+      "texts": ["Bachelor of Engineering"]
+    }
+  ]
+}
