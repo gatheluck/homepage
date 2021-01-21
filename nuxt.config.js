@@ -74,6 +74,13 @@ export default {
     id: 'UA-187519692-1', // analytics code
   },
 
+  sitemap: {
+    path: '/sitemap.xml',
+    hostname: 'https://gatheluck.net',
+    generate: true,
+    exclude: [],
+  },
+
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/bootstrap
@@ -83,7 +90,9 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     //
-    'nuxt-fontawesome',
+	  'nuxt-fontawesome',
+    // https://sitemap.nuxtjs.org/
+    '@nuxtjs/sitemap',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
