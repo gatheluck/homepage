@@ -90,7 +90,7 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     //
-	  'nuxt-fontawesome',
+    'nuxt-fontawesome',
     // https://sitemap.nuxtjs.org/
     '@nuxtjs/sitemap',
   ],
