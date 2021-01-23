@@ -16,9 +16,9 @@
           <!-- left side -->
           <b-col
             v-if="pub.image"
-            xl="1"
-            lg="auto"
-            md="auto"
+            xl="2"
+            lg="3"
+            md="4"
             sm="auto"
             cols="auto"
             class="mb-1"
@@ -26,18 +26,18 @@
             <b-card-img
               :src="require('~/static/image/' + pub.image)"
               alt="Image"
-              style="max-width: 120px"
+              style="max-width: 300px"
             ></b-card-img>
           </b-col>
           <!-- right side -->
           <!-- if there is image -->
           <b-col
             v-if="pub.image"
-            xl="11"
-            lg="10"
-            md="9"
-            sm="8"
-            cols="8"
+            xl="10"
+            lg="9"
+            md="8"
+            sm="12"
+            cols="12"
             class="mt-n3 mb-n2"
           >
             <b-card-body>
