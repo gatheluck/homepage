@@ -14,9 +14,9 @@
     >
       <b-row no-gutters>
         <!-- left side -->
-        <b-col xl="2" lg="3" md="4">
+        <b-col xl="auto" lg="auto" md="auto" sm="auto" cols="auto">
           <div class="bio-date">
-            <b-card-text class="pl-3">{{ bio.date }}:</b-card-text>
+            <b-card-text class="pl-3">{{ bio.date }}</b-card-text>
           </div>
         </b-col>
         <!-- right side -->
