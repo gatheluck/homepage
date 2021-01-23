@@ -23,7 +23,7 @@
     {
       "title": "Property Analysis of Adversarially Robust Representation",
       "author": "Yoshihiro Fukuhara, Takahiro Itazuri, Hirokatsu Kataoka, Shigeo Morishima",
-      "image": "",
+      "image": "yoshihiro20jspe.png",
       "texts": [
         "Journal of Japan Society for Precision Engineering (JSPE), 2021, Vol.87, Issue 1, Pages 83-91.",
         "<a href='https://www.jstage.jst.go.jp/article/jjspe/87/1/87_83/_article/-char/en' target='_blank'>[J-STAGE]</a> <a href='https://www.jstage.jst.go.jp/article/jjspe/87/1/87_83/_pdf/-char/en' target='_blank'>[PDF]</a>"
@@ -34,7 +34,7 @@
     {
       "title": "Automatic Paper Summary Generation from Visual and Textual Information",
       "author": "Shintaro Yamamoto*, Yoshihiro Fukuhara*, Ryota Suzuki, Shigeo Morishima, Hirokatsu Kataoka",
-      "image": "",
+      "image": "shintaro18icmv.png",
       "texts": [
         "International Conference on Machine Vision (ICMV), 2018. (* indicates equal contribution)",
         "<a href='https://arxiv.org/abs/1811.06943' target='_blank'>[arXiv]</a> <a href='https://cvpaperchallenge.github.io/AutoPaperSummaryGen/' target='_blank'>[Project]</a>"
@@ -43,7 +43,7 @@
     {
       "title": "Understanding Fake Faces",
       "author": "Ryota Natsume*, Kazuki Inoue*, Yoshihiro Fukuhara, Shintaro Yamamoto, Shigeo Morishima, Hirokatsu Kataoka",
-      "image": "",
+      "image": "ryota18bdcv.png",
       "texts": [
         "ECCV 2018 Workshop on Brain-Driven Computer Vision (BDCV). (* indicates equal contribution)",
         "<a href='https://arxiv.org/abs/1809.08391' target='_blank'>[arXiv]</a>"
@@ -52,7 +52,7 @@
     {
       "title": "Retexturing under Self-Occlusion using Hierarchical Markers",
       "author": "Shoki Miyagawa, Yoshihiro Fukuhara, Fumiya Narita, Norihiro Ogata, Shigeo Morishima",
-      "image": "",
+      "image": "shoki17siggraph.png",
       "texts": [
         "ACM Special Interest Group on Computer Graphics and Interactive Techniques (SIGGRAPH), 2017.",
         "<a href='https://drive.google.com/file/d/0B-3GP93sqht2cVlKd2pjVTIzYTg/view' target='_blank'>[PDF]</a>"
@@ -61,7 +61,7 @@
     {
       "title": "Fiber-Dependent Approach for Fast Dynamic Character Animation",
       "author": "Ayano Kaneda,Tsukasa Fukusato,Yoshihiro Fukuhara,Takayuki Nakatsuka, Shigeo Morishima",
-      "image": "",
+      "image": "ayano17casa.png",
       "texts": [
         "Conference on Computer Animation and Social Agents (CASA), 2017.",
         "<a href='http://casa2017.kaist.ac.kr/wordpress/wp-content/uploads/2017/06/1-Kaneda.pdf' target='_blank'>[PDF]</a>"
