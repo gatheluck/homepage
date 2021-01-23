@@ -1,69 +1,71 @@
 {
-	"award": [
-	  {
-		"date": "2018.08",
-		"title": "Incentive Award, Symposium on Young Research Association for NLP Studies (YANS), 2018.",
-		"texts": []
-	  },
-	  {
-		"date": "2017.12",
-		"title": "JAXA Special Award, HP Mars Home Planet -Education League JP-.",
-		"texts": []
-	  },
-	  {
-		"date": "2015.09",
-		"title": "Performance Award, Visual Infromation Processing Camp (VIP), 2015.",
-		"texts": []
-	  }
-	],
-	"talk": [
-		{
-		  "date": "2020.06",
-		  "title": "Adversarial Examples 研究動向",
-		  "texts": [
-			  "Invited Talk, Symposium of Sensing via Image Infomation (SSII), 2020.",
-			  "<a href='https://confit.atlas.jp/guide/event/ssii2020/static/invited_interactive#IS2' target='_blank'>[SSII 2020]</a>"
-		  ]
-		},
-		{
-		  "date": "2019.09",
-		  "title": "Adversarial Examples 分野の動向 -History and Trends of Dark Arts-",
-		  "texts": [
-			"cvpaper.challenge CVPR 2019 網羅的サーベイ報告会 @日立製作所 中央研究所.",
-			"<a href='https://www.slideshare.net/cvpaperchallenge/adversarial-examples-173590674' target='_blank'>[Slide]</a>  <a href='https://www.slideshare.net/cvpaperchallenge/adversarial-examples-229232499' target='_blank'>[Slide(+Meta Survey)]</a>"
-		  ]
-		}
-	],
-	"funding": [
-		{
-		  "date": "2016.04 - 2020.03",
-		  "title": "Graduate Program for Embodiment Informatics Scholarship.",
-		  "texts": []
-		},
-		{
-		  "date": "2016.07 - 2016.09",
-		  "title": "University of California, Los Angeles (UCLA), Cross-disciplinary Scholars in Science and Technology (CSST) Scholarship Program 2016.",
-		  "texts": []
-		},
-		{
-		  "date": "2012.04 - 2013.03",
-		  "title": "Waseda University, Okuma Memorial Special Scholarship.",
-		  "texts": []
-		}
-	  ],
-	  "patent": [
-		{
-		  "title": "画像処理装置及び画像処理方法",
-		  "texts": [
-			"特開 2018-195038 (P2018-195038A)",
-			"<a href=https://ipforce.jp/patent-jp-A-2018-195038' target='_blank'>[IP Force]</a>"
-		  ]
-		}
-	  ],
-	  "certification": [
-		{
-		  "title": "CG-ARTS CG Engineer Examination Expert.",
-		  "texts": []
-		}
-	  ]
+  "Award": [
+    {
+    "date": "2018.08",
+    "title": "Incentive Award, Symposium on Young Research Association for NLP Studies (YANS), 2018.",
+    "texts": []
+    },
+    {
+    "date": "2017.12",
+    "title": "JAXA Special Award, HP Mars Home Planet -Education League JP-.",
+    "texts": []
+    },
+    {
+    "date": "2015.09",
+    "title": "Performance Award, Visual Infromation Processing Camp (VIP), 2015.",
+    "texts": []
+    }
+  ],
+  "Talk": [
+    {
+      "date": "2020.06",
+      "title": "Adversarial Examples 研究動向",
+      "texts": [
+        "Invited Talk, Symposium of Sensing via Image Infomation (SSII), 2020.",
+        "<a href='https://confit.atlas.jp/guide/event/ssii2020/static/invited_interactive#IS2' target='_blank'>[SSII 2020]</a>"
+      ]
+    },
+    {
+      "date": "2019.09",
+      "title": "Adversarial Examples 分野の動向 -History and Trends of Dark Arts-",
+      "texts": [
+        "cvpaper.challenge CVPR 2019 網羅的サーベイ報告会 @日立製作所 中央研究所.",
+        "<a href='https://www.slideshare.net/cvpaperchallenge/adversarial-examples-173590674' target='_blank'>[Slide]</a>  <a href='https://www.slideshare.net/cvpaperchallenge/adversarial-examples-229232499' target='_blank'>[Slide(+Meta Survey)]</a>"
+      ]
+    }
+  ],
+  "Funding": [
+    {
+      "date": "2016.04 - 2020.03",
+      "title": "Graduate Program for Embodiment Informatics Scholarship.",
+      "texts": []
+    },
+    {
+      "date": "2016.07 - 2016.09",
+      "title": "University of California, Los Angeles (UCLA), Cross-disciplinary Scholars in Science and Technology (CSST) Scholarship Program 2016.",
+      "texts": []
+    },
+    {
+      "date": "2012.04 - 2013.03",
+      "title": "Waseda University, Okuma Memorial Special Scholarship.",
+      "texts": []
+    }
+    ],
+    "Patent": [
+    {
+      "date": "",
+      "title": "画像処理装置及び画像処理方法",
+      "texts": [
+        "特開 2018-195038 (P2018-195038A)",
+        "<a href=https://ipforce.jp/patent-jp-A-2018-195038' target='_blank'>[IP Force]</a>"
+      ]
+    }
+    ],
+    "Certification": [
+    {
+      "date": "",
+      "title": "CG-ARTS CG Engineer Examination Expert.",
+      "texts": []
+    }
+    ]
   }
