@@ -36,8 +36,8 @@
                 for real-world deployment.
               </p>
               <p>
-                I prefer to study new things and always try to keep changing.
-                Nothing is permanent.
+                I prefer to try new things and always eager to keep updating
+                myself. Nothing is permanent.
               </p>
             </b-card-text>
           </b-card-body>
