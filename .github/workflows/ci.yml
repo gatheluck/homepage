@@ -43,7 +43,9 @@ jobs:
 
       - name: Install dependencies 👨🏻‍💻
         run: yarn
+        working-directory: ./applications/frontend
 
       - name: Run linter 👀
-        run: yarn lint
+        run: yarn lint --ignore-path ../../.gitignore  # lint uses .gitignore to decide which files should lint.
+        working-directory: ./applications/frontend
 

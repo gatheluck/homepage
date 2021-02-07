@@ -18,14 +18,17 @@ jobs:
 
       - name: Install dependencies and build
         run: yarn install && yarn generate
+        working-directory: ./applications/frontend
 
       - name: SSH key generate
         run: echo "$DEPLOY_KEY_SERVER" > key && chmod 600 key
+        working-directory: ./applications/frontend
         env:
           DEPLOY_KEY_SERVER: ${{ secrets.DEPLOY_KEY_SERVER }}
 
       - name: Deploy
         run: rsync -auzrv -e "ssh -i key -p ${DEPLOY_PORT_SERVER} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" --delete ./dist/* ${DEPLOY_USER_SERVER}@${DEPLOY_HOST_SERVER}:${DEPLOY_HOST_PATH} --exclude .htaccess
+        working-directory: ./applications/frontend
         env:
           DEPLOY_PORT_SERVER: ${{ secrets.DEPLOY_PORT_SERVER }}
           DEPLOY_USER_SERVER: ${{ secrets.DEPLOY_USER_SERVER }}
