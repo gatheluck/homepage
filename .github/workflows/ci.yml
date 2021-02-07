@@ -23,9 +23,6 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@master
 
-      - name: Change directory
-        run: cd applications/frontend 
-
       - name: Setup node env 🏗
         uses: actions/setup-node@v2.1.2
         with:
@@ -46,7 +43,9 @@ jobs:
 
       - name: Install dependencies 👨🏻‍💻
         run: yarn
+        working-directory: ./applications/frontend
 
       - name: Run linter 👀
         run: yarn lint
+        working-directory: ./applications/frontend
 
