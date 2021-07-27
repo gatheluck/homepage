@@ -1,22 +1,27 @@
 {
   "biography": [
     {
-      "date": "2020.06 - ongoing",
-      "title": "<a href='https://myproduct.co.jp/' target='_blank'>myProduct Inc</a>. AI Engineer.",
+      "date": "2021.08 - ongoing",
+      "title": "<a href='https://exawizards.com/en/' target='_blank'>ExaWizards Inc</a>. Machine Learning Engineer.",
       "texts": []
-    },
-    {
-      "date": "2020.04 - ongoing",
-      "title": "<a href='https://www.aist.go.jp/index_en.html' target='_blank'>The National Institute of Advanced Industrial Science and Technology (AIST)</a>. Research Assistant.",
-      "texts": [
-        "Supervisor: <a href='http://hirokatsukataoka.net/' target='_blank'>Hirokatsu, Kataoka, Ph.D.</a>"
-      ]
     },
     {
       "date": "2018.04 - ongoing",
       "title": "Department of Applied Physics, <a href='https://www.waseda.jp/top/en/' target='_blank'>Waseda University</a>, Japan.",
       "texts": [
         "<a href='http://www.leading-sn.waseda.ac.jp/' target='_blank'>Waseda University Leading Doctoral Course Embodiment Informatics</a>"
+      ]
+    },
+    {
+      "date": "2020.06 - 2021.07",
+      "title": "<a href='https://myproduct.co.jp/' target='_blank'>myProduct Inc</a>. AI Engineer.",
+      "texts": []
+    },
+    {
+      "date": "2020.04 - 2021.03",
+      "title": "<a href='https://www.aist.go.jp/index_en.html' target='_blank'>The National Institute of Advanced Industrial Science and Technology (AIST)</a>. Research Assistant.",
+      "texts": [
+        "Supervisor: <a href='http://hirokatsukataoka.net/' target='_blank'>Hirokatsu, Kataoka, Ph.D.</a>"
       ]
     },
     {
