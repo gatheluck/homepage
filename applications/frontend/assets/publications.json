@@ -32,6 +32,15 @@
   ],
   "International Conference": [
     {
+      "title": "RLTutor: Reinforcement Learning Based Adaptive Tutoring System by Modeling Virtual Student with Fewer Interactions",
+      "author": "Yoshiki Kubotani, Yoshihiro Fukuhara, Shigeo Morishima",
+      "image": "yoshiki21ijcai.png",
+      "texts": [
+        "In IJCAI 2021 Workshop on Artificial Intelligence for Education (AI4EDU), 2021.",
+        "<a href='https://arxiv.org/abs/2108.00268' target='_blank'>[arXiv]</a> <a href='https://github.com/YoshikiKubotani/rltutor' target='_blank'>[GitHub]</a>"
+      ]
+    },
+    {
       "title": "Automatic Paper Summary Generation from Visual and Textual Information",
       "author": "Shintaro Yamamoto*, Yoshihiro Fukuhara*, Ryota Suzuki, Shigeo Morishima, Hirokatsu Kataoka",
       "image": "shintaro18icmv.png",
