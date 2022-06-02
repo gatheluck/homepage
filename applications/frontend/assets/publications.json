@@ -79,6 +79,22 @@
   ],
   "Domestic Conference (Reviewed)": [
     {
+      "title": "NeDDF: Neural Density-Distance Fields",
+      "author": "Itsuki Ueda, Yoshihiro Fukuhara, Hirokatsu Kataoka, Hiroki Aizawa, Hidehiko Shishido, Itaru Kitahara",
+      "image": "",
+      "texts": [
+        "Meeting on Image Recognition and Understanding (MIRU), 2022. (Short oral)"
+      ]
+    },
+    {
+      "title": "Predicting the Effect of Formula-driven Supervised Learning with Intrinsic Dimension",
+      "author": "Yusuke Kondo, Yoshihiro Fukuhara, Shin'ichi Satoh",
+      "image": "",
+      "texts": [
+        "Meeting on Image Recognition and Understanding (MIRU), 2022. (Short oral)"
+      ]
+    }, 
+    {
       "title": "Automatic Real-Time Generation of Secondary Motion Considering Local Body Structure of Characters",
       "author": "Ayano Kaneda, Tsukasa Fukusato, Yoshihiro Fukuhara, Takayuki Nakatsuka, Shigeo Morishima",
       "image": "",
