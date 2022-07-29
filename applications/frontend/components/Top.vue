@@ -18,26 +18,26 @@
           >
             <b-card-text>
               <p>
-                I am currently a third-year PhD student at Waseda University,
-                where I am advised by Professor
-                <a
-                  href="https://scholar.google.co.jp/citations?user=4B-C50EAAAAJ&hl=en"
-                  target="_blank"
-                  >Shigeo Morishima</a
-                >. I am also a member of
-                <a href="http://www.leading-sn.waseda.ac.jp/" target="_blank"
-                  >Waseda Innovation Leading Laboratory (WILL)</a
-                >
-                and
-                <a href="http://xpaperchallenge.org/cv/" target="_blank"
-                  >cvpaper.challenge</a
-                >. My research interests are primarily in Robust Machine
-                Learning to develop ML tools that are robust, reliable and ready
-                for real-world deployment.
+                I am currently working at
+                <a href="https://exawizards.com/en/" target="_blank"
+                  >ExaWizards Inc. </a
+                >as a ML/MLOps Engineer and developing the MLOps Platform to
+                accelerate the process from PoC to service to scale ML business.
+                With my experience as both a researcher and an engineer, I am
+                passionate about quickly turning research-stage technologies
+                into services and implementing them in society in a way that
+                delivers value to many people.
               </p>
               <p>
-                I prefer to try new things and always eager to keep updating
-                myself. Nothing is permanent.
+                I am also a headquarter member of
+                <a href="http://xpaperchallenge.org/cv/" target="_blank"
+                  >cvpaper.challenge</a
+                >, and leads
+                <a href="http://xpaperchallenge.org/cv/xccv" target="_blank"
+                  >XCCV research group </a
+                >collaborating with PRMU/CVIM mentorship programs. My research
+                interests are primarily in robust machine learning for
+                developing reliable and real-world ready ML systems.
               </p>
             </b-card-text>
           </b-card-body>
