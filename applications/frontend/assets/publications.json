@@ -32,6 +32,15 @@
   ],
   "International Conference": [
     {
+      "title": "Neural Density-Distance Fields",
+      "author": "Itsuki Ueda, Yoshihiro Fukuhara, Hirokatsu Kataoka, Hiroaki Aizawa, Hidehiko Shishido, Itaru Kitahara",
+      "image": "itsuki22eccv.png",
+      "texts": [
+        "European Conference on Computer Vision (ECCV), 2022.",
+        "<a href='https://ueda0319.github.io/neddf' target='_blank'>[Project]</a> <a href='https://github.com/ueda0319/neddf' target='_blank'>[GitHub]</a>"
+      ]
+    },
+    {
       "title": "RLTutor: Reinforcement Learning Based Adaptive Tutoring System by Modeling Virtual Student with Fewer Interactions",
       "author": "Yoshiki Kubotani, Yoshihiro Fukuhara, Shigeo Morishima",
       "image": "yoshiki21ijcai.png",
