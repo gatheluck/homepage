@@ -28,6 +28,14 @@
   ],
   "Talk": [
     {
+      "date": "2022.07",
+      "title": "Ascender: Accelerator of Scientific Development and Research",
+      "texts": [
+        "cvpaper.challenge conference summer (CCCS), 2022.",
+        "<a href='https://cvpaperchallenge.github.io/Britannica/ascender/ja/' target='_blank'>[Slide]</a>"
+      ]
+    },
+    {
       "date": "2020.06",
       "title": "Adversarial Examples 研究動向",
       "texts": [
