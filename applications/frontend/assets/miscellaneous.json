@@ -1,6 +1,16 @@
 {
   "Award": [
     {
+      "date": "2022.07",
+      "title": "MIRU Interactive Session Award, Meeting on Image Recognition and Understanding (MIRU), 2022.",
+      "texts": []
+    },
+    {
+      "date": "2022.04",
+      "title": "Best Wizard Award 2021 2nd half.",
+      "texts": ["Company award from ExaWizards."]
+    },
+    {
     "date": "2018.08",
     "title": "Incentive Award, Symposium on Young Research Association for NLP Studies (YANS), 2018.",
     "texts": []
@@ -17,6 +27,14 @@
     }
   ],
   "Talk": [
+    {
+      "date": "2022.07",
+      "title": "Ascender: Accelerator of Scientific Development and Research",
+      "texts": [
+        "cvpaper.challenge conference summer (CCCS), 2022.",
+        "<a href='https://cvpaperchallenge.github.io/Britannica/ascender/ja/' target='_blank'>[Slide]</a>"
+      ]
+    },
     {
       "date": "2020.06",
       "title": "Adversarial Examples 研究動向",
