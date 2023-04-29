@@ -1,6 +1,15 @@
 {
   "Preprint": [
     {
+      "title": "Enhancing Inverse Problem Solutions with Accurate Surrogate Simulators and Promising Candidates",
+      "author": "Akihiro Fujii, Hideki Tsunashima, Yoshihiro Fukuhara, Koji Shimizu, Satoshi Watanabe",
+      "image": "",
+      "texts": [
+        "arXiv preprint.",
+        "<a href='https://arxiv.org/abs/2304.13860' target='_blank'>[arXiv]</a>"
+      ]
+    },
+    {
       "title": "Scapegoat Generation for Privacy Protection from Deepfake",
       "author": "Gido Kato, Yoshihiro Fukuhara, Mariko Isogawa, Hideki Tsunashima, Hirokatsu Kataoka, Shigeo Morishima",
       "image": "",
