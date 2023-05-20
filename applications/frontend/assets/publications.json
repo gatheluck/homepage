@@ -106,6 +106,14 @@
   ],
   "Domestic Conference (Reviewed)": [
     {
+      "title": "Scapegoat Generation for Privacy Protection from Deepfake",
+      "author": "Gido Kato, Yoshihiro Fukuhara, Mariko Isogawa, Hideki Tsunashima, Hirokatsu Kataoka, Shigeo Morishima",
+      "image": "",
+      "texts": [
+        "Meeting on Image Recognition and Understanding (MIRU), 2023. (Short oral)"
+      ]
+    },
+    {
       "title": "NeDDF: Neural Density-Distance Fields",
       "author": "Itsuki Ueda, Yoshihiro Fukuhara, Hirokatsu Kataoka, Hiroki Aizawa, Hidehiko Shishido, Itaru Kitahara",
       "image": "",
