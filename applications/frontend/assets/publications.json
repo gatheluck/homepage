@@ -10,15 +10,6 @@
       ]
     },
     {
-      "title": "Scapegoat Generation for Privacy Protection from Deepfake",
-      "author": "Gido Kato, Yoshihiro Fukuhara, Mariko Isogawa, Hideki Tsunashima, Hirokatsu Kataoka, Shigeo Morishima",
-      "image": "",
-      "texts": [
-        "arXiv preprint.",
-        "<a href='https://arxiv.org/abs/2303.02930' target='_blank'>[arXiv]</a>"
-      ]
-    },
-    {
       "title": "ATRO: Adversarial Training with a Rejection Option",
       "author": "Masahiro Kato, Zhenghang Cui, Yoshihiro Fukuhara",
       "image": "",
@@ -49,6 +40,15 @@
     }
   ],
   "International Conference": [
+    {
+      "title": "Scapegoat Generation for Privacy Protection from Deepfake",
+      "author": "Gido Kato, Yoshihiro Fukuhara, Mariko Isogawa, Hideki Tsunashima, Hirokatsu Kataoka, Shigeo Morishima",
+      "image": "gido23icip.png",
+      "texts": [
+        "International Conference on Image Processing (ICIP), 2023.",
+        "<a href='https://arxiv.org/abs/2303.02930' target='_blank'>[arXiv]</a>"
+      ]
+    },
     {
       "title": "Neural Density-Distance Fields",
       "author": "Itsuki Ueda, Yoshihiro Fukuhara, Hirokatsu Kataoka, Hiroaki Aizawa, Hidehiko Shishido, Itaru Kitahara",
