@@ -28,6 +28,14 @@
   ],
   "Talk": [
     {
+      "date": "2023.07",
+      "title": "CVPR 2023 速報",
+      "texts": [
+        "Tutorial, Meeting on Image Recognition and Understanding (MIRU), 2023.",
+        "<a href='https://speakerdeck.com/gatheluck/cvpr-2023-su-bao-ccc-summer-2023-in-mirutiyutoriaru-pei-bu-ban' target='_blank'>[Slide]</a>"
+      ]
+    },
+    {
       "date": "2022.07",
       "title": "Ascender: Accelerator of Scientific Development and Research",
       "texts": [
