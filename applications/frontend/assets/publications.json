@@ -41,6 +41,15 @@
   ],
   "International Conference": [
     {
+      "title": "Detect Fake with Fake: Leveraging Synthetic Data-driven Representation for Synthetic Image Detection",
+      "author": "Hina Otake, Yoshihiro Fukuhara, Yoshiki Kubotani, Shigeo Morishima",
+      "image": "otake24eccv.png",
+      "texts": [
+        "In ECCV 2024 Trust What You learN (TWYN) Workshop, 2024.",
+        "<a href='https://arxiv.org/abs/2409.08884' target='_blank'>[arXiv]</a>"
+      ]
+    },
+    {
       "title": "Scapegoat Generation for Privacy Protection from Deepfake",
       "author": "Gido Kato, Yoshihiro Fukuhara, Mariko Isogawa, Hideki Tsunashima, Hirokatsu Kataoka, Shigeo Morishima",
       "image": "gido23icip.png",
