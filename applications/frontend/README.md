@@ -5,6 +5,10 @@ The frontend is created by Nuxt.js.
 ## Build Setup
 
 ```bash
+# Specify old OpenSSL provider to avoid error
+# https://qiita.com/kokogento/items/f5b176d05c621223670b
+$ export NODE_OPTIONS=--openssl-legacy-provider
+
 # install dependencies
 $ yarn install
 

@@ -19,6 +19,8 @@ jobs:
       - name: Install dependencies and build
         run: yarn install && yarn generate
         working-directory: ./applications/frontend
+        env:
+          NODE_OPTIONS: "--openssl-legacy-provider"
 
       - name: SSH key generate
         run: echo "$DEPLOY_KEY_SERVER" > key && chmod 600 key
