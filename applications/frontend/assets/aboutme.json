@@ -1,15 +1,21 @@
 {
   "biography": [
     {
+      "date": "2024.04 - ongoing",
+      "title": "<a href='https://www.waseda.jp/top/en/' target='_blank'>Waseda University</a>. Research Fellow.",
+      "texts": []
+    },
+    {
       "date": "2021.08 - ongoing",
       "title": "<a href='https://exawizards.com/en/' target='_blank'>ExaWizards Inc</a>. ML/MLOps Engineer.",
       "texts": []
     },
     {
-      "date": "2018.04 - ongoing",
+      "date": "2018.04 - 2024.03",
       "title": "Department of Applied Physics, <a href='https://www.waseda.jp/top/en/' target='_blank'>Waseda University</a>, Japan.",
       "texts": [
-        "<a href='http://www.leading-sn.waseda.ac.jp/' target='_blank'>Waseda University Leading Doctoral Course Embodiment Informatics</a>"
+        "<a href='http://www.leading-sn.waseda.ac.jp/' target='_blank'>Waseda University Leading Doctoral Course Embodiment Informatics</a>",
+        "Withdrawal from the Doctoral Program with the Completion of Course Requirements"
       ]
     },
     {
@@ -26,7 +32,7 @@
     },
     {
       "date": "2018.10 - 2020.03",
-      "title": "<a href='https://www.se4.space/' target='_blank'>SE4 Inc</a>. Research Internship.",
+      "title": "SE4 Inc. Research Internship.",
       "texts": []
     },
     {

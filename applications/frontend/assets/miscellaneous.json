@@ -60,6 +60,32 @@
       ]
     }
   ],
+  "Book":[
+    {
+      "date": "2024.09",
+      "title": "コンピュータビジョン最前線 Autumn 2024",
+      "texts": [
+        "pp.35-56, イマドキノ論文サーベイ.",
+        "<a href='https://amzn.asia/d/dEIKuhB' target='_blank'>[amazon]</a>"
+      ]
+    },
+    {
+      "date": "2023.05",
+      "title": "AI白書 2023",
+      "texts": [
+        "pp.59-69, 開発・運用の基盤、手順、MLOps.",
+        "<a href='https://amzn.asia/d/fpIRJGR' target='_blank'>[amazon]</a>"
+      ]
+    },
+    {
+      "date": "2022.09",
+      "title": "コンピュータビジョン最前線 Spring 2022",
+      "texts": [
+        "pp.49-64, フカヨミ敵対的サンプル.",
+        "<a href='https://amzn.asia/d/72V7xuC' target='_blank'>[amazon]</a>"
+      ]
+    }
+  ],
   "Funding": [
     {
       "date": "2016.04 - 2020.03",
