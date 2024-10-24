@@ -18,26 +18,29 @@
           >
             <b-card-text>
               <p>
-                I am currently working at
-                <a href="https://exawizards.com/en/" target="_blank"
-                  >ExaWizards Inc. </a
-                >as a ML/MLOps Engineer and developing the MLOps Platform to
-                accelerate the process from PoC to service to scale ML business.
-                With my experience as both a researcher and an engineer, I am
-                passionate about quickly turning research-stage technologies
-                into services and implementing them in society in a way that
-                delivers value to many people.
+                I am a Staff ML/MLOps Engineer at
+                <a href="https://exawizards.com" target="_blank"
+                  >ExaWizards Inc.</a
+                >, where I lead both a team within the AI Technology &
+                Engineering department and the Cloud Enabling Guild. My focus is
+                on accelerating the transition from PoC to scalable services in
+                the ML business. As a member of the Technology Strategy
+                department, I also contribute to shaping the company’s
+                overarching technology strategy. Drawing on my dual experience
+                as a researcher and engineer, I am dedicated to swiftly
+                transforming cutting-edge research into practical services that
+                bring meaningful value to society.
               </p>
               <p>
-                I am also a headquarter member of
+                As a core member of the
                 <a href="http://xpaperchallenge.org/cv/" target="_blank"
                   >cvpaper.challenge</a
-                >, and leads
-                <a href="http://xpaperchallenge.org/cv/xccv" target="_blank"
-                  >XCCV research group </a
-                >collaborating with PRMU/CVIM mentorship programs. My research
-                interests are primarily in robust machine learning for
-                developing reliable and real-world ready ML systems.
+                >
+                headquarters, I actively collaborate with researchers from
+                around the world and lead the planning and execution of events
+                aimed at fostering industry-academia partnerships. My research
+                focuses on robust machine learning, with the goal of developing
+                reliable, real-world-ready ML systems.
               </p>
             </b-card-text>
           </b-card-body>
