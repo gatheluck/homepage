@@ -21,15 +21,14 @@
                 I am a Staff ML/MLOps Engineer at
                 <a href="https://exawizards.com" target="_blank"
                   >ExaWizards Inc.</a
-                >, where I lead both a team within the AI Technology &
-                Engineering department and the Cloud Enabling Guild. My focus is
-                on accelerating the transition from PoC to scalable services in
-                the ML business. As a member of the Technology Strategy
-                department, I also contribute to shaping the company’s
-                overarching technology strategy. Drawing on my dual experience
-                as a researcher and engineer, I am dedicated to swiftly
-                transforming cutting-edge research into practical services that
-                bring meaningful value to society.
+                >, where I spearhead the Cloud Enabling Guild, driving the
+                seamless transition from proof-of-concept prototypes to robust,
+                scalable machine learning services. In my role within the CTO
+                office, I actively shape our overarching technology strategy to
+                ensure that innovation aligns with our business objectives. With
+                a dual background as both a researcher and an engineer, I am
+                dedicated to rapidly transforming cutting-edge research into
+                practical solutions that deliver meaningful, real-world impact.
               </p>
               <p>
                 As a core member of the
