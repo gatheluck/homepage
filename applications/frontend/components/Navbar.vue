@@ -43,7 +43,7 @@
         <li class="nav-item">
           <a
             class="unstyled nav-link"
-            href="https://www.linkedin.com/in/yoshihiro-fukuhara-01b329136/"
+            href="https://www.linkedin.com/in/yoshihiro-fukuhara"
             target="_blank"
           >
             <font-awesome-icon
