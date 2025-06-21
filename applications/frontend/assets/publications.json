@@ -41,6 +41,15 @@
   ],
   "International Conference": [
     {
+      "title": "MoireDB: A Formula-driven Image Dataset for Robustness Enhancement",
+      "author": "Yuto Matsuo, Yoshihiro Fukuhara, Yuki M Asano, Hirokatsu Kataoka, Akio Nakamura",
+      "image": "matsuo25cvpr.png",
+      "texts": [
+        "In CVPR 2025 Synthetic Data for Computer Vision Workshop, 2025.",
+        "<a href='https://openreview.net/pdf?id=GhDmrlCsJO' target='_blank'>[PDF]</a>"
+      ]
+    },
+    {
       "title": "Detect Fake with Fake: Leveraging Synthetic Data-driven Representation for Synthetic Image Detection",
       "author": "Hina Otake, Yoshihiro Fukuhara, Yoshiki Kubotani, Shigeo Morishima",
       "image": "otake24eccv.png",
