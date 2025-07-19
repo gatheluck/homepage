@@ -28,6 +28,14 @@
   ],
   "Talk": [
     {
+      "date": "2025.07",
+      "title": "cvpaper.challenge 10年の軌跡",
+      "texts": [
+        "cvpaper.challenge conference summer (CCCS), 2025.",
+        "<a href='https://speakerdeck.com/gatheluck/cvpaper-dot-challenge-a-decade-long-journey' target='_blank'>[Slide]</a>"
+      ]
+    },
+    {
       "date": "2023.07",
       "title": "CVPR 2023 速報",
       "texts": [
