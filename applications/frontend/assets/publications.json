@@ -41,6 +41,15 @@
   ],
   "International Conference": [
     {
+      "title": "3D sans 3D Scans: Scalable Pre-training from Video-Generated Point Clouds",
+      "author": "Ryousuke Yamada, Kohsuke Ide, Yoshihiro Fukuhara, Hirokatsu Kataoka, Gilles Puy, Andrei Bursuc, Yuki M. Asano",
+      "image": "ryosuke26cvpr.jpg",
+      "texts": [
+        "Conference on Computer Vision and Pattern Recognition (CVPR), 2026.",
+        "<a href='https://arxiv.org/abs/2512.23042' target='_blank'>[arXiv]</a>"
+      ]
+    },
+    {
       "title": "MoireDB: A Formula-driven Image Dataset for Robustness Enhancement",
       "author": "Yuto Matsuo, Yoshihiro Fukuhara, Yuki M Asano, Hirokatsu Kataoka, Akio Nakamura",
       "image": "matsuo25cvpr.png",
