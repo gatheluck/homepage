@@ -12,40 +12,29 @@ on:
 
 jobs:
   ci:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node: [14]
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout 🛎
-        uses: actions/checkout@master
+        uses: actions/checkout@v4
+
+      - name: Enable Corepack
+        run: corepack enable
 
       - name: Setup node env 🏗
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
-
-      - name: Get yarn cache directory path 🛠
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Cache node_modules 📦
-        uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          node-version: 20
+          cache: yarn
+          cache-dependency-path: applications/frontend/yarn.lock
 
       - name: Install dependencies 👨🏻‍💻
-        run: yarn
+        run: yarn install --immutable
         working-directory: ./applications/frontend
 
       - name: Run linter 👀
-        run: yarn lint --ignore-path ../../.gitignore  # lint uses .gitignore to decide which files should lint.
+        run: yarn lint --ignore-path ../../.gitignore
         working-directory: ./applications/frontend
+        env:
+          NODE_OPTIONS: "--openssl-legacy-provider"
 
