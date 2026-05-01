@@ -1,0 +1,159 @@
+---
+import { getEntry, render, getCollection } from 'astro:content'
+import RootLayout from '@/layouts/RootLayout.astro'
+import Link from '@/components/Link.astro'
+import { useTranslations } from '@/i18n'
+
+const t = useTranslations()
+
+const author = await getEntry('authors', 'default')
+if (!author) {
+  return Astro.redirect('/404')
+}
+const { Content } = await render(author)
+
+const awards = await getCollection('awards')
+const books = await getCollection('books')
+const certifications = await getCollection('certifications')
+
+const sortedAwards = awards.sort((a, b) => b.data.date.localeCompare(a.data.date))
+const sortedBooks = books.sort((a, b) => b.data.date.localeCompare(a.data.date))
+---
+
+<RootLayout title="About - Yoshihiro Fukuhara" description={author.data.shortBio}>
+  <div class="divide-y divide-gray-200 dark:divide-gray-700">
+    <div class="space-y-2 pb-8 pt-6 md:space-y-5">
+      <h1
+        class="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14"
+      >
+        About
+      </h1>
+    </div>
+
+    <div class="items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
+      <div class="flex flex-col items-center space-x-2 pt-8">
+        {
+          author.data.avatar && (
+            <img src={author.data.avatar} alt={author.data.name} class="h-48 w-48 rounded-full" />
+          )
+        }
+        <h3 class="pb-2 pt-4 text-2xl font-bold leading-8 tracking-tight">
+          {author.data.name}
+        </h3>
+        <div class="text-gray-500 dark:text-gray-400">{author.data.occupation}</div>
+        <div class="text-gray-500 dark:text-gray-400">{author.data.company}</div>
+        <div class="flex space-x-3 pt-6">
+          {
+            author.data.email && (
+              <Link
+                href={`mailto:${author.data.email}`}
+                class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+              >
+                Email
+              </Link>
+            )
+          }
+          {
+            author.data.github && (
+              <Link
+                href={author.data.github}
+                class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+              >
+                GitHub
+              </Link>
+            )
+          }
+          {
+            author.data.linkedin && (
+              <Link
+                href={author.data.linkedin}
+                class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+              >
+                LinkedIn
+              </Link>
+            )
+          }
+          {
+            author.data.twitter && (
+              <Link
+                href={author.data.twitter}
+                class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+              >
+                Twitter
+              </Link>
+            )
+          }
+        </div>
+      </div>
+
+      <div class="prose max-w-none pb-8 pt-8 dark:prose-invert xl:col-span-2">
+        <Content />
+
+        <!-- Awards Section -->
+        {
+          sortedAwards.length > 0 && (
+            <div class="mt-8">
+              <h2>Awards & Honors</h2>
+              <ul>
+                {sortedAwards.map((award) => (
+                  <li>
+                    <strong>{award.data.title}</strong> - {award.data.organization} (
+                    {award.data.date})
+                    {award.data.description && (
+                      <p class="text-sm text-gray-600 dark:text-gray-400">
+                        {award.data.description}
+                      </p>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+
+        <!-- Books Section -->
+        {
+          sortedBooks.length > 0 && (
+            <div class="mt-8">
+              <h2>Books & Book Chapters</h2>
+              <ul>
+                {sortedBooks.map((book) => (
+                  <li>
+                    <strong>{book.data.title}</strong> ({book.data.date})
+                    {book.data.chapter && <p class="text-sm">Chapter: {book.data.chapter}</p>}
+                    {book.data.pages && <p class="text-sm">{book.data.pages}</p>}
+                    {book.data.url && (
+                      <Link
+                        href={book.data.url}
+                        class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                      >
+                        [Link]
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+
+        <!-- Certifications Section -->
+        {
+          certifications.length > 0 && (
+            <div class="mt-8">
+              <h2>Certifications</h2>
+              <ul>
+                {certifications.map((cert) => (
+                  <li>
+                    <strong>{cert.data.title}</strong> - {cert.data.organization}
+                    {cert.data.date && <span class="text-sm"> ({cert.data.date})</span>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</RootLayout>

@@ -20,7 +20,7 @@ jobs:
         run: yarn install && yarn generate
         working-directory: ./applications/frontend
         env:
-          NODE_OPTIONS: "--openssl-legacy-provider"
+          NODE_OPTIONS: '--openssl-legacy-provider'
 
       - name: SSH key generate
         run: echo "$DEPLOY_KEY_SERVER" > key && chmod 600 key
@@ -35,4 +35,4 @@ jobs:
           DEPLOY_PORT_SERVER: ${{ secrets.DEPLOY_PORT_SERVER }}
           DEPLOY_USER_SERVER: ${{ secrets.DEPLOY_USER_SERVER }}
           DEPLOY_HOST_SERVER: ${{ secrets.DEPLOY_HOST_SERVER }}
-          DEPLOY_HOST_PATH: ${{ secrets.DEPLOY_HOST_PATH }} 
+          DEPLOY_HOST_PATH: ${{ secrets.DEPLOY_HOST_PATH }}

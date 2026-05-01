@@ -1,0 +1,122 @@
+---
+import { getCollection } from 'astro:content'
+import RootLayout from '@/layouts/RootLayout.astro'
+import Link from '@/components/Link.astro'
+import { useTranslations } from '@/i18n'
+
+const t = useTranslations()
+
+const organizing = await getCollection('organizing')
+
+// Sort by date (descending)
+const sortedOrganizing = organizing.sort((a, b) => b.data.date.localeCompare(a.data.date))
+
+// Group by type
+const groupedByType = sortedOrganizing.reduce(
+  (acc, item) => {
+    const type = item.data.type
+    if (!acc[type]) {
+      acc[type] = []
+    }
+    acc[type].push(item)
+    return acc
+  },
+  {} as Record<string, typeof organizing>
+)
+
+const typeOrder = ['workshop', 'conference', 'symposium', 'session', 'other']
+const typeNames = {
+  workshop: 'Workshop Organization',
+  conference: 'Conference Organization',
+  symposium: 'Symposium Organization',
+  session: 'Session Chair',
+  other: 'Other Activities',
+}
+
+const typeIcons = {
+  workshop: '🛠️',
+  conference: '🎯',
+  symposium: '🎪',
+  session: '📋',
+  other: '📌',
+}
+---
+
+<RootLayout
+  title="Service & Organization - Yoshihiro Fukuhara"
+  description="Academic service and organizing activities"
+>
+  <div class="divide-y divide-gray-200 dark:divide-gray-700">
+    <div class="space-y-2 pb-8 pt-6 md:space-y-5">
+      <h1
+        class="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14"
+      >
+        Service & Organization
+      </h1>
+      <p class="text-lg leading-7 text-gray-500 dark:text-gray-400">
+        Workshop organization, conference activities, and academic service
+      </p>
+    </div>
+
+    {
+      typeOrder.map((type) => {
+        const items = groupedByType[type]
+        if (!items || items.length === 0) return null
+
+        return (
+          <div class="py-8">
+            <h2 class="mb-6 text-2xl font-bold text-gray-900 dark:text-gray-100">
+              <span class="mr-2">{typeIcons[type as keyof typeof typeIcons]}</span>
+              {typeNames[type as keyof typeof typeNames]}
+            </h2>
+            <ul class="space-y-6">
+              {items.map((item) => (
+                <li class="border-l-4 border-primary-500 pl-4">
+                  <div class="flex flex-col space-y-2 md:flex-row md:space-x-4 md:space-y-0">
+                    <div class="flex-shrink-0 text-sm font-medium text-gray-500 dark:text-gray-400 md:w-32">
+                      {item.data.date}
+                    </div>
+                    <div class="flex-1">
+                      <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                          <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                            {item.data.url ? (
+                              <Link
+                                href={item.data.url}
+                                class="hover:text-primary-500 dark:hover:text-primary-400"
+                              >
+                                {item.data.title}
+                              </Link>
+                            ) : (
+                              item.data.title
+                            )}
+                          </h3>
+                          <p class="mt-1 text-gray-700 dark:text-gray-300">
+                            <span class="font-medium">{item.data.role}</span> at {item.data.venue}
+                          </p>
+                          {item.data.description && (
+                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                              {item.data.description}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      })
+    }
+
+    {
+      organizing.length === 0 && (
+        <div class="py-8 text-center text-gray-500 dark:text-gray-400">
+          No organizing activities yet.
+        </div>
+      )
+    }
+  </div>
+</RootLayout>

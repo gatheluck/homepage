@@ -36,5 +36,4 @@ jobs:
         run: yarn lint --ignore-path ../../.gitignore
         working-directory: ./applications/frontend
         env:
-          NODE_OPTIONS: "--openssl-legacy-provider"
-
+          NODE_OPTIONS: '--openssl-legacy-provider'

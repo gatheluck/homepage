@@ -1,0 +1,100 @@
+---
+import { getCollection } from 'astro:content'
+import RootLayout from '@/layouts/RootLayout.astro'
+import Link from '@/components/Link.astro'
+import { useTranslations } from '@/i18n'
+
+const t = useTranslations()
+
+const positions = await getCollection('positions')
+
+// Sort positions by start date (descending - most recent first)
+const sortedPositions = positions.sort((a, b) => b.data.startDate.localeCompare(a.data.startDate))
+
+const typeIcons = {
+  work: '💼',
+  education: '🎓',
+  fellowship: '🏆',
+  internship: '🔬',
+}
+---
+
+<RootLayout
+  title="Journey - Yoshihiro Fukuhara"
+  description="Career journey and academic history of Yoshihiro Fukuhara"
+>
+  <div class="divide-y divide-gray-200 dark:divide-gray-700">
+    <div class="space-y-2 pb-8 pt-6 md:space-y-5">
+      <h1
+        class="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14"
+      >
+        Journey
+      </h1>
+      <p class="text-lg leading-7 text-gray-500 dark:text-gray-400">
+        My career path and academic journey
+      </p>
+    </div>
+
+    <div class="py-8">
+      <div class="space-y-8">
+        {
+          sortedPositions.map((position, index) => {
+            const isOngoing = !position.data.endDate
+            const dateRange = isOngoing
+              ? `${position.data.startDate} - Present`
+              : `${position.data.startDate} - ${position.data.endDate}`
+
+            return (
+              <div class="relative pl-8">
+                {/* Timeline line */}
+                {index < sortedPositions.length - 1 && (
+                  <div class="absolute left-2 top-8 h-full w-0.5 bg-gray-300 dark:bg-gray-600" />
+                )}
+
+                {/* Timeline dot */}
+                <div
+                  class={`absolute left-0 top-1.5 h-4 w-4 rounded-full ${
+                    isOngoing
+                      ? 'bg-primary-500 ring-4 ring-primary-100 dark:ring-primary-900'
+                      : 'bg-gray-400 dark:bg-gray-600'
+                  }`}
+                />
+
+                <div class="flex flex-col space-y-2 md:flex-row md:space-x-4 md:space-y-0">
+                  <div class="flex-shrink-0 text-sm font-medium text-gray-500 dark:text-gray-400 md:w-48">
+                    <span class="mr-2">
+                      {typeIcons[position.data.type as keyof typeof typeIcons]}
+                    </span>
+                    {dateRange}
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                      {position.data.title}
+                    </h3>
+                    {position.data.organizationUrl ? (
+                      <Link
+                        href={position.data.organizationUrl}
+                        class="text-gray-700 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-400"
+                      >
+                        {position.data.organization}
+                      </Link>
+                    ) : (
+                      <p class="text-gray-700 dark:text-gray-300">{position.data.organization}</p>
+                    )}
+                    {position.data.notes && position.data.notes.length > 0 && (
+                      <ul class="mt-2 list-inside list-disc space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                        {position.data.notes.map((note) => (
+                          <li>{note}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )
+          })
+        }
+      </div>
+    </div>
+  </div>
+</RootLayout>

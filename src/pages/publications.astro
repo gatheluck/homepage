@@ -1,0 +1,100 @@
+---
+import { getCollection } from 'astro:content'
+import RootLayout from '@/layouts/RootLayout.astro'
+import Link from '@/components/Link.astro'
+import { useTranslations } from '@/i18n'
+
+const t = useTranslations()
+
+const publications = await getCollection('publications')
+
+// Group publications by category
+const groupedPubs = publications.reduce(
+  (acc, pub) => {
+    const category = pub.data.category
+    if (!acc[category]) {
+      acc[category] = []
+    }
+    acc[category].push(pub)
+    return acc
+  },
+  {} as Record<string, typeof publications>
+)
+
+// Sort within each category by year (descending)
+Object.keys(groupedPubs).forEach((category) => {
+  groupedPubs[category].sort((a, b) => b.data.year - a.data.year)
+})
+
+const categoryOrder = ['international', 'journal', 'preprint', 'domestic-reviewed', 'domestic']
+const categoryNames = {
+  international: 'International Conferences',
+  journal: 'Journal Papers',
+  preprint: 'Preprints',
+  'domestic-reviewed': 'Domestic Conferences (Reviewed)',
+  domestic: 'Domestic Conferences',
+}
+---
+
+<RootLayout
+  title="Publications - Yoshihiro Fukuhara"
+  description="Academic publications by Yoshihiro Fukuhara"
+>
+  <div class="divide-y divide-gray-200 dark:divide-gray-700">
+    <div class="space-y-2 pb-8 pt-6 md:space-y-5">
+      <h1
+        class="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14"
+      >
+        Publications
+      </h1>
+      <p class="text-lg leading-7 text-gray-500 dark:text-gray-400">
+        Academic publications and research papers
+      </p>
+    </div>
+
+    {
+      categoryOrder.map((category) => {
+        const pubs = groupedPubs[category]
+        if (!pubs || pubs.length === 0) return null
+
+        return (
+          <div class="py-8">
+            <h2 class="mb-6 text-2xl font-bold text-gray-900 dark:text-gray-100">
+              {categoryNames[category as keyof typeof categoryNames]}
+            </h2>
+            <ul class="space-y-6">
+              {pubs.map((pub) => (
+                <li class="border-l-4 border-primary-500 pl-4">
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                    {pub.data.title}
+                  </h3>
+                  <p class="mt-1 text-gray-700 dark:text-gray-300">{pub.data.authors}</p>
+                  <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                    {pub.data.venue}, {pub.data.year}
+                  </p>
+                  {pub.data.links && pub.data.links.length > 0 && (
+                    <div class="mt-2 flex flex-wrap gap-2">
+                      {pub.data.links.map((link) => (
+                        <Link
+                          href={link.url}
+                          class="inline-flex items-center rounded bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-800 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+                        >
+                          [{link.type.toUpperCase()}]
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                  {pub.data.notes && (
+                    <p class="mt-2 text-sm italic text-gray-500 dark:text-gray-400">
+                      {pub.data.notes}
+                    </p>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      })
+    }
+  </div>
+</RootLayout>
