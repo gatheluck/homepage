@@ -104,14 +104,17 @@ const positions = defineCollection({
 
 const talks = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/talks' }),
-  schema: z.object({
-    date: z.string(),
-    title: z.string(),
-    venue: z.string(),
-    type: z.enum(['invited', 'tutorial', 'conference']),
-    slides: z.string().url().optional(),
-    video: z.string().url().optional(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      date: z.string(),
+      title: z.string(),
+      venue: z.string(),
+      venueUrl: z.string().url().optional(),
+      type: z.enum(['invited', 'tutorial', 'conference']),
+      coverImage: image().optional(),
+      slides: z.string().url().optional(),
+      video: z.string().url().optional(),
+    }),
 })
 
 const awards = defineCollection({
