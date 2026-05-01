@@ -1,0 +1,40 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad-orange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ea580c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c2410c;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1280" height="720" fill="url(#grad-orange)"/>
+
+  <!-- Decorative elements - question marks -->
+  <text x="120" y="150" font-family="Arial, sans-serif" font-size="180" fill="rgba(255,255,255,0.08)" font-weight="bold">?</text>
+  <text x="1050" y="650" font-family="Arial, sans-serif" font-size="120" fill="rgba(255,255,255,0.08)" font-weight="bold">?</text>
+  <circle cx="1100" cy="180" r="70" fill="rgba(255,255,255,0.06)"/>
+
+  <!-- Title Area -->
+  <rect x="80" y="180" width="1120" height="360" fill="rgba(255,255,255,0.12)" rx="15"/>
+
+  <!-- Title Text -->
+  <text x="640" y="270" font-family="Arial, sans-serif" font-size="52" font-weight="bold" fill="white" text-anchor="middle">
+    Who Sets the Questions?
+  </text>
+  <text x="640" y="340" font-family="Arial, sans-serif" font-size="44" font-weight="bold" fill="white" text-anchor="middle">
+    Agenda-Setting Through
+  </text>
+  <text x="640" y="410" font-family="Arial, sans-serif" font-size="44" font-weight="bold" fill="white" text-anchor="middle">
+    Workshops in the Age of AI
+  </text>
+
+  <!-- Subtitle -->
+  <text x="640" y="490" font-family="Arial, sans-serif" font-size="28" fill="rgba(255,255,255,0.9)" text-anchor="middle">
+    ASPIRE Computer Vision Workshop, Tokyo
+  </text>
+
+  <!-- Bottom info -->
+  <text x="640" y="660" font-family="Arial, sans-serif" font-size="24" fill="rgba(255,255,255,0.8)" text-anchor="middle">
+    April 2026
+  </text>
+</svg>
