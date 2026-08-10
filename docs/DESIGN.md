@@ -138,7 +138,11 @@ and cropping the wrong axis clips them.
 ### Logos
 
 Standing affiliations live in the `organizations` collection and render as their
-own section on Service & Organization. They carry no date — they are ongoing
+own **Research Communities** section on Service & Organization. The heading
+names what the entries are and leaves the depth of involvement to each row's
+role label — `Core Member` versus `Member` — the same split used for
+`Primary Organizer`. "Leadership" would overstate a plain membership, and
+"Activities" would contradict the data: they carry no date — they are ongoing
 memberships — so the left column shows only the role, and the order is an
 explicit `order` field rather than chronology.
 
