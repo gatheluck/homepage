@@ -135,6 +135,29 @@ new — it is the picture people associate with the link, and it needs no upkeep
 Always look at the result. These images carry titles and logos near the edges,
 and cropping the wrong axis clips them.
 
+### Logos
+
+Standing affiliations live in the `organizations` collection and render as their
+own section on Service & Organization. They carry no date — they are ongoing
+memberships — so the left column shows only the role, and the order is an
+explicit `order` field rather than chronology.
+
+Their logo uses the same teaser frame, so the column stays aligned, but with
+`fit="contain"`:
+
+- **Contained, never cropped.** Cropping a photo costs a few percent at the
+  edges; cropping a wordmark mangles a brand.
+- **Capped against the frame** (`max-h-[64%] max-w-[78%]`) rather than relying on
+  padding alone, so a wide wordmark and a square mark come out at similar
+  optical weight instead of one dwarfing the other.
+- **Two files, one per theme.** A logo is usually single-colour, and a white
+  wordmark vanishes on white. `logo` is the dark-ink version for light
+  backgrounds, `logoDark` the light-ink version. Both are rendered and CSS picks
+  one — the theme is a class on the document, not a media query, so `<picture>`
+  cannot resolve it. Supply only `logo` if the artwork works on both.
+- Entries with no logo fall back to `TeaserPlaceholder`, which adapts to the
+  theme on its own.
+
 ### Marking a lead role
 
 `organizing` entries carry `isPrimary`. When set, the role appears in the

@@ -35,8 +35,12 @@ interface Props {
   teaser?: boolean
   /** Teaser image. When omitted and `teaser` is set, a placeholder is drawn. */
   image?: ImageMetadata
+  /** Dark-theme variant of the teaser image, for single-colour logos. */
+  imageDark?: ImageMetadata
   /** Stable string used to vary the placeholder. Falls back to the title. */
   teaserSeed?: string
+  /** `contain` fits a logo inside the frame instead of cropping it to fill. */
+  teaserFit?: 'cover' | 'contain'
 }
 
 const {
@@ -47,7 +51,9 @@ const {
   href,
   teaser = false,
   image,
+  imageDark,
   teaserSeed,
+  teaserFit = 'cover',
 } = Astro.props
 const hasBody = Astro.slots.has('default')
 ---
@@ -115,7 +121,7 @@ const hasBody = Astro.slots.has('default')
     {
       teaser && (
         <div class="hidden sm:block sm:pt-1">
-          <Teaser image={image} seed={teaserSeed ?? title} />
+          <Teaser image={image} imageDark={imageDark} seed={teaserSeed ?? title} fit={teaserFit} />
         </div>
       )
     }

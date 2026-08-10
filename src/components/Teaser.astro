@@ -4,46 +4,75 @@ import { Image } from 'astro:assets'
 import TeaserPlaceholder from './TeaserPlaceholder.astro'
 
 /**
- * The trailing teaser thumbnail, shared by Entry and the blog list.
+ * The trailing thumbnail, shared by Entry and the blog list.
  *
- * Not a link of its own any more. The row it sits in carries a stretched link
- * covering the whole row, so the thumbnail is already clickable, and dropping
- * the separate anchor removes the duplicate destination that previously had to
- * be hidden from assistive technology with `aria-hidden` and `tabindex="-1"`.
+ * Not a link of its own. The row it sits in carries a stretched link covering
+ * the whole row, so the thumbnail is already clickable, and dropping the
+ * separate anchor removes the duplicate destination that previously had to be
+ * hidden from assistive technology. It responds to hover on the surrounding row
+ * rather than on itself, so the row reacts as one thing.
  *
- * It responds to hover on the surrounding row rather than on itself, so the row
- * reacts as one thing.
+ * `fit` picks how the image meets the frame:
+ *
+ * - `cover` (default) fills it, for photographs and slide captures, where
+ *   losing a few percent at the edges costs nothing.
+ * - `contain` fits the whole image inside, for logos and wordmarks. Cropping
+ *   those is not a small loss, it is a mangled brand. The frame stays the same
+ *   size either way so the column keeps its alignment, and the logo is capped
+ *   against the frame rather than only padded, so a wide wordmark and a square
+ *   mark come out at similar optical weight instead of one dwarfing the other.
  */
 interface Props {
   image?: ImageMetadata
+  /**
+   * Variant used when the dark theme is active, for single-colour artwork that
+   * cannot serve both. Both are rendered and CSS picks one, because the theme
+   * is a class on the document rather than a media query, so it cannot be
+   * resolved with `<picture>`.
+   */
+  imageDark?: ImageMetadata
   /** Stable string used to vary the placeholder when there is no image. */
   seed: string
+  fit?: 'cover' | 'contain'
   class?: string
 }
 
-const { image, seed, class: className } = Astro.props
+const { image, seed, imageDark, fit = 'cover', class: className } = Astro.props
 
 // Rendered at 208px wide in a 1024px container; 2x for high density displays.
 const TEASER_WIDTH = 416
+const isContain = fit === 'contain'
 ---
 
 <div
   class:list={[
     'ring-hairline group-hover:ring-accent/50 aspect-teaser ease-soft overflow-hidden rounded-lg ring-1 transition duration-200',
+    isContain && 'bg-surface flex items-center justify-center p-4',
     className,
   ]}
 >
   {
     image ? (
-      <Image
-        src={image}
-        alt=""
-        width={TEASER_WIDTH}
-        densities={[1, 2]}
-        loading="lazy"
-        decoding="async"
-        class="ease-soft h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
-      />
+      [
+        { src: image, only: imageDark && 'dark:hidden' },
+        ...(imageDark ? [{ src: imageDark, only: 'hidden dark:block' }] : []),
+      ].map(({ src, only }) => (
+        <Image
+          src={src}
+          alt=""
+          width={TEASER_WIDTH}
+          densities={[1, 2]}
+          loading="lazy"
+          decoding="async"
+          class:list={[
+            'ease-soft transition-transform duration-300 group-hover:scale-[1.04]',
+            isContain
+              ? 'max-h-[64%] w-auto max-w-[78%] object-contain'
+              : 'h-full w-full object-cover',
+            only,
+          ]}
+        />
+      ))
     ) : (
       <TeaserPlaceholder
         seed={seed}

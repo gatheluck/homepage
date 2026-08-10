@@ -9,6 +9,12 @@ import { SHOW_TEASERS } from '@/consts'
 
 const organizing = await getCollection('organizing')
 
+// Standing affiliations carry no date, so the order is explicit rather than
+// chronological; the id breaks ties so it never depends on iteration order.
+const organizations = (await getCollection('organizations')).sort(
+  (a, b) => a.data.order - b.data.order || a.id.localeCompare(b.id)
+)
+
 /*
  * Sort by date (descending), falling back to the id only to guarantee a total
  * order when two entries really are on the same day.
@@ -84,6 +90,31 @@ const typeNames = {
         </SectionBlock>
       )
     })
+  }
+
+  {
+    organizations.length > 0 && (
+      <SectionBlock title="Organizations">
+        <EntryList>
+          {organizations.map((org) => (
+            <Entry
+              label={org.data.role}
+              title={org.data.name}
+              href={org.data.url}
+              teaser={SHOW_TEASERS.service}
+              image={org.data.logo}
+              imageDark={org.data.logoDark ?? org.data.logo}
+              teaserSeed={org.id}
+              teaserFit="contain"
+            >
+              {org.data.description && (
+                <p class="measure text-sm leading-6 text-fg-subtle">{org.data.description}</p>
+              )}
+            </Entry>
+          ))}
+        </EntryList>
+      </SectionBlock>
+    )
   }
 
   {

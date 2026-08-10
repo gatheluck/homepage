@@ -152,6 +152,39 @@ const certifications = defineCollection({
   }),
 })
 
+/**
+ * Standing affiliations: research communities and labs, as opposed to the dated
+ * events in `organizing`.
+ *
+ * Deliberately a separate collection rather than another `type` on `organizing`.
+ * These have no date - they are ongoing memberships, not things that happened on
+ * a day - and `organizing.date` is required and drives its sorting. Folding them
+ * in would have meant making that optional for every entry.
+ */
+const organizations = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/organizations' }),
+  schema: ({ image }) =>
+    z.object({
+      name: z.string(),
+      role: z.string(),
+      url: z.string().url().optional(),
+      description: z.string().optional(),
+      /**
+       * Wordmark or logo, shown contained rather than cropped.
+       *
+       * Logos are usually single-colour, so one file cannot serve both themes -
+       * a white wordmark vanishes on white. `logo` is the version for light
+       * backgrounds (dark ink); `logoDark` is the light-ink version used when
+       * the dark theme is active. Supply only `logo` if the artwork works on
+       * both, and it will be used everywhere.
+       */
+      logo: image().optional(),
+      logoDark: image().optional(),
+      /** With no date to sort on, order is explicit. Lower comes first. */
+      order: z.number().default(0),
+    }),
+})
+
 const organizing = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/organizing' }),
   schema: ({ image }) =>
@@ -180,4 +213,5 @@ export const collections = {
   books,
   certifications,
   organizing,
+  organizations,
 }
