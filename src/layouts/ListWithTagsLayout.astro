@@ -154,7 +154,7 @@ const isBlogPage = Astro.url.pathname.startsWith('/blog')
                     </div>
                     {SHOW_TEASERS.blog && (
                       <div class="hidden sm:block">
-                        <div class="ring-hairline aspect-video overflow-hidden rounded-lg ring-1">
+                        <div class="ring-hairline aspect-teaser overflow-hidden rounded-lg ring-1">
                           {cover ? (
                             <Image
                               src={cover}

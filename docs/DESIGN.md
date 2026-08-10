@@ -82,9 +82,14 @@ the per-page `SHOW_TEASERS` flags in `src/consts.ts`.
   any row that has no image and pushes its text out of line with its
   neighbours. At the trailing edge an empty cell is indistinguishable from the
   page margin. That matters while most collections are only partly illustrated.
-- **One aspect ratio, `aspect-video`.** Mixed ratios down a column are the main
-  reason thumbnail lists look untidy. The ratio is fixed on the wrapper, not the
-  image, so the row height is known before the image loads and nothing shifts.
+- **One aspect ratio, `aspect-teaser` (1200×630).** Mixed ratios down a column
+  are the main reason thumbnail lists look untidy. The ratio is fixed on the
+  wrapper, not the image, so the row height is known before the image loads and
+  nothing shifts. It matches Open Graph rather than 16:9 because that is the
+  format the source images arrive in: the workshop teasers put a left-aligned
+  title about 2.5% in, and cropping 1200×630 to 16:9 removes 3.3% from each
+  side, clipping the first letter. Cropping a 1280×720 slide cover to this ratio
+  instead takes 3.5% off top and bottom, where those images only have margin.
 - **`alt=""`.** The title sits directly beside the teaser, so a descriptive alt
   would be announced twice.
 - **Hidden below `sm`.** A third column does not fit a phone, and the lists stay
@@ -97,6 +102,15 @@ the per-page `SHOW_TEASERS` flags in `src/consts.ts`.
   generated, and they went wrong precisely by inventing a saturated colour per
   item. Being inline also means there are no files to keep in sync and no way
   for two entries to end up sharing one image.
+
+### Marking a lead role
+
+`organizing` entries carry `isPrimary`. When set, the role appears in the
+`Entry` label column in the accent colour via `labelAccent`. The label text has
+to say "Primary Organizer" on its own — the colour only reinforces it, because
+WCAG 1.4.1 does not allow colour to be the sole carrier of information. Entries
+that share a date sort primary-first, so a workshop you lead is not buried under
+one you merely helped organise.
 
 `astro.config.mjs` uses the default sharp image service. Do not restore
 `passthroughImageService()` — teasers render at ~208px from much larger sources
@@ -130,8 +144,7 @@ page, otherwise the four list pages drift apart again the way they did before.
 - No blog post or publication has an image yet, so those columns are entirely
   placeholders. `SHOW_TEASERS` can turn a page's column off if that is not
   wanted in the meantime.
-- Some content is still placeholder: an "Example Workshop on Computer Vision"
-  entry in `organizing`, and a `Default` tag with no posts.
+- A `Default` tag with no posts still shows in the blog sidebar.
 - Talk `venue` fields repeat the talk type ("Invited Talk, ASPIRE ..."), which
   now duplicates the label column.
 - Japanese titles fall back to a system font; Roboto has no CJK glyphs.

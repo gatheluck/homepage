@@ -159,6 +159,8 @@ const organizing = defineCollection({
       url: z.string().url().optional(),
       description: z.string().optional(),
       image: image().optional(),
+      /** Lead organiser rather than one of the organising committee. */
+      isPrimary: z.boolean().default(false),
     }),
 })
 

@@ -9,8 +9,12 @@ import { SHOW_TEASERS } from '@/consts'
 
 const organizing = await getCollection('organizing')
 
-// Sort by date (descending)
-const sortedOrganizing = organizing.sort((a, b) => b.data.date.localeCompare(a.data.date))
+// Sort by date (descending), then put roles held as primary organiser first so
+// that entries sharing a month have a stable, meaningful order.
+const sortedOrganizing = organizing.sort(
+  (a, b) =>
+    b.data.date.localeCompare(a.data.date) || Number(b.data.isPrimary) - Number(a.data.isPrimary)
+)
 
 // Group by type
 const groupedByType = sortedOrganizing.reduce(
@@ -55,16 +59,15 @@ const typeNames = {
             {items.map((item) => (
               <Entry
                 meta={item.data.date}
+                label={item.data.role}
+                labelAccent={item.data.isPrimary}
                 title={item.data.title}
                 href={item.data.url}
                 teaser={SHOW_TEASERS.service}
                 image={item.data.image}
                 teaserSeed={item.id}
               >
-                <p class="text-sm leading-6 text-fg-muted">
-                  <span class="font-medium text-fg-muted">{item.data.role}</span>
-                  {` at ${item.data.venue}`}
-                </p>
+                <p class="text-sm leading-6 text-fg-muted">{item.data.venue}</p>
                 {item.data.description && (
                   <p class="measure text-sm leading-6 text-fg-subtle">{item.data.description}</p>
                 )}
