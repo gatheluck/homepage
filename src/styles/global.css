@@ -70,6 +70,10 @@
   --hairline: rgb(15 118 110 / 0.22);
   --hairline-strong: rgb(15 118 110 / 0.4);
   --surface: rgb(0 0 0 / 0.025);
+  /* The reference's own elevation: an accent-tinted glow rather than a grey
+     drop shadow, which is the only kind of "shadow" that reads on #0a0a0a. */
+  --glow: 0 10px 30px -12px rgb(15 118 110 / 0.25);
+  --surface-hover: rgb(15 118 110 / 0.04);
 }
 
 .dark {
@@ -84,6 +88,8 @@
   --hairline: rgb(94 234 212 / 0.15);
   --hairline-strong: rgb(94 234 212 / 0.35);
   --surface: rgb(255 255 255 / 0.02);
+  --glow: 0 10px 40px -10px rgb(94 234 212 / 0.18);
+  --surface-hover: rgb(94 234 212 / 0.05);
 }
 
 /* `inline` makes the generated utilities point at the variables above, so they
@@ -98,6 +104,8 @@
   --color-hairline: var(--hairline);
   --color-hairline-strong: var(--hairline-strong);
   --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --shadow-glow: var(--glow);
 }
 
 /*
@@ -162,6 +170,30 @@ body {
 
 .link-subtle {
   @apply text-fg-muted hover:text-fg;
+}
+
+/*
+ * Row-level hover.
+ *
+ * A row lights up on hover only because the whole row is genuinely one click
+ * target: the title link carries a stretched pseudo-element covering the row.
+ * That is the condition for doing this at all — highlighting a row you cannot
+ * click teaches the wrong thing.
+ *
+ * The title link itself must stay `position: static` so its `inset: 0` resolves
+ * against the row box rather than against the link. Every *other* link in the
+ * row is lifted above the overlay so it keeps its own, smaller target: the
+ * arXiv and Slides links, the venue, the tags.
+ */
+.row-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.row-box a:not(.row-link) {
+  position: relative;
+  z-index: 10;
 }
 
 /*

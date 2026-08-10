@@ -40,6 +40,32 @@ export const postUrl = (post: CollectionEntry<'blog'>): string | undefined => {
 }
 
 /**
+ * The main artefact of a talk, so the row has a primary action.
+ */
+export const talkUrl = (talk: CollectionEntry<'talks'>): string | undefined =>
+  talk.data.slides ?? talk.data.video ?? talk.data.venueUrl
+
+/**
+ * The canonical record of a paper, preferred in this order.
+ *
+ * Lives here rather than on the publications page because the homepage lists
+ * the same entries and has to reach the same destination; two copies of this
+ * would drift.
+ */
+const PUBLICATION_LINK_PRIORITY = ['arxiv', 'doi', 'project', 'pdf', 'github'] as const
+
+export const publicationUrl = (
+  links: readonly { type: string; url: string }[] | undefined
+): string | undefined => {
+  if (!links?.length) return undefined
+  for (const type of PUBLICATION_LINK_PRIORITY) {
+    const match = links.find((link) => link.type === type)
+    if (match) return match.url
+  }
+  return links[0].url
+}
+
+/**
  * Exclude draft posts from the collection. If the site is built in production mode, draft posts are excluded by default.
  *
  * @param post Blog post

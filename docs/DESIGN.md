@@ -166,9 +166,31 @@ The rules:
 - **Nothing moves that is not interactive.** A teaser only responds when the
   entry has a link, in which case the frame becomes one; otherwise it is an
   inert `div`. Hover feedback on something unclickable is a lie.
-- **No row-level hover, and no whole-row click target.** Highlighting the row
-  would imply the row is clickable; making it clickable would swallow the
-  resource links and tags inside it and break text selection over the summary.
+- **Row-level hover, because the row is now genuinely clickable.** The title
+  link carries a stretched pseudo-element covering the row, so the whole row is
+  one target and lighting it up on hover is honest rather than decorative. That
+  ordering matters: the click target came first, the highlight second. A row
+  with no destination — an award, a position — gets neither.
+  - The hover surface is `--surface-hover`, an accent tint at 4-5%, on a
+    rounded panel that bleeds 1rem past the text so it reads as the row lifting
+    rather than as a box appearing inside one.
+  - Elevation is `--shadow-glow`, an accent-tinted glow rather than a grey drop
+    shadow. This is taken from the reference, and it is the only kind of shadow
+    that reads at all on `#0a0a0a`.
+  - The title still previews the destination by going to the accent, so the
+    highlight always says _where_ the click goes, not merely that something is
+    live.
+  - **Every other link in the row is lifted above the stretched overlay**
+    (`.row-box a:not(.row-link)`), so arXiv, Slides, the venue and the tags keep
+    their own smaller targets. The title link itself must stay
+    `position: static` or its `inset: 0` would resolve against the link instead
+    of the row.
+  - The teaser is no longer a link of its own; the row covers it. That removed
+    the duplicate destination that had to be hidden with `aria-hidden` and
+    `tabindex="-1"`.
+  - **Cost:** text selection over a row is impaired, since the overlay sits above
+    the summary. Accepted deliberately — these are index rows people click, not
+    prose people quote.
 - **Keyboard parity.** `:focus-visible` draws an accent outline everywhere, and
   the navigation rule responds to focus as well as hover.
 - **`prefers-reduced-motion: reduce` removes all of it.** Colour and underline

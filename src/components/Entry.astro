@@ -52,55 +52,72 @@ const {
 const hasBody = Astro.slots.has('default')
 ---
 
-<li
-  class:list={[
-    'grid grid-cols-1 gap-x-8 gap-y-1.5 py-5',
-    teaser ? 'sm:grid-cols-[10.5rem_minmax(0,1fr)_13rem]' : 'sm:grid-cols-[10.5rem_minmax(0,1fr)]',
-  ]}
->
-  <div class="sm:pt-1">
-    {meta && <div class="text-fg-subtle font-mono text-xs tabular-nums">{meta}</div>}
-    {
-      label && (
-        <div
-          class:list={[
-            'mt-1 text-xs uppercase tracking-[0.12em]',
-            labelAccent ? 'text-accent font-medium' : 'text-fg-subtle',
-          ]}
-        >
-          {label}
-        </div>
-      )
-    }
-  </div>
-  <div class="min-w-0">
-    <h3 class="text-fg text-base font-medium leading-6">
-      {
-        href ? (
-          <Link
-            href={href}
-            class="hover:text-accent ease-soft underline-offset-4 transition-colors duration-200 hover:underline"
-          >
-            {title}
-          </Link>
-        ) : (
-          title
-        )
-      }
-    </h3>
-    {
-      hasBody && (
-        <div class="mt-2 space-y-1.5">
-          <slot />
-        </div>
-      )
-    }
-  </div>
+<li class:list={['relative', href && 'group']}>
   {
-    teaser && (
-      <div class="hidden sm:block sm:pt-1">
-        <Teaser image={image} seed={teaserSeed ?? title} href={href} />
-      </div>
+    /*
+      The hover surface sits behind the row and bleeds past it horizontally, so
+      it reads as the row lifting rather than as a box appearing inside one.
+      Only drawn for rows that are actually clickable.
+    */
+    href && (
+      <div
+        class="bg-surface-hover group-hover:shadow-glow ease-soft pointer-events-none absolute -inset-x-4 inset-y-0.5 rounded-xl opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+        aria-hidden="true"
+      />
     )
   }
+  <div
+    class:list={[
+      'row-box relative grid grid-cols-1 gap-x-8 gap-y-1.5 py-5',
+      teaser
+        ? 'sm:grid-cols-[10.5rem_minmax(0,1fr)_13rem]'
+        : 'sm:grid-cols-[10.5rem_minmax(0,1fr)]',
+    ]}
+  >
+    <div class="sm:pt-1">
+      {meta && <div class="text-fg-subtle font-mono text-xs tabular-nums">{meta}</div>}
+      {
+        label && (
+          <div
+            class:list={[
+              'mt-1 text-xs uppercase tracking-[0.12em]',
+              labelAccent ? 'text-accent font-medium' : 'text-fg-subtle',
+            ]}
+          >
+            {label}
+          </div>
+        )
+      }
+    </div>
+    <div class="min-w-0">
+      <h3 class="text-fg text-base font-medium leading-6">
+        {
+          href ? (
+            <Link
+              href={href}
+              class="row-link group-hover:text-accent ease-soft underline-offset-4 transition-colors duration-200 group-hover:underline"
+            >
+              {title}
+            </Link>
+          ) : (
+            title
+          )
+        }
+      </h3>
+      {
+        hasBody && (
+          <div class="mt-2 space-y-1.5">
+            <slot />
+          </div>
+        )
+      }
+    </div>
+    {
+      teaser && (
+        <div class="hidden sm:block sm:pt-1">
+          <Teaser image={image} seed={teaserSeed ?? title} />
+        </div>
+      )
+    }
+  </div>
 </li>

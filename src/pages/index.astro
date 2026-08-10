@@ -7,7 +7,7 @@ import EntryList from '@/components/EntryList.astro'
 import Entry from '@/components/Entry.astro'
 import ResourceLinks from '@/components/ResourceLinks.astro'
 import { useTranslations } from '@/i18n'
-import { postUrl } from '@/functions'
+import { postUrl, talkUrl, publicationUrl } from '@/functions'
 
 const t = useTranslations()
 
@@ -114,7 +114,11 @@ const socialLinks = [
       >
         <EntryList>
           {latestPublications.map((pub) => (
-            <Entry meta={String(pub.data.year)} title={pub.data.title}>
+            <Entry
+              meta={String(pub.data.year)}
+              title={pub.data.title}
+              href={publicationUrl(pub.data.links)}
+            >
               <p class="text-sm leading-6 text-fg-subtle">{pub.data.venue}</p>
             </Entry>
           ))}
@@ -128,7 +132,7 @@ const socialLinks = [
       <SectionBlock title="Recent Talks" moreHref="/talks" moreLabel="All talks">
         <EntryList>
           {latestTalks.map((talk) => (
-            <Entry meta={talk.data.date} title={talk.data.title}>
+            <Entry meta={talk.data.date} title={talk.data.title} href={talkUrl(talk)}>
               <p class="text-sm leading-6 text-fg-subtle">{talk.data.venue}</p>
             </Entry>
           ))}

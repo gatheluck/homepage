@@ -7,6 +7,7 @@ import EntryList from '@/components/EntryList.astro'
 import Entry from '@/components/Entry.astro'
 import ResourceLinks from '@/components/ResourceLinks.astro'
 import { AUTHOR_NAME, PUBLICATION_LINK_LABELS, SHOW_TEASERS } from '@/consts'
+import { publicationUrl } from '@/functions'
 
 const publications = await getCollection('publications')
 
@@ -37,23 +38,6 @@ const categoryNames = {
   domestic: 'Domestic Conferences',
 }
 
-/**
- * Point the title at the paper itself, preferring the canonical record, so every
- * row has a primary action. Linking paper titles is the convention on academic
- * publication lists; previously the title was inert and only the resource row
- * underneath was clickable.
- */
-const LINK_PRIORITY = ['arxiv', 'doi', 'project', 'pdf', 'github'] as const
-
-function primaryLink(links: { type: string; url: string }[] | undefined) {
-  if (!links?.length) return undefined
-  for (const type of LINK_PRIORITY) {
-    const match = links.find((link) => link.type === type)
-    if (match) return match.url
-  }
-  return links[0].url
-}
-
 /** Emphasise the site owner among the co-authors, as is conventional on a publication list. */
 function splitAuthors(authors: string) {
   return authors.split(AUTHOR_NAME)
@@ -78,7 +62,7 @@ function splitAuthors(authors: string) {
               <Entry
                 meta={String(pub.data.year)}
                 title={pub.data.title}
-                href={primaryLink(pub.data.links)}
+                href={publicationUrl(pub.data.links)}
                 teaser={SHOW_TEASERS.publications}
                 image={pub.data.image}
                 teaserSeed={pub.id}
