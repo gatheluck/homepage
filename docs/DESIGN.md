@@ -122,6 +122,61 @@ total order, so it never depends on collection iteration order.
 `passthroughImageService()` — teasers render at ~208px from much larger sources
 and passthrough ships every original at full size.
 
+## Hover and motion
+
+The reference page's hover vocabulary is deliberately tiny. Reading its CSS,
+every hover rule it has is one of: a colour change (seven of them), a 2px
+`translate` on an arrow, a `scale(1.05)`/`scale(1.1)` on two elements, and one
+`border-color`. There is no hover lift and no growing shadow — the 500–900ms
+`transform`/`box-shadow` transitions in that file are scroll-in reveals, not
+pointer responses. Its interaction transitions sit at 220–300ms on
+`cubic-bezier(.2, .8, .2, 1)`, which is the `--ease-soft` token here.
+
+**Borrow its kind of response, not its amount.** Copying the reference's
+amplitude directly produced a site where hovering did almost nothing you could
+see. That page is a six-section narrative with large media, where a whisper is
+enough; this one is dense index lists, where each row needs to declare that it
+answers to the pointer. The vocabulary below stays inside the reference's
+palette — colour, underline, small scale, 2px of travel — but is turned up
+until it registers. Two measurements that drove that:
+
+- The old link hover moved teal-300 → teal-200, an RGB distance of **62** in
+  dark and **32** in light, against **136** for a title going foreground →
+  accent. The two weakest responses on the site were the ones on the most
+  numerous elements. `--accent-hover` is now teal-100 / teal-900, distance
+  **115 / 54**, still AA-compliant at 17.6:1 and 9.5:1.
+- A teaser scaling to `1.02` is roughly 4px of movement on a 208px thumbnail.
+  It is now `1.04`, with the ring going to `accent/50`.
+
+The rules:
+
+- **Every index row has a linked title.** Talk titles point at the slides
+  (then video, then venue); publication titles at the paper, preferring arXiv,
+  then DOI, project page, PDF, code. Previously those two pages had inert
+  titles, which is most of why the site felt unresponsive — the links existed
+  but were buried in the resource row underneath. Linking paper titles is also
+  the convention on academic publication lists.
+- **Colour plus underline** on every text link. Colour alone is a weak
+  affordance on a title that otherwise reads as plain text.
+- **Motion is 2px, or 4%.** The "view all" arrow shifts `translate-x-0.5`. A
+  teaser image scales inside its fixed frame, so the frame never moves and no
+  row changes height. Navigation grows a 1px accent rule from the left via a
+  scaled pseudo-element, so the text never shifts; the current page keeps that
+  rule on permanently as a second cue for the active state.
+- **Nothing moves that is not interactive.** A teaser only responds when the
+  entry has a link, in which case the frame becomes one; otherwise it is an
+  inert `div`. Hover feedback on something unclickable is a lie.
+- **No row-level hover, and no whole-row click target.** Highlighting the row
+  would imply the row is clickable; making it clickable would swallow the
+  resource links and tags inside it and break text selection over the summary.
+- **Keyboard parity.** `:focus-visible` draws an accent outline everywhere, and
+  the navigation rule responds to focus as well as hover.
+- **`prefers-reduced-motion: reduce` removes all of it.** Colour and underline
+  changes survive; transforms and transitions do not.
+
+Durations: 200ms for colour, opacity and the navigation rule; 300ms for the
+teaser scale.
+
 ## Shared components
 
 `PageHeader`, `SectionBlock`, `EntryList`, `Entry`, `ResourceLinks` in

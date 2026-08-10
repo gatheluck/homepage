@@ -37,7 +37,7 @@ export default function ThemeSwitcher() {
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        class="text-fg h-6 w-6"
+        class="text-fg hover:text-accent ease-soft h-6 w-6 transition-colors duration-200"
       >
         <path
           class="sun"

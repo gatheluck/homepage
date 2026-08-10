@@ -14,6 +14,13 @@
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /*
+   * The reference page's easing curve, used there for every interaction. Its
+   * hover transitions sit at 220-300ms; the longer 500-900ms curves are
+   * scroll-in reveals, not responses to the pointer.
+   */
+  --ease-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /*
    * Base size moved from 16px towards the reference's 18px. Body copy sits at
    * weight 300, which reads lighter than 400, so the size increase keeps it
    * legible rather than merely smaller.
@@ -59,7 +66,7 @@
   --fg-muted: var(--color-neutral-600);
   --fg-subtle: var(--color-neutral-500);
   --accent: var(--color-teal-700);
-  --accent-hover: var(--color-teal-800);
+  --accent-hover: var(--color-teal-900);
   --hairline: rgb(15 118 110 / 0.22);
   --hairline-strong: rgb(15 118 110 / 0.4);
   --surface: rgb(0 0 0 / 0.025);
@@ -73,7 +80,7 @@
      neutral-500 would be 4.18:1 and miss AA for the small mono metadata. */
   --fg-subtle: #8a8a8a;
   --accent: var(--color-teal-300);
-  --accent-hover: var(--color-teal-200);
+  --accent-hover: var(--color-teal-100);
   --hairline: rgb(94 234 212 / 0.15);
   --hairline-strong: rgb(94 234 212 / 0.35);
   --surface: rgb(255 255 255 / 0.02);
@@ -157,6 +164,34 @@ body {
   @apply text-fg-muted hover:text-fg;
 }
 
+/*
+ * Navigation: a 1px accent rule wipes in from the left. Scaling a pseudo-element
+ * rather than toggling a border means the text never shifts, and the current
+ * page keeps the rule on permanently, which gives the active state a second cue
+ * besides weight and colour.
+ */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: -0.35rem;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms var(--ease-soft);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
 /* Long-form content links use the same accent as the rest of the site. */
 .prose :where(a):not(:where(.not-prose *)) {
   @apply text-accent decoration-accent/30 hover:decoration-accent underline-offset-4;
@@ -169,6 +204,21 @@ body {
 .active {
   @apply text-fg;
   font-weight: 400;
+}
+
+/*
+ * Anything that moves on hover has to stop moving for people who ask it to.
+ * Colour and underline changes still apply - only the motion is removed.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Keyboard focus was relying on the browser default, which the accent ring replaces. */

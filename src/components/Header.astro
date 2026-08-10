@@ -12,7 +12,11 @@ const t = useTranslations()
 
 <header class="flex items-center justify-between py-8">
   <div class="mr-3 w-16 md:w-24">
-    <a href="/" aria-label={t('siteMetadata.headerTitle')}>
+    <a
+      href="/"
+      aria-label={t('siteMetadata.headerTitle')}
+      class="ease-soft block opacity-100 transition-opacity duration-200 hover:opacity-70"
+    >
       <Logo class="w-full" />
     </a>
   </div>
@@ -21,7 +25,7 @@ const t = useTranslations()
       NAVIGATION.filter((link) => link.href !== '/').map((link) => (
         <HeaderLink
           href={link.href}
-          class="text-fg-muted hover:text-fg hidden text-sm transition-colors sm:block"
+          class="nav-link text-fg-muted hover:text-fg ease-soft hidden text-sm transition-colors duration-200 sm:block"
         >
           {t(link.title)}
         </HeaderLink>

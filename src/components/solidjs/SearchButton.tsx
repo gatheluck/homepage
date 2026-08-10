@@ -99,7 +99,12 @@ export default function SearchButton() {
   return (
     <>
       {/* Search Button */}
-      <button onClick={openSearch} aria-label="Search" class="text-fg" title="Search (⌘K)">
+      <button
+        onClick={openSearch}
+        aria-label="Search"
+        class="text-fg hover:text-accent ease-soft transition-colors duration-200"
+        title="Search (⌘K)"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
