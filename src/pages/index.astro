@@ -26,10 +26,7 @@ const currentPositions = positions
 const latestTalks = talks.sort((a, b) => b.data.date.localeCompare(a.data.date)).slice(0, 2)
 const latestAwards = awards.sort((a, b) => b.data.date.localeCompare(a.data.date)).slice(0, 2)
 const latestOrganizing = organizing
-  .sort(
-    (a, b) =>
-      b.data.date.localeCompare(a.data.date) || Number(b.data.isPrimary) - Number(a.data.isPrimary)
-  )
+  .sort((a, b) => b.data.date.localeCompare(a.data.date) || a.id.localeCompare(b.id))
   .slice(0, 2)
 const latestBlogPosts = allBlogPosts
   .filter((post) => !post.data.draft)

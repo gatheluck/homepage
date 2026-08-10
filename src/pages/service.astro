@@ -9,11 +9,18 @@ import { SHOW_TEASERS } from '@/consts'
 
 const organizing = await getCollection('organizing')
 
-// Sort by date (descending), then put roles held as primary organiser first so
-// that entries sharing a month have a stable, meaningful order.
+/*
+ * Sort by date (descending), falling back to the id only to guarantee a total
+ * order when two entries really are on the same day.
+ *
+ * The tiebreak is deliberately neutral. Ordering by something invisible, such
+ * as whether a role was held as primary organiser, makes the sequence
+ * impossible to explain from what is on screen. Dates carry the order; record
+ * the day in `date` when it is known, and precision sorts correctly against
+ * month-only entries because the format is lexicographic.
+ */
 const sortedOrganizing = organizing.sort(
-  (a, b) =>
-    b.data.date.localeCompare(a.data.date) || Number(b.data.isPrimary) - Number(a.data.isPrimary)
+  (a, b) => b.data.date.localeCompare(a.data.date) || a.id.localeCompare(b.id)
 )
 
 // Group by type

@@ -108,9 +108,15 @@ the per-page `SHOW_TEASERS` flags in `src/consts.ts`.
 `organizing` entries carry `isPrimary`. When set, the role appears in the
 `Entry` label column in the accent colour via `labelAccent`. The label text has
 to say "Primary Organizer" on its own — the colour only reinforces it, because
-WCAG 1.4.1 does not allow colour to be the sole carrier of information. Entries
-that share a date sort primary-first, so a workshop you lead is not buried under
-one you merely helped organise.
+WCAG 1.4.1 does not allow colour to be the sole carrier of information.
+
+`isPrimary` affects emphasis only, never ordering. A reverse-chronological list
+tells the reader it is ordered by date, so reordering two entries by something
+invisible makes the sequence impossible to explain from what is on screen. Where
+two items would otherwise tie, **record the day in `date`** — the format is
+lexicographic, so `2026.09.09` sorts correctly above both `2026.09.08` and a
+month-only `2026.09`. Lists fall back to the entry id purely to guarantee a
+total order, so it never depends on collection iteration order.
 
 `astro.config.mjs` uses the default sharp image service. Do not restore
 `passthroughImageService()` — teasers render at ~208px from much larger sources
