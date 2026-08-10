@@ -109,10 +109,16 @@ Use the artwork the destination already publishes rather than making something
 new — it is the picture people associate with the link, and it needs no upkeep.
 
 - **Talks** use the deck's **first slide**. SpeakerDeck exposes it directly as
-  `og:image`, which is literally `slide_0.jpg`. Slides are 16:9 (1920×1080)
-  against a 40:21 frame, so 72px of height has to go: take **all of it from the
-  top**, which on a title slide is empty margin, and the footer logos survive.
-  Splitting it evenly would clip them.
+  `og:image`, which is literally `slide_0.jpg`.
+- **Slides are 16:9 against a 40:21 frame**, so ~6.7% of the height has to go.
+  Take it **entirely from one edge, and check which one per deck** — splitting it
+  evenly clips both. Most title slides have an empty top and logos along the
+  bottom, so the top is usually right. `2020-adversarial` is the exception: its
+  "メタサーベイ追加版" badge sits top-left and its bottom 120px is a single flat
+  colour, so there the crop comes off the bottom. Measuring beats assuming:
+  `magick <slide> -crop WxH+0+Y +repage -colorspace gray -format
+"min=%[fx:int(255*minima)] max=%[fx:int(255*maxima)]" info:` — a band where
+  min equals max is empty and safe to lose.
 - **Blog posts** use the platform's Open Graph image. Substack takes the crop in
   the URL, so ask it for `w_1200,h_630` and its own smart crop returns the exact
   ratio with no second resample.
@@ -241,10 +247,10 @@ page, otherwise the four list pages drift apart again the way they did before.
 - Comments are disabled: `SITE_METADATA.comments.provider` is `null` until this
   site has its own giscus IDs. It previously pointed at the template author's
   repository.
-- **One talk still has no cover.** `2020-adversarial` has no `slides` field at
-  all, only a link to the SSII programme listing, so there is no deck to take a
-  slide from. It falls back to the generated placeholder. Dropping a 1200×630
-  JPG next to the entry and pointing `coverImage` at it is all it needs.
+- The two adversarial talks have near-identical teasers, because the 2020 deck
+  is the meta-survey extension of the 2019 one and reuses its title slide. They
+  are adjacent in the list. What tells them apart is the "メタサーベイ追加版"
+  badge, which is why that crop had to come off the bottom.
 - No publication has an image yet, so that column is entirely placeholders.
   `SHOW_TEASERS` can turn a page's column off if that is not wanted in the
   meantime.
