@@ -89,14 +89,18 @@ export const PUBLICATION_LINK_LABELS: Record<string, string> = {
 }
 
 /**
- * Show slide cover images on the talks page.
+ * Reserve the trailing teaser column on each index.
  *
- * Currently off: the existing covers are generated placeholders in four
- * unrelated hues, and three separate talks share the same purple image, so they
- * add colour noise without adding information. Set to true once the entries
- * carry real, distinct cover art.
+ * Entries without an image get a generated placeholder, so a page can be turned
+ * on before every entry is illustrated. Turn one off if a list would be all
+ * placeholders and the column is not earning its width.
  */
-export const SHOW_TALK_COVERS = false
+export const SHOW_TEASERS = {
+  talks: true,
+  publications: true,
+  service: true,
+  blog: true,
+} as const
 
 /**
  * Navigation items.

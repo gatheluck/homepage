@@ -73,6 +73,35 @@ Read from its `base.css` / `assets/site.css` rather than eyeballed:
 7. **Dates and other figures use `font-mono` with `tabular-nums`** so columns
    align.
 
+## Teaser images
+
+Index rows carry an optional teaser at the **trailing edge** of the row, behind
+the per-page `SHOW_TEASERS` flags in `src/consts.ts`.
+
+- **Trailing, not leading.** A leading thumbnail leaves a hole in the middle of
+  any row that has no image and pushes its text out of line with its
+  neighbours. At the trailing edge an empty cell is indistinguishable from the
+  page margin. That matters while most collections are only partly illustrated.
+- **One aspect ratio, `aspect-video`.** Mixed ratios down a column are the main
+  reason thumbnail lists look untidy. The ratio is fixed on the wrapper, not the
+  image, so the row height is known before the image loads and nothing shifts.
+- **`alt=""`.** The title sits directly beside the teaser, so a descriptive alt
+  would be announced twice.
+- **Hidden below `sm`.** A third column does not fit a phone, and the lists stay
+  more scannable without it.
+- **Rounded with a hairline ring**, never a border or a shadow, so images sit
+  inside the same surface language as everything else.
+- **Entries with no image get `TeaserPlaceholder`**, an inline SVG drawn only in
+  `--accent` and `--surface` and varied by a seed hash. It is deliberately
+  incapable of introducing a new hue. The covers it replaces were also
+  generated, and they went wrong precisely by inventing a saturated colour per
+  item. Being inline also means there are no files to keep in sync and no way
+  for two entries to end up sharing one image.
+
+`astro.config.mjs` uses the default sharp image service. Do not restore
+`passthroughImageService()` — teasers render at ~208px from much larger sources
+and passthrough ships every original at full size.
+
 ## Shared components
 
 `PageHeader`, `SectionBlock`, `EntryList`, `Entry`, `ResourceLinks` in
@@ -89,8 +118,18 @@ page, otherwise the four list pages drift apart again the way they did before.
 - Comments are disabled: `SITE_METADATA.comments.provider` is `null` until this
   site has its own giscus IDs. It previously pointed at the template author's
   repository.
-- `SHOW_TALK_COVERS` is `false`. The existing covers are generated placeholders
-  in four unrelated hues, and three talks share one purple image.
+- **The three remaining talk covers clash.** `2020-adversarial-cover.svg`
+  (purple), `2025-cvpaper-cover.svg` (green) and `2026-aspire-workshop-cover.svg`
+  (orange) are synthetic gradient cards with the talk title typed on them, so
+  they duplicate the adjacent title and put three unrelated saturated hues in a
+  column that is otherwise teal. Replacing them with real slide screenshots is
+  the fix; recolouring them into the accent family is the cheaper one. The three
+  talks whose `coverImage` pointed at another talk's cover, or at
+  `sample-slide-cover.svg`, have had the field removed and now use the
+  generated placeholder.
+- No blog post or publication has an image yet, so those columns are entirely
+  placeholders. `SHOW_TEASERS` can turn a page's column off if that is not
+  wanted in the meantime.
 - Some content is still placeholder: an "Example Workshop on Computer Vision"
   entry in `organizing`, and a `Default` tag with no posts.
 - Talk `venue` fields repeat the talk type ("Invited Talk, ASPIRE ..."), which

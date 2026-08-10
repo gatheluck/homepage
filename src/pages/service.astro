@@ -5,6 +5,7 @@ import PageHeader from '@/components/PageHeader.astro'
 import SectionBlock from '@/components/SectionBlock.astro'
 import EntryList from '@/components/EntryList.astro'
 import Entry from '@/components/Entry.astro'
+import { SHOW_TEASERS } from '@/consts'
 
 const organizing = await getCollection('organizing')
 
@@ -52,7 +53,14 @@ const typeNames = {
         <SectionBlock title={typeNames[type as keyof typeof typeNames]}>
           <EntryList>
             {items.map((item) => (
-              <Entry meta={item.data.date} title={item.data.title} href={item.data.url}>
+              <Entry
+                meta={item.data.date}
+                title={item.data.title}
+                href={item.data.url}
+                teaser={SHOW_TEASERS.service}
+                image={item.data.image}
+                teaserSeed={item.id}
+              >
                 <p class="text-sm leading-6 text-fg-muted">
                   <span class="font-medium text-fg-muted">{item.data.role}</span>
                   {` at ${item.data.venue}`}

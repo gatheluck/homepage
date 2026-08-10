@@ -1,13 +1,12 @@
 ---
 import { getCollection } from 'astro:content'
-import { Image } from 'astro:assets'
 import RootLayout from '@/layouts/RootLayout.astro'
 import Link from '@/components/Link.astro'
 import PageHeader from '@/components/PageHeader.astro'
 import EntryList from '@/components/EntryList.astro'
 import Entry from '@/components/Entry.astro'
 import ResourceLinks from '@/components/ResourceLinks.astro'
-import { SHOW_TALK_COVERS } from '@/consts'
+import { SHOW_TEASERS } from '@/consts'
 
 const talks = await getCollection('talks')
 
@@ -38,15 +37,10 @@ const typeLabels = {
             meta={talk.data.date}
             label={typeLabels[talk.data.type as keyof typeof typeLabels]}
             title={talk.data.title}
+            teaser={SHOW_TEASERS.talks}
+            image={talk.data.coverImage}
+            teaserSeed={talk.id}
           >
-            {SHOW_TALK_COVERS && talk.data.coverImage && (
-              <Image
-                src={talk.data.coverImage}
-                alt={`Cover for ${talk.data.title}`}
-                class="mb-2 w-full max-w-sm rounded"
-                loading="lazy"
-              />
-            )}
             <p class="text-sm leading-6 text-fg-muted">
               {talk.data.venueUrl ? (
                 <Link

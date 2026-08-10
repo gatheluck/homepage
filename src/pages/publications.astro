@@ -6,7 +6,7 @@ import SectionBlock from '@/components/SectionBlock.astro'
 import EntryList from '@/components/EntryList.astro'
 import Entry from '@/components/Entry.astro'
 import ResourceLinks from '@/components/ResourceLinks.astro'
-import { AUTHOR_NAME, PUBLICATION_LINK_LABELS } from '@/consts'
+import { AUTHOR_NAME, PUBLICATION_LINK_LABELS, SHOW_TEASERS } from '@/consts'
 
 const publications = await getCollection('publications')
 
@@ -58,7 +58,13 @@ function splitAuthors(authors: string) {
         <SectionBlock title={categoryNames[category as keyof typeof categoryNames]}>
           <EntryList>
             {pubs.map((pub) => (
-              <Entry meta={String(pub.data.year)} title={pub.data.title}>
+              <Entry
+                meta={String(pub.data.year)}
+                title={pub.data.title}
+                teaser={SHOW_TEASERS.publications}
+                image={pub.data.image}
+                teaserSeed={pub.id}
+              >
                 {/* prettier-ignore */}
                 <p class="text-sm leading-6 text-fg-muted">
                   {splitAuthors(pub.data.authors).map((part, i) => (
