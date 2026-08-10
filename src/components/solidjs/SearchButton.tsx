@@ -119,10 +119,10 @@ export default function SearchButton() {
       {/* Search Modal */}
       <Show when={isOpen()}>
         <div
-          class="fixed inset-0 z-50 flex items-start justify-center pt-16 bg-gray-900/50 dark:bg-gray-900/80 backdrop-blur-sm"
+          class="fixed inset-0 z-50 flex items-start justify-center pt-16 bg-black/60 backdrop-blur-sm"
           onClick={handleBackdropClick}
         >
-          <div class="w-full max-w-2xl mx-4 bg-white dark:bg-gray-800 rounded-lg shadow-2xl overflow-hidden">
+          <div class="w-full max-w-2xl mx-4 bg-bg ring-hairline ring-1 rounded-xl shadow-2xl overflow-hidden">
             {/* Search Input */}
             <div class="border-b border-hairline">
               <div class="flex items-center px-4">
@@ -132,7 +132,7 @@ export default function SearchButton() {
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  class="h-5 w-5 text-gray-400"
+                  class="h-5 w-5 text-fg-subtle"
                 >
                   <path
                     stroke-linecap="round"
@@ -143,15 +143,12 @@ export default function SearchButton() {
                 <input
                   type="text"
                   placeholder="Search posts..."
-                  class="flex-1 px-4 py-4 bg-transparent border-0 focus:outline-none text-fg placeholder-gray-400"
+                  class="flex-1 px-4 py-4 bg-transparent border-0 focus:outline-none text-fg placeholder:text-fg-subtle"
                   value={query()}
                   onInput={(e) => setQuery(e.currentTarget.value)}
                   autofocus={isOpen()}
                 />
-                <button
-                  onClick={closeSearch}
-                  class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
-                >
+                <button onClick={closeSearch} class="text-fg-subtle hover:text-fg">
                   <span class="text-xs font-medium">ESC</span>
                 </button>
               </div>
@@ -176,13 +173,13 @@ export default function SearchButton() {
                       <li>
                         <a
                           href={`/blog/${result.id}`}
-                          class="block px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                          class="block px-4 py-3 hover:bg-surface transition-colors"
                         >
                           <div class="font-semibold text-fg">{result.title}</div>
                           <div class="text-sm text-fg-muted mt-1 line-clamp-2">
                             {result.summary}
                           </div>
-                          <div class="flex items-center gap-2 mt-2 text-xs text-gray-500 dark:text-gray-500">
+                          <div class="flex items-center gap-2 mt-2 text-xs text-fg-subtle">
                             <time>{formatDate(result.date)}</time>
                             <Show when={result.tags.length > 0}>
                               <span>•</span>
@@ -190,7 +187,7 @@ export default function SearchButton() {
                                 <For each={result.tags.slice(0, 3)}>
                                   {(tag) => (
                                     <span
-                                      class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded"
+                                      class="px-2 py-0.5 bg-surface ring-hairline ring-1 rounded"
                                       role="listitem"
                                     >
                                       {tag}
@@ -210,9 +207,11 @@ export default function SearchButton() {
               <Show when={!isLoading() && !query()}>
                 <div class="px-4 py-8 text-center text-fg-subtle">
                   <div class="text-sm">Start typing to search posts...</div>
-                  <div class="text-xs mt-2 text-gray-400">
+                  <div class="text-xs mt-2 text-fg-subtle">
                     Tip: Press{' '}
-                    <kbd class="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-700 rounded text-xs">⌘K</kbd>{' '}
+                    <kbd class="px-1.5 py-0.5 bg-surface ring-hairline ring-1 rounded text-xs">
+                      ⌘K
+                    </kbd>{' '}
                     to open search
                   </div>
                 </div>

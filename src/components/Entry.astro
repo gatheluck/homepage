@@ -1,5 +1,8 @@
 ---
+import type { ImageMetadata } from 'astro'
+import { Image } from 'astro:assets'
 import Link from './Link.astro'
+import TeaserPlaceholder from './TeaserPlaceholder.astro'
 
 /**
  * A single row of an EntryList.
@@ -7,24 +10,72 @@ import Link from './Link.astro'
  * The left column carries the scannable metadata (date, kind). It is set in the
  * mono face, which is how the reference page treats technical values and which
  * also keeps the figures aligned down the page.
+ *
+ * The teaser sits at the trailing edge rather than between the metadata and the
+ * title. With a leading thumbnail, an entry that has no image leaves a hole in
+ * the middle of the row and pushes its text out of line with its neighbours; at
+ * the trailing edge an empty cell is indistinguishable from the page margin.
+ * That matters while most collections are still only partly illustrated.
  */
 interface Props {
   /** Date, year or date range shown in the left column. */
   meta?: string
   /** Kind of item, e.g. "Invited talk". Rendered under the date. */
   label?: string
+  /**
+   * Draw the label in the accent colour to mark it out from its neighbours.
+   *
+   * The label text still has to say what it means on its own - the colour only
+   * reinforces it, because WCAG 1.4.1 does not allow colour to be the sole
+   * carrier of information.
+   */
+  labelAccent?: boolean
   title: string
   href?: string
+  /** Reserve the trailing teaser column for this list. */
+  teaser?: boolean
+  /** Teaser image. When omitted and `teaser` is set, a placeholder is drawn. */
+  image?: ImageMetadata
+  /** Stable string used to vary the placeholder. Falls back to the title. */
+  teaserSeed?: string
 }
 
-const { meta, label, title, href } = Astro.props
+const {
+  meta,
+  label,
+  labelAccent = false,
+  title,
+  href,
+  teaser = false,
+  image,
+  teaserSeed,
+} = Astro.props
 const hasBody = Astro.slots.has('default')
+
+// Rendered at 208px wide in a 1024px container; 2x for high density displays.
+const TEASER_WIDTH = 416
 ---
 
-<li class="grid grid-cols-1 gap-x-8 gap-y-1.5 py-5 sm:grid-cols-[10.5rem_minmax(0,1fr)]">
+<li
+  class:list={[
+    'grid grid-cols-1 gap-x-8 gap-y-1.5 py-5',
+    teaser ? 'sm:grid-cols-[10.5rem_minmax(0,1fr)_13rem]' : 'sm:grid-cols-[10.5rem_minmax(0,1fr)]',
+  ]}
+>
   <div class="sm:pt-1">
     {meta && <div class="text-fg-subtle font-mono text-xs tabular-nums">{meta}</div>}
-    {label && <div class="text-fg-subtle mt-1 text-xs uppercase tracking-[0.12em]">{label}</div>}
+    {
+      label && (
+        <div
+          class:list={[
+            'mt-1 text-xs uppercase tracking-[0.12em]',
+            labelAccent ? 'text-accent font-medium' : 'text-fg-subtle',
+          ]}
+        >
+          {label}
+        </div>
+      )
+    }
   </div>
   <div class="min-w-0">
     <h3 class="text-fg text-base font-medium leading-6">
@@ -46,4 +97,30 @@ const hasBody = Astro.slots.has('default')
       )
     }
   </div>
+  {
+    teaser && (
+      <div class="hidden sm:block sm:pt-1">
+        {/*
+          The aspect ratio is fixed on the wrapper so the row height is known
+          before the image loads and nothing shifts. `alt` is empty because the
+          title sits right beside it - a real alt would be read out twice.
+        */}
+        <div class="ring-hairline aspect-teaser overflow-hidden rounded-lg ring-1">
+          {image ? (
+            <Image
+              src={image}
+              alt=""
+              width={TEASER_WIDTH}
+              densities={[1, 2]}
+              loading="lazy"
+              decoding="async"
+              class="h-full w-full object-cover"
+            />
+          ) : (
+            <TeaserPlaceholder seed={teaserSeed ?? title} />
+          )}
+        </div>
+      </div>
+    )
+  }
 </li>

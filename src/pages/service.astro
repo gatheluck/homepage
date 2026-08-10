@@ -5,11 +5,23 @@ import PageHeader from '@/components/PageHeader.astro'
 import SectionBlock from '@/components/SectionBlock.astro'
 import EntryList from '@/components/EntryList.astro'
 import Entry from '@/components/Entry.astro'
+import { SHOW_TEASERS } from '@/consts'
 
 const organizing = await getCollection('organizing')
 
-// Sort by date (descending)
-const sortedOrganizing = organizing.sort((a, b) => b.data.date.localeCompare(a.data.date))
+/*
+ * Sort by date (descending), falling back to the id only to guarantee a total
+ * order when two entries really are on the same day.
+ *
+ * The tiebreak is deliberately neutral. Ordering by something invisible, such
+ * as whether a role was held as primary organiser, makes the sequence
+ * impossible to explain from what is on screen. Dates carry the order; record
+ * the day in `date` when it is known, and precision sorts correctly against
+ * month-only entries because the format is lexicographic.
+ */
+const sortedOrganizing = organizing.sort(
+  (a, b) => b.data.date.localeCompare(a.data.date) || a.id.localeCompare(b.id)
+)
 
 // Group by type
 const groupedByType = sortedOrganizing.reduce(
@@ -52,11 +64,17 @@ const typeNames = {
         <SectionBlock title={typeNames[type as keyof typeof typeNames]}>
           <EntryList>
             {items.map((item) => (
-              <Entry meta={item.data.date} title={item.data.title} href={item.data.url}>
-                <p class="text-sm leading-6 text-fg-muted">
-                  <span class="font-medium text-fg-muted">{item.data.role}</span>
-                  {` at ${item.data.venue}`}
-                </p>
+              <Entry
+                meta={item.data.date}
+                label={item.data.role}
+                labelAccent={item.data.isPrimary}
+                title={item.data.title}
+                href={item.data.url}
+                teaser={SHOW_TEASERS.service}
+                image={item.data.image}
+                teaserSeed={item.id}
+              >
+                <p class="text-sm leading-6 text-fg-muted">{item.data.venue}</p>
                 {item.data.description && (
                   <p class="measure text-sm leading-6 text-fg-subtle">{item.data.description}</p>
                 )}

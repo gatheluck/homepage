@@ -1,0 +1,67 @@
+---
+/**
+ * Stand-in teaser for entries that have no image yet.
+ *
+ * Deliberately narrow in what it can produce. The covers this replaces were
+ * generated too, and they went wrong by inventing a new saturated hue per item
+ * (orange, green, teal, purple) that fought both each other and the accent.
+ * Here the only colours available are `--accent` at low alpha and `--surface`,
+ * so a page full of these still reads as one system. The seed varies the
+ * geometry, never the colour.
+ *
+ * It is inline SVG rather than a generated file, which means no assets to keep
+ * in sync, no chance of two entries sharing one image, and it follows the
+ * light/dark theme for free because it can reference the CSS variables.
+ */
+interface Props {
+  /** Stable string (an entry id or title) so a given entry always looks the same. */
+  seed: string
+  class?: string
+}
+
+const { seed, class: className } = Astro.props
+
+/** FNV-1a. Small, stable, and good enough to spread short slugs. */
+function hash(value: string) {
+  let h = 0x811c9dc5
+  for (let i = 0; i < value.length; i++) {
+    h ^= value.charCodeAt(i)
+    h = Math.imul(h, 0x01000193)
+  }
+  return h >>> 0
+}
+
+const h = hash(seed)
+
+// The mark echoes the logo's pair of leaning slashes.
+const bars = 3 + (h % 4) // 3..6
+const lean = 14 + ((h >> 3) % 12) // slant in viewBox units
+const gap = 26 + ((h >> 7) % 12)
+const start = -20 + ((h >> 11) % 24)
+const width = 5 + ((h >> 15) % 4)
+
+const VB_W = 160
+const VB_H = 90
+---
+
+<svg
+  viewBox={`0 0 ${VB_W} ${VB_H}`}
+  class:list={['h-full w-full', className]}
+  aria-hidden="true"
+  focusable="false"
+  preserveAspectRatio="xMidYMid slice"
+>
+  <rect width={VB_W} height={VB_H} fill="var(--surface)"></rect>
+  <g fill="var(--accent)" opacity="0.22">
+    {
+      Array.from({ length: bars }, (_, i) => {
+        const x = start + i * gap
+        return (
+          <path
+            d={`M${x + lean} -6 L${x + lean + width} -6 L${x + width} ${VB_H + 6} L${x} ${VB_H + 6} Z`}
+          />
+        )
+      })
+    }
+  </g>
+</svg>

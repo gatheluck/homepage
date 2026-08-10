@@ -26,7 +26,7 @@ const currentPositions = positions
 const latestTalks = talks.sort((a, b) => b.data.date.localeCompare(a.data.date)).slice(0, 2)
 const latestAwards = awards.sort((a, b) => b.data.date.localeCompare(a.data.date)).slice(0, 2)
 const latestOrganizing = organizing
-  .sort((a, b) => b.data.date.localeCompare(a.data.date))
+  .sort((a, b) => b.data.date.localeCompare(a.data.date) || a.id.localeCompare(b.id))
   .slice(0, 2)
 const latestBlogPosts = allBlogPosts
   .filter((post) => !post.data.draft)
@@ -155,10 +155,14 @@ const socialLinks = [
       <SectionBlock title="Recent Service" moreHref="/service" moreLabel="All service activities">
         <EntryList>
           {latestOrganizing.map((org) => (
-            <Entry meta={org.data.date} title={org.data.title}>
-              <p class="text-sm leading-6 text-fg-subtle">
-                {`${org.data.role} at ${org.data.venue}`}
-              </p>
+            <Entry
+              meta={org.data.date}
+              label={org.data.role}
+              labelAccent={org.data.isPrimary}
+              title={org.data.title}
+              href={org.data.url}
+            >
+              <p class="text-sm leading-6 text-fg-subtle">{org.data.venue}</p>
             </Entry>
           ))}
         </EntryList>

@@ -149,15 +149,19 @@ const certifications = defineCollection({
 
 const organizing = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/organizing' }),
-  schema: z.object({
-    date: z.string(),
-    title: z.string(),
-    role: z.string(),
-    venue: z.string(),
-    type: z.enum(['workshop', 'conference', 'symposium', 'session', 'other']),
-    url: z.string().url().optional(),
-    description: z.string().optional(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      date: z.string(),
+      title: z.string(),
+      role: z.string(),
+      venue: z.string(),
+      type: z.enum(['workshop', 'conference', 'symposium', 'session', 'other']),
+      url: z.string().url().optional(),
+      description: z.string().optional(),
+      image: image().optional(),
+      /** Lead organiser rather than one of the organising committee. */
+      isPrimary: z.boolean().default(false),
+    }),
 })
 
 export const collections = {

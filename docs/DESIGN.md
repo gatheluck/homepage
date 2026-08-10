@@ -73,6 +73,55 @@ Read from its `base.css` / `assets/site.css` rather than eyeballed:
 7. **Dates and other figures use `font-mono` with `tabular-nums`** so columns
    align.
 
+## Teaser images
+
+Index rows carry an optional teaser at the **trailing edge** of the row, behind
+the per-page `SHOW_TEASERS` flags in `src/consts.ts`.
+
+- **Trailing, not leading.** A leading thumbnail leaves a hole in the middle of
+  any row that has no image and pushes its text out of line with its
+  neighbours. At the trailing edge an empty cell is indistinguishable from the
+  page margin. That matters while most collections are only partly illustrated.
+- **One aspect ratio, `aspect-teaser` (1200×630).** Mixed ratios down a column
+  are the main reason thumbnail lists look untidy. The ratio is fixed on the
+  wrapper, not the image, so the row height is known before the image loads and
+  nothing shifts. It matches Open Graph rather than 16:9 because that is the
+  format the source images arrive in: the workshop teasers put a left-aligned
+  title about 2.5% in, and cropping 1200×630 to 16:9 removes 3.3% from each
+  side, clipping the first letter. Cropping a 1280×720 slide cover to this ratio
+  instead takes 3.5% off top and bottom, where those images only have margin.
+- **`alt=""`.** The title sits directly beside the teaser, so a descriptive alt
+  would be announced twice.
+- **Hidden below `sm`.** A third column does not fit a phone, and the lists stay
+  more scannable without it.
+- **Rounded with a hairline ring**, never a border or a shadow, so images sit
+  inside the same surface language as everything else.
+- **Entries with no image get `TeaserPlaceholder`**, an inline SVG drawn only in
+  `--accent` and `--surface` and varied by a seed hash. It is deliberately
+  incapable of introducing a new hue. The covers it replaces were also
+  generated, and they went wrong precisely by inventing a saturated colour per
+  item. Being inline also means there are no files to keep in sync and no way
+  for two entries to end up sharing one image.
+
+### Marking a lead role
+
+`organizing` entries carry `isPrimary`. When set, the role appears in the
+`Entry` label column in the accent colour via `labelAccent`. The label text has
+to say "Primary Organizer" on its own — the colour only reinforces it, because
+WCAG 1.4.1 does not allow colour to be the sole carrier of information.
+
+`isPrimary` affects emphasis only, never ordering. A reverse-chronological list
+tells the reader it is ordered by date, so reordering two entries by something
+invisible makes the sequence impossible to explain from what is on screen. Where
+two items would otherwise tie, **record the day in `date`** — the format is
+lexicographic, so `2026.09.09` sorts correctly above both `2026.09.08` and a
+month-only `2026.09`. Lists fall back to the entry id purely to guarantee a
+total order, so it never depends on collection iteration order.
+
+`astro.config.mjs` uses the default sharp image service. Do not restore
+`passthroughImageService()` — teasers render at ~208px from much larger sources
+and passthrough ships every original at full size.
+
 ## Shared components
 
 `PageHeader`, `SectionBlock`, `EntryList`, `Entry`, `ResourceLinks` in
@@ -89,10 +138,19 @@ page, otherwise the four list pages drift apart again the way they did before.
 - Comments are disabled: `SITE_METADATA.comments.provider` is `null` until this
   site has its own giscus IDs. It previously pointed at the template author's
   repository.
-- `SHOW_TALK_COVERS` is `false`. The existing covers are generated placeholders
-  in four unrelated hues, and three talks share one purple image.
-- Some content is still placeholder: an "Example Workshop on Computer Vision"
-  entry in `organizing`, and a `Default` tag with no posts.
+- **The three remaining talk covers clash.** `2020-adversarial-cover.svg`
+  (purple), `2025-cvpaper-cover.svg` (green) and `2026-aspire-workshop-cover.svg`
+  (orange) are synthetic gradient cards with the talk title typed on them, so
+  they duplicate the adjacent title and put three unrelated saturated hues in a
+  column that is otherwise teal. Replacing them with real slide screenshots is
+  the fix; recolouring them into the accent family is the cheaper one. The three
+  talks whose `coverImage` pointed at another talk's cover, or at
+  `sample-slide-cover.svg`, have had the field removed and now use the
+  generated placeholder.
+- No blog post or publication has an image yet, so those columns are entirely
+  placeholders. `SHOW_TEASERS` can turn a page's column off if that is not
+  wanted in the meantime.
+- A `Default` tag with no posts still shows in the blog sidebar.
 - Talk `venue` fields repeat the talk type ("Invited Talk, ASPIRE ..."), which
   now duplicates the label column.
 - Japanese titles fall back to a system font; Roboto has no CJK glyphs.

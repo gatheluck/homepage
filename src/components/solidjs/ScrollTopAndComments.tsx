@@ -50,7 +50,7 @@ export default function ScrollTopAndComments() {
         <button
           aria-label={t('components.scrollTopAndComments.scrollTop')}
           onClick={handleScrollToTop}
-          class="rounded-full bg-gray-200 p-2 text-gray-500 transition-all hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600"
+          class="bg-surface ring-hairline text-fg-muted hover:text-fg rounded-full p-2 ring-1 transition-colors"
         >
           <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path
@@ -67,7 +67,7 @@ export default function ScrollTopAndComments() {
           <button
             aria-label={t('components.scrollTopAndComments.scrollToComments')}
             onClick={handleScrollToComments}
-            class="rounded-full bg-gray-200 p-2 text-gray-500 transition-all hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600"
+            class="bg-surface ring-hairline text-fg-muted hover:text-fg rounded-full p-2 ring-1 transition-colors"
           >
             <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
               <path

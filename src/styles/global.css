@@ -136,6 +136,19 @@ body {
   max-width: 68ch;
 }
 
+/*
+ * Teaser aspect ratio, 1200x630.
+ *
+ * Matched to the Open Graph format the source images actually come in rather
+ * than to 16:9. These images carry left-aligned titles starting ~2.5% in, and
+ * cropping 1200x630 to 16:9 removes 3.3% from each side, which clips the first
+ * letter. Cropping the older 1280x720 slide covers to this ratio instead takes
+ * 3.5% off the top and bottom, where they only have margin.
+ */
+@utility aspect-teaser {
+  aspect-ratio: 40 / 21;
+}
+
 .link-accent {
   @apply text-accent hover:text-accent-hover;
 }
