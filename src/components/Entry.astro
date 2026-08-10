@@ -1,0 +1,49 @@
+---
+import Link from './Link.astro'
+
+/**
+ * A single row of an EntryList.
+ *
+ * The left column carries the scannable metadata (date, kind). It is set in the
+ * mono face, which is how the reference page treats technical values and which
+ * also keeps the figures aligned down the page.
+ */
+interface Props {
+  /** Date, year or date range shown in the left column. */
+  meta?: string
+  /** Kind of item, e.g. "Invited talk". Rendered under the date. */
+  label?: string
+  title: string
+  href?: string
+}
+
+const { meta, label, title, href } = Astro.props
+const hasBody = Astro.slots.has('default')
+---
+
+<li class="grid grid-cols-1 gap-x-8 gap-y-1.5 py-5 sm:grid-cols-[10.5rem_minmax(0,1fr)]">
+  <div class="sm:pt-1">
+    {meta && <div class="text-fg-subtle font-mono text-xs tabular-nums">{meta}</div>}
+    {label && <div class="text-fg-subtle mt-1 text-xs uppercase tracking-[0.12em]">{label}</div>}
+  </div>
+  <div class="min-w-0">
+    <h3 class="text-fg text-base font-medium leading-6">
+      {
+        href ? (
+          <Link href={href} class="hover:text-accent transition-colors">
+            {title}
+          </Link>
+        ) : (
+          title
+        )
+      }
+    </h3>
+    {
+      hasBody && (
+        <div class="mt-2 space-y-1.5">
+          <slot />
+        </div>
+      )
+    }
+  </div>
+</li>

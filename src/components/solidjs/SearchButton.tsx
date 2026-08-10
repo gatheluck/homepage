@@ -99,12 +99,7 @@ export default function SearchButton() {
   return (
     <>
       {/* Search Button */}
-      <button
-        onClick={openSearch}
-        aria-label="Search"
-        class="text-gray-900 dark:text-gray-100"
-        title="Search (⌘K)"
-      >
+      <button onClick={openSearch} aria-label="Search" class="text-fg" title="Search (⌘K)">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -129,7 +124,7 @@ export default function SearchButton() {
         >
           <div class="w-full max-w-2xl mx-4 bg-white dark:bg-gray-800 rounded-lg shadow-2xl overflow-hidden">
             {/* Search Input */}
-            <div class="border-b border-gray-200 dark:border-gray-700">
+            <div class="border-b border-hairline">
               <div class="flex items-center px-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -148,7 +143,7 @@ export default function SearchButton() {
                 <input
                   type="text"
                   placeholder="Search posts..."
-                  class="flex-1 px-4 py-4 bg-transparent border-0 focus:outline-none text-gray-900 dark:text-gray-100 placeholder-gray-400"
+                  class="flex-1 px-4 py-4 bg-transparent border-0 focus:outline-none text-fg placeholder-gray-400"
                   value={query()}
                   onInput={(e) => setQuery(e.currentTarget.value)}
                   autofocus={isOpen()}
@@ -165,11 +160,11 @@ export default function SearchButton() {
             {/* Results */}
             <div class="max-h-96 overflow-y-auto">
               <Show when={isLoading()}>
-                <div class="px-4 py-8 text-center text-gray-500 dark:text-gray-400">Loading...</div>
+                <div class="px-4 py-8 text-center text-fg-subtle">Loading...</div>
               </Show>
 
               <Show when={!isLoading() && query() && results().length === 0}>
-                <div class="px-4 py-8 text-center text-gray-500 dark:text-gray-400">
+                <div class="px-4 py-8 text-center text-fg-subtle">
                   No results found for "{query()}"
                 </div>
               </Show>
@@ -183,10 +178,8 @@ export default function SearchButton() {
                           href={`/blog/${result.id}`}
                           class="block px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                         >
-                          <div class="font-semibold text-gray-900 dark:text-gray-100">
-                            {result.title}
-                          </div>
-                          <div class="text-sm text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
+                          <div class="font-semibold text-fg">{result.title}</div>
+                          <div class="text-sm text-fg-muted mt-1 line-clamp-2">
                             {result.summary}
                           </div>
                           <div class="flex items-center gap-2 mt-2 text-xs text-gray-500 dark:text-gray-500">
@@ -215,7 +208,7 @@ export default function SearchButton() {
               </Show>
 
               <Show when={!isLoading() && !query()}>
-                <div class="px-4 py-8 text-center text-gray-500 dark:text-gray-400">
+                <div class="px-4 py-8 text-center text-fg-subtle">
                   <div class="text-sm">Start typing to search posts...</div>
                   <div class="text-xs mt-2 text-gray-400">
                     Tip: Press{' '}

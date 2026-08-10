@@ -50,7 +50,7 @@ const { Content, headings } = await render(post)
             <dl class="space-y-10">
               <div>
                 <dt class="sr-only">{t('layouts.postLayout.publishedAt')}</dt>
-                <dd class="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                <dd class="text-base font-medium leading-6 text-fg-subtle">
                   <FormattedDate date={post.data.date} />
                 </dd>
               </div>
@@ -97,7 +97,7 @@ const { Content, headings } = await render(post)
                         )}
                         <dl class="whitespace-nowrap text-sm font-medium leading-5">
                           <dt class="sr-only">{t('layouts.postLayout.authorName')}</dt>
-                          <dd class="text-gray-900 dark:text-gray-100">{data.name}</dd>
+                          <dd class="text-fg">{data.name}</dd>
                           <dt class="sr-only">{t('layouts.postLayout.authorTwitter')}</dt>
                           <dd>
                             {data.twitter && (
@@ -111,7 +111,7 @@ const { Content, headings } = await render(post)
                           </dd>
                         </dl>
                       </li>
-                      <li class="text-gray-500 dark:text-gray-400">
+                      <li class="text-fg-subtle">
                         {data.occupation && data.company
                           ? `${data.occupation} at ${data.company}`
                           : data.company}
@@ -184,7 +184,7 @@ const { Content, headings } = await render(post)
                 </div>
               )
             }
-            <!--    <div class="pb-6 pt-6 text-sm text-gray-700 dark:text-gray-300">-->
+            <!--    <div class="pb-6 pt-6 text-sm text-fg-muted">-->
             <!--        <Link href={discussUrl(path)} rel="nofollow">-->
             <!--            Discuss on Twitter-->
             <!--        </Link>-->
@@ -193,7 +193,7 @@ const { Content, headings } = await render(post)
             <!--    </div>-->
             <!--    {SITE_METADATA.comments && (-->
             <!--            <div-->
-            <!--                    class="pb-6 pt-6 text-center text-gray-700 dark:text-gray-300"-->
+            <!--                    class="pb-6 pt-6 text-center text-fg-muted"-->
             <!--                    id="comment"-->
             <!--            >-->
             <!--                <Comments slug={slug}/>-->
@@ -207,7 +207,7 @@ const { Content, headings } = await render(post)
               {
                 tags && (
                   <div class="py-4 xl:py-8">
-                    <h2 class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                    <h2 class="text-xs uppercase tracking-wide text-fg-subtle">
                       {t('layouts.postLayout.tags')}
                     </h2>
                     <div class="flex flex-wrap">
@@ -223,7 +223,7 @@ const { Content, headings } = await render(post)
                   <div class="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
                     {prev && (
                       <div>
-                        <h2 class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                        <h2 class="text-xs uppercase tracking-wide text-fg-subtle">
                           {t('layouts.postLayout.previousPost')}
                         </h2>
                         <div class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
@@ -233,7 +233,7 @@ const { Content, headings } = await render(post)
                     )}
                     {next && (
                       <div>
-                        <h2 class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                        <h2 class="text-xs uppercase tracking-wide text-fg-subtle">
                           {t('layouts.postLayout.nextPost')}
                         </h2>
                         <div class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
@@ -247,7 +247,7 @@ const { Content, headings } = await render(post)
               {
                 related.length > 0 && (
                   <div class="py-4 xl:pb-8">
-                    <h2 class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                    <h2 class="text-xs uppercase tracking-wide text-fg-subtle">
                       {t('layouts.postLayout.relatedPosts')}
                     </h2>
                     <ul class="flex flex-wrap gap-2 xl:space-x-0 xl:space-y-0">

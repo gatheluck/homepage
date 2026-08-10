@@ -28,7 +28,7 @@ export default function MobileNav() {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
-          class="h-8 w-8 text-gray-900 dark:text-gray-100"
+          class="h-8 w-8 text-fg"
         >
           <path
             fill-rule="evenodd"
@@ -51,7 +51,7 @@ export default function MobileNav() {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              class="text-gray-900 dark:text-gray-100"
+              class="text-fg"
             >
               <path
                 fill-rule="evenodd"
@@ -65,10 +65,7 @@ export default function MobileNav() {
           <For each={NAVIGATION}>
             {({ href, title }) => (
               <div class="px-12 py-4">
-                <Link
-                  href={href}
-                  class="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
-                >
+                <Link href={href} class="text-2xl font-bold tracking-widest text-fg">
                   {t(title)}
                 </Link>
               </div>

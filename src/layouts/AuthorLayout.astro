@@ -32,10 +32,10 @@ const authorPosts = await getCollection('blog', ({ data: { authors, draft } }) =
 ---
 
 <RootLayout title={name} description={shortBio}>
-  <div class="divide-y divide-gray-200 dark:divide-gray-700">
+  <div class="divide-y divide-hairline">
     <div class="space-y-2 pb-8 pt-6 md:space-y-5">
       <h1
-        class="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14"
+        class="text-3xl font-extrabold leading-9 tracking-tight text-fg sm:text-4xl sm:leading-10 md:text-6xl md:leading-14"
       >
         {t('layouts.authorLayout.aboutAuthor', { name })}
       </h1>
@@ -56,8 +56,8 @@ const authorPosts = await getCollection('blog', ({ data: { authors, draft } }) =
         <h2 class="pb-2 pt-4 text-2xl font-bold leading-8 tracking-tight">
           {name}
         </h2>
-        <div class="text-gray-500 dark:text-gray-400">{occupation}</div>
-        <div class="text-gray-500 dark:text-gray-400">{company}</div>
+        <div class="text-fg-subtle">{occupation}</div>
+        <div class="text-fg-subtle">{company}</div>
         <div class="flex space-x-3 pt-6">
           {email && <SocialIcon kind="mail" href={`mailto:${email}`} />}
           {github && <SocialIcon kind="github" href={github} />}

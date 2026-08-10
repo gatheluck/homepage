@@ -1,0 +1,39 @@
+---
+/**
+ * A page section introduced by a numbered heading followed by a hairline that
+ * runs to the edge of the column, as on the reference project page.
+ *
+ * The number comes from a CSS counter so sections are numbered in document
+ * order without each page having to pass an index.
+ */
+interface Props {
+  title: string
+  /** Optional link rendered at the end of the section, e.g. "All publications". */
+  moreHref?: string
+  moreLabel?: string
+}
+
+import Link from './Link.astro'
+
+const { title, moreHref, moreLabel } = Astro.props
+---
+
+<section class="section-block py-12">
+  <div class="flex items-baseline gap-4">
+    <span class="section-number text-accent font-mono text-xs tabular-nums"></span>
+    <h2 class="section-title text-fg text-3xl">{title}</h2>
+    <span class="bg-hairline h-px flex-1 self-center" aria-hidden="true"></span>
+  </div>
+  <div class="mt-8">
+    <slot />
+  </div>
+  {
+    moreHref && (
+      <div class="mt-8">
+        <Link href={moreHref} class="link-accent text-sm underline-offset-4 hover:underline">
+          {moreLabel ?? 'View all'} &rarr;
+        </Link>
+      </div>
+    )
+  }
+</section>

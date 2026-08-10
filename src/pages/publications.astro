@@ -1,10 +1,12 @@
 ---
 import { getCollection } from 'astro:content'
 import RootLayout from '@/layouts/RootLayout.astro'
-import Link from '@/components/Link.astro'
-import { useTranslations } from '@/i18n'
-
-const t = useTranslations()
+import PageHeader from '@/components/PageHeader.astro'
+import SectionBlock from '@/components/SectionBlock.astro'
+import EntryList from '@/components/EntryList.astro'
+import Entry from '@/components/Entry.astro'
+import ResourceLinks from '@/components/ResourceLinks.astro'
+import { AUTHOR_NAME, PUBLICATION_LINK_LABELS } from '@/consts'
 
 const publications = await getCollection('publications')
 
@@ -34,72 +36,50 @@ const categoryNames = {
   'domestic-reviewed': 'Domestic Conferences (Reviewed)',
   domestic: 'Domestic Conferences',
 }
+
+/** Emphasise the site owner among the co-authors, as is conventional on a publication list. */
+function splitAuthors(authors: string) {
+  return authors.split(AUTHOR_NAME)
+}
 ---
 
 <RootLayout
   title="Publications - Yoshihiro Fukuhara"
   description="Academic publications by Yoshihiro Fukuhara"
 >
-  <div class="divide-y divide-gray-200 dark:divide-gray-700">
-    <div class="space-y-2 pb-8 pt-6 md:space-y-5">
-      <h1
-        class="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14"
-      >
-        Publications
-      </h1>
-      <p class="text-lg leading-7 text-gray-500 dark:text-gray-400">
-        Academic publications and research papers
-      </p>
-    </div>
+  <PageHeader title="Publications" description="Academic publications and research papers" />
 
-    {
-      categoryOrder.map((category) => {
-        const pubs = groupedPubs[category]
-        if (!pubs || pubs.length === 0) return null
+  {
+    categoryOrder.map((category) => {
+      const pubs = groupedPubs[category]
+      if (!pubs || pubs.length === 0) return null
 
-        return (
-          <div class="py-8">
-            <h2 class="mb-6 text-2xl font-bold text-gray-900 dark:text-gray-100">
-              {categoryNames[category as keyof typeof categoryNames]}
-            </h2>
-            <ul class="space-y-4">
-              {pubs.map((pub) => (
-                <li class="group">
-                  <article class="relative overflow-hidden rounded-lg border border-gray-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-gray-700 dark:bg-gray-800 dark:hover:shadow-gray-900/50">
-                    <div class="absolute left-0 top-0 h-full w-1 bg-primary-500 transition-all duration-300 group-hover:w-1.5" />
-                    <div class="pl-3">
-                      <h3 class="text-lg font-semibold text-gray-900 transition-colors duration-200 group-hover:text-primary-600 dark:text-gray-100 dark:group-hover:text-primary-400">
-                        {pub.data.title}
-                      </h3>
-                      <p class="mt-2 text-gray-700 dark:text-gray-300">{pub.data.authors}</p>
-                      <p class="mt-1 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        {pub.data.venue}, {pub.data.year}
-                      </p>
-                      {pub.data.links && pub.data.links.length > 0 && (
-                        <div class="mt-3 flex flex-wrap gap-2">
-                          {pub.data.links.map((link) => (
-                            <Link
-                              href={link.url}
-                              class="inline-flex items-center rounded-md bg-primary-50 px-3 py-1.5 text-xs font-medium text-primary-700 transition-all duration-200 hover:bg-primary-100 hover:scale-105 dark:bg-primary-900/30 dark:text-primary-300 dark:hover:bg-primary-900/50"
-                            >
-                              [{link.type.toUpperCase()}]
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                      {pub.data.notes && (
-                        <p class="mt-3 text-sm italic text-gray-600 dark:text-gray-400">
-                          {pub.data.notes}
-                        </p>
-                      )}
-                    </div>
-                  </article>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )
-      })
-    }
-  </div>
+      return (
+        <SectionBlock title={categoryNames[category as keyof typeof categoryNames]}>
+          <EntryList>
+            {pubs.map((pub) => (
+              <Entry meta={String(pub.data.year)} title={pub.data.title}>
+                {/* prettier-ignore */}
+                <p class="text-sm leading-6 text-fg-muted">
+                  {splitAuthors(pub.data.authors).map((part, i) => (
+                    <>{i > 0 && <span class="text-fg font-medium">{AUTHOR_NAME}</span>}{part}</>
+                  ))}
+                </p>
+                <p class="text-sm leading-6 text-fg-subtle">{pub.data.venue}</p>
+                {pub.data.notes && (
+                  <p class="text-sm italic leading-6 text-fg-subtle">{pub.data.notes}</p>
+                )}
+                <ResourceLinks
+                  links={(pub.data.links ?? []).map(({ type, url }) => ({
+                    label: PUBLICATION_LINK_LABELS[type] ?? type,
+                    url,
+                  }))}
+                />
+              </Entry>
+            ))}
+          </EntryList>
+        </SectionBlock>
+      )
+    })
+  }
 </RootLayout>
