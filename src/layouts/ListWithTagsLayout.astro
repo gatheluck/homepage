@@ -12,6 +12,7 @@ import FormattedDate from '../components/FormattedDate.astro'
 import type { Page } from 'astro'
 import { useTranslations } from '@/i18n'
 import { SHOW_TEASERS } from '@/consts'
+import { postUrl } from '@/functions'
 
 const t = useTranslations()
 
@@ -99,8 +100,14 @@ const isBlogPage = Astro.url.pathname.startsWith('/blog')
       <div class="min-w-0 flex-1">
         <ul class="-my-6 divide-y divide-hairline">
           {
-            page.data.map(
-              ({ id, data: { date, title, summary, tags, isExternal, externalLinks, cover } }) => (
+            page.data.map((post) => {
+              const {
+                id,
+                data: { date, title, summary, tags, isExternal, externalLinks, cover },
+              } = post
+              // Internal posts go to their page; external ones go to the platform.
+              const href = postUrl(post)
+              return (
                 <li class="py-6">
                   <article
                     class:list={[
@@ -116,15 +123,15 @@ const isBlogPage = Astro.url.pathname.startsWith('/blog')
                         </dd>
                       </dl>
                       <h3 class="section-title mt-2 text-2xl">
-                        {isExternal ? (
-                          <span class="text-fg">{title}</span>
-                        ) : (
+                        {href ? (
                           <Link
-                            href={`/blog/${id}`}
+                            href={href}
                             class="text-fg hover:text-accent ease-soft underline-offset-4 transition-colors duration-200 hover:underline"
                           >
                             {title}
                           </Link>
+                        ) : (
+                          <span class="text-fg">{title}</span>
                         )}
                       </h3>
                       <p class="measure mt-2 text-sm leading-6 text-fg-muted">{summary}</p>
@@ -153,17 +160,13 @@ const isBlogPage = Astro.url.pathname.startsWith('/blog')
                     </div>
                     {SHOW_TEASERS.blog && (
                       <div class="hidden sm:block">
-                        <Teaser
-                          image={cover}
-                          seed={id}
-                          href={isExternal ? undefined : `/blog/${id}`}
-                        />
+                        <Teaser image={cover} seed={id} href={href} />
                       </div>
                     )}
                   </article>
                 </li>
               )
-            )
+            })
           }
         </ul>
         {(page.url.next || page.url.prev) && <Pagination page={page} />}
