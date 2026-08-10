@@ -116,9 +116,15 @@ new — it is the picture people associate with the link, and it needs no upkeep
 - **Blog posts** use the platform's Open Graph image. Substack takes the crop in
   the URL, so ask it for `w_1200,h_630` and its own smart crop returns the exact
   ratio with no second resample.
-- Some hosts cannot be read at all — SlideShare answers every route with a bot
-  challenge. Leave `coverImage` off and let the placeholder cover it rather than
-  substituting an unrelated picture.
+- **SlideShare** needs more work but is reachable. `curl` and old headless get a
+  3KB bot challenge on every route, including oEmbed. `--headless=new` with a
+  real user agent and a persistent `--user-data-dir` renders the page normally;
+  the profile keeps working afterwards. Do not screenshot the viewer — its
+  download and share buttons sit on top of the slide. Dump the DOM instead and
+  take the `image.slidesharecdn.com/.../<title>-1-2048.jpg` URL, which is slide
+  one at 2048px with no viewer chrome.
+- If a host genuinely cannot be read, leave `coverImage` off and let the
+  placeholder cover it rather than substituting an unrelated picture.
 
 Always look at the result. These images carry titles and logos near the edges,
 and cropping the wrong axis clips them.
@@ -235,13 +241,10 @@ page, otherwise the four list pages drift apart again the way they did before.
 - Comments are disabled: `SITE_METADATA.comments.provider` is `null` until this
   site has its own giscus IDs. It previously pointed at the template author's
   repository.
-- **Two talks still have no cover.** `2019-adversarial` is on SlideShare, which
-  answers every route — page, oEmbed, the newer `/slideshow/` form — with a 3KB
-  bot-protection challenge instead of the deck, so the first slide cannot be
-  fetched. `2020-adversarial` has no `slides` field at all, only a link to the
-  SSII programme listing. Both fall back to the generated placeholder. Dropping
-  a 1200×630 JPG next to the entry and pointing `coverImage` at it is all either
-  one needs.
+- **One talk still has no cover.** `2020-adversarial` has no `slides` field at
+  all, only a link to the SSII programme listing, so there is no deck to take a
+  slide from. It falls back to the generated placeholder. Dropping a 1200×630
+  JPG next to the entry and pointing `coverImage` at it is all it needs.
 - No publication has an image yet, so that column is entirely placeholders.
   `SHOW_TEASERS` can turn a page's column off if that is not wanted in the
   meantime.
