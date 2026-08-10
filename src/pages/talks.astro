@@ -18,6 +18,15 @@ const typeLabels = {
   tutorial: 'Tutorial',
   conference: 'Conference talk',
 }
+
+/**
+ * Point the title at the talk's main artefact, slides first, so every row has a
+ * primary action. Previously the title was inert and the only links were the
+ * venue and the resource row underneath.
+ */
+function primaryLink(talk: (typeof sortedTalks)[number]) {
+  return talk.data.slides ?? talk.data.video ?? talk.data.venueUrl
+}
 ---
 
 <RootLayout
@@ -37,6 +46,7 @@ const typeLabels = {
             meta={talk.data.date}
             label={typeLabels[talk.data.type as keyof typeof typeLabels]}
             title={talk.data.title}
+            href={primaryLink(talk)}
             teaser={SHOW_TEASERS.talks}
             image={talk.data.coverImage}
             teaserSeed={talk.id}

@@ -25,7 +25,7 @@ const t = useTranslations()
       NAVIGATION.filter((link) => link.href !== '/').map((link) => (
         <HeaderLink
           href={link.href}
-          class="text-fg-muted hover:text-fg hidden text-sm transition-colors sm:block"
+          class="nav-link text-fg-muted hover:text-fg ease-soft hidden text-sm transition-colors duration-200 sm:block"
         >
           {t(link.title)}
         </HeaderLink>

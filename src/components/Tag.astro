@@ -17,7 +17,7 @@ if (!TagProp && Astro.props.slug) {
   TagProp && (
     <Link
       href={`/tags/${TagProp.id}`}
-      class="border-hairline text-fg-muted hover:border-hairline-strong hover:text-accent inline-block rounded-full border px-2.5 py-0.5 text-xs transition-colors"
+      class="border-hairline text-fg-muted hover:border-hairline-strong hover:text-accent hover:bg-surface ease-soft inline-block rounded-full border px-2.5 py-0.5 text-xs transition duration-200"
     >
       {TagProp.data.name}
     </Link>

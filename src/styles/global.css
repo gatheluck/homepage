@@ -66,7 +66,7 @@
   --fg-muted: var(--color-neutral-600);
   --fg-subtle: var(--color-neutral-500);
   --accent: var(--color-teal-700);
-  --accent-hover: var(--color-teal-800);
+  --accent-hover: var(--color-teal-900);
   --hairline: rgb(15 118 110 / 0.22);
   --hairline-strong: rgb(15 118 110 / 0.4);
   --surface: rgb(0 0 0 / 0.025);
@@ -80,7 +80,7 @@
      neutral-500 would be 4.18:1 and miss AA for the small mono metadata. */
   --fg-subtle: #8a8a8a;
   --accent: var(--color-teal-300);
-  --accent-hover: var(--color-teal-200);
+  --accent-hover: var(--color-teal-100);
   --hairline: rgb(94 234 212 / 0.15);
   --hairline-strong: rgb(94 234 212 / 0.35);
   --surface: rgb(255 255 255 / 0.02);
@@ -162,6 +162,34 @@ body {
 
 .link-subtle {
   @apply text-fg-muted hover:text-fg;
+}
+
+/*
+ * Navigation: a 1px accent rule wipes in from the left. Scaling a pseudo-element
+ * rather than toggling a border means the text never shifts, and the current
+ * page keeps the rule on permanently, which gives the active state a second cue
+ * besides weight and colour.
+ */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: -0.35rem;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms var(--ease-soft);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after,
+.nav-link.active::after {
+  transform: scaleX(1);
 }
 
 /* Long-form content links use the same accent as the rest of the site. */

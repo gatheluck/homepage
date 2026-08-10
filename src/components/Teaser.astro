@@ -36,7 +36,7 @@ const TEASER_WIDTH = 416
   {...frameProps}
   class:list={[
     'ring-hairline aspect-teaser ease-soft block overflow-hidden rounded-lg ring-1 transition duration-200',
-    href && 'hover:ring-hairline-strong group/teaser',
+    href && 'hover:ring-accent/50 group/teaser',
     className,
   ]}
 >
@@ -49,12 +49,12 @@ const TEASER_WIDTH = 416
         densities={[1, 2]}
         loading="lazy"
         decoding="async"
-        class="ease-soft h-full w-full object-cover transition-transform duration-300 group-hover/teaser:scale-[1.02]"
+        class="ease-soft h-full w-full object-cover transition-transform duration-300 group-hover/teaser:scale-[1.04]"
       />
     ) : (
       <TeaserPlaceholder
         seed={seed}
-        class="ease-soft transition-transform duration-300 group-hover/teaser:scale-[1.02]"
+        class="ease-soft transition-transform duration-300 group-hover/teaser:scale-[1.04]"
       />
     )
   }
