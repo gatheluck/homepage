@@ -2,20 +2,18 @@
 import { getCollection } from 'astro:content'
 import RootLayout from '@/layouts/RootLayout.astro'
 import Link from '@/components/Link.astro'
-import { useTranslations } from '@/i18n'
-
-const t = useTranslations()
+import PageHeader from '@/components/PageHeader.astro'
 
 const positions = await getCollection('positions')
 
 // Sort positions by start date (descending - most recent first)
 const sortedPositions = positions.sort((a, b) => b.data.startDate.localeCompare(a.data.startDate))
 
-const typeIcons = {
-  work: '💼',
-  education: '🎓',
-  fellowship: '🏆',
-  internship: '🔬',
+const typeLabels = {
+  work: 'Work',
+  education: 'Education',
+  fellowship: 'Fellowship',
+  internship: 'Internship',
 }
 ---
 
@@ -23,80 +21,65 @@ const typeIcons = {
   title="Journey - Yoshihiro Fukuhara"
   description="Career journey and academic history of Yoshihiro Fukuhara"
 >
-  <div class="divide-y divide-gray-200 dark:divide-gray-700">
-    <div class="space-y-2 pb-8 pt-6 md:space-y-5">
-      <h1
-        class="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14"
-      >
-        Journey
-      </h1>
-      <p class="text-lg leading-7 text-gray-500 dark:text-gray-400">
-        My career path and academic journey
-      </p>
-    </div>
+  <PageHeader title="Journey" description="My career path and academic journey" />
 
-    <div class="py-8">
-      <div class="space-y-6">
-        {
-          sortedPositions.map((position, index) => {
-            const isOngoing = !position.data.endDate
-            const dateRange = isOngoing
-              ? `${position.data.startDate} - Present`
-              : `${position.data.startDate} - ${position.data.endDate}`
+  {
+    /*
+    A single hairline rail carries the sense of a timeline. It replaces the rows
+    of cards, so this page has one line system rather than card borders, a rail
+    and dividers all at once.
+  */
+  }
+  <ol class="border-hairline border-t py-5">
+    {
+      sortedPositions.map((position) => {
+        const isOngoing = !position.data.endDate
+        const dateRange = isOngoing
+          ? `${position.data.startDate} – Present`
+          : `${position.data.startDate} – ${position.data.endDate}`
 
-            return (
-              <div class="group relative pl-8">
-                {/* Timeline line */}
-                {index < sortedPositions.length - 1 && (
-                  <div class="absolute left-2 top-8 h-full w-0.5 bg-gray-300 dark:bg-gray-600" />
-                )}
-
-                {/* Timeline dot */}
-                <div
-                  class={`absolute left-0 top-1.5 z-10 h-4 w-4 rounded-full transition-all duration-300 ${
-                    isOngoing
-                      ? 'bg-primary-500 ring-4 ring-primary-100 group-hover:scale-125 dark:ring-primary-900'
-                      : 'bg-gray-400 group-hover:scale-125 dark:bg-gray-600'
-                  }`}
-                />
-
-                <article class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-gray-700 dark:bg-gray-800 dark:hover:shadow-gray-900/50">
-                  <div class="flex flex-col space-y-2 md:flex-row md:space-x-4 md:space-y-0">
-                    <div class="flex-shrink-0 text-sm font-medium text-gray-500 dark:text-gray-400 md:w-48">
-                      <span class="mr-2">
-                        {typeIcons[position.data.type as keyof typeof typeIcons]}
-                      </span>
-                      {dateRange}
-                    </div>
-                    <div class="flex-1">
-                      <h3 class="text-lg font-semibold text-gray-900 transition-colors duration-200 group-hover:text-primary-600 dark:text-gray-100 dark:group-hover:text-primary-400">
-                        {position.data.title}
-                      </h3>
-                      {position.data.organizationUrl ? (
-                        <Link
-                          href={position.data.organizationUrl}
-                          class="text-gray-700 hover:text-primary-500 dark:text-gray-300 dark:hover:text-primary-400"
-                        >
-                          {position.data.organization}
-                        </Link>
-                      ) : (
-                        <p class="text-gray-700 dark:text-gray-300">{position.data.organization}</p>
-                      )}
-                      {position.data.notes && position.data.notes.length > 0 && (
-                        <ul class="mt-2 list-inside list-disc space-y-1 text-sm text-gray-600 dark:text-gray-400">
-                          {position.data.notes.map((note) => (
-                            <li>{note}</li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  </div>
-                </article>
+        return (
+          <li class="relative grid grid-cols-1 gap-x-8 gap-y-1.5 border-hairline border-l py-5 pl-7 sm:grid-cols-[10.5rem_minmax(0,1fr)] sm:pl-9">
+            <span
+              class:list={[
+                'absolute -left-[3.5px] top-[1.65rem] h-[7px] w-[7px] rounded-full',
+                isOngoing ? 'bg-primary-600 dark:bg-primary-400' : 'bg-hairline-strong',
+              ]}
+              aria-hidden="true"
+            />
+            <div class="sm:pt-0.5">
+              <div class="text-sm tabular-nums text-fg-subtle">{dateRange}</div>
+              <div class="mt-0.5 text-xs uppercase tracking-wide text-fg-subtle">
+                {typeLabels[position.data.type as keyof typeof typeLabels]}
               </div>
-            )
-          })
-        }
-      </div>
-    </div>
-  </div>
+            </div>
+            <div class="min-w-0">
+              <h3 class="text-base font-semibold leading-6 text-fg">{position.data.title}</h3>
+              <p class="mt-1.5 text-sm leading-6 text-fg-muted">
+                {position.data.organizationUrl ? (
+                  <Link
+                    href={position.data.organizationUrl}
+                    class="decoration-hairline-strong hover:text-fg underline underline-offset-4 transition-colors"
+                  >
+                    {position.data.organization}
+                  </Link>
+                ) : (
+                  position.data.organization
+                )}
+              </p>
+              {position.data.notes && position.data.notes.length > 0 && (
+                <ul class="measure mt-2 space-y-1 text-sm leading-6 text-fg-subtle">
+                  {position.data.notes.map((note) => (
+                    <li class="relative pl-4 before:absolute before:left-0 before:top-[0.7em] before:h-[3px] before:w-[3px] before:rounded-full before:bg-hairline-strong">
+                      {note}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </li>
+        )
+      })
+    }
+  </ol>
 </RootLayout>

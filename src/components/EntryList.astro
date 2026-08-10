@@ -1,0 +1,17 @@
+---
+/**
+ * Rule-separated list used by every index page.
+ *
+ * The dividers are tinted with the accent rather than being neutral grey, which
+ * is what makes the reference page read as one colour system.
+ */
+interface Props {
+  class?: string
+}
+
+const { class: className } = Astro.props
+---
+
+<ul class:list={['divide-hairline -my-5 divide-y', className]}>
+  <slot />
+</ul>

@@ -4,7 +4,7 @@
  * A few of these are not used yet, and are subject to change, example of this is Author.
  */
 export const SITE_METADATA = {
-  theme: 'system', // Options: system, light, dark
+  theme: 'dark', // Options: system, light, dark
   siteUrl: 'https://gatheluck.net/',
   siteRepo: 'https://github.com/gatheluck/homepage',
   robots: 'index, follow', // Options: index, noindex, follow, nofollow
@@ -37,12 +37,18 @@ export const SITE_METADATA = {
   comments: {
     // Visit https://giscus.app/ to get your configuration
     // Enable discussions in your repository settings and install the Giscus app
-    provider: 'giscus', // Set to 'giscus' to enable comments or null to disable
+    //
+    // Disabled until this site has its own giscus configuration. The values below
+    // were still the ones inherited from the starter template, which pointed at a
+    // third-party repository, so every comment posted here would have been filed
+    // as a discussion on someone else's project. Set `provider` back to 'giscus'
+    // once `repo`, `repositoryId` and `categoryId` describe gatheluck/homepage.
+    provider: null, // Set to 'giscus' to enable comments or null to disable
     giscusConfig: {
-      repo: 'wanoo21/tailwind-astro-starting-blog', // Your GitHub repository (e.g., 'username/repo')
-      repositoryId: 'R_kgDOKSBMHw', // Your repository ID from giscus.app
+      repo: 'gatheluck/homepage', // Your GitHub repository (e.g., 'username/repo')
+      repositoryId: '', // Your repository ID from giscus.app
       category: 'General', // Discussion category (e.g., 'General')
-      categoryId: 'DIC_kwDOKSBMH84CZOdK', // Category ID from giscus.app
+      categoryId: '', // Category ID from giscus.app
       mapping: 'title', // How to map pages to discussions: 'pathname', 'url', 'title', etc.
       reactionsEnabled: '1', // Enable reactions: '1' or '0'
       emitMetadata: '0', // Emit discussion metadata: '1' or '0'
@@ -65,6 +71,32 @@ export const SITE_METADATA = {
  * Default posts per page for pagination.
  */
 export const ITEMS_PER_PAGE = 5
+
+/**
+ * Name to emphasise inside author lists on the publications page.
+ */
+export const AUTHOR_NAME = 'Yoshihiro Fukuhara'
+
+/**
+ * Human readable labels for the link types on a publication entry.
+ */
+export const PUBLICATION_LINK_LABELS: Record<string, string> = {
+  arxiv: 'arXiv',
+  pdf: 'PDF',
+  project: 'Project page',
+  github: 'Code',
+  doi: 'DOI',
+}
+
+/**
+ * Show slide cover images on the talks page.
+ *
+ * Currently off: the existing covers are generated placeholders in four
+ * unrelated hues, and three separate talks share the same purple image, so they
+ * add colour noise without adding information. Set to true once the entries
+ * carry real, distinct cover art.
+ */
+export const SHOW_TALK_COVERS = false
 
 /**
  * Navigation items.

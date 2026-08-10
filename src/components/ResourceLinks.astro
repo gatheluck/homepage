@@ -1,0 +1,29 @@
+---
+import Link from './Link.astro'
+
+/**
+ * Row of secondary links attached to an entry (arXiv, slides, video, ...).
+ *
+ * Plain underlined links rather than filled pills: the pills read as primary
+ * actions and, repeated three or four times per row down a long list, they
+ * outweigh the titles they belong to.
+ */
+interface Props {
+  links: { label: string; url: string }[]
+  class?: string
+}
+
+const { links, class: className } = Astro.props
+---
+
+{
+  links.length > 0 && (
+    <div class:list={['flex flex-wrap gap-x-4 gap-y-1 pt-0.5', className]}>
+      {links.map(({ label, url }) => (
+        <Link href={url} class="link-accent text-sm underline underline-offset-4">
+          {label}
+        </Link>
+      ))}
+    </div>
+  )
+}

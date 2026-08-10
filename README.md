@@ -41,6 +41,13 @@ npm run preview
 - **Language**: TypeScript
 - **Interactivity**: Solid.js
 - **Content**: MDX with Content Collections
+- **Type**: [Roboto](https://fonts.google.com/specimen/Roboto) and [JetBrains Mono](https://www.jetbrains.com/lp/mono/)
+
+## 🎯 Design
+
+See [`docs/DESIGN.md`](docs/DESIGN.md) for the visual language: the base
+template it started from, the project page it takes its colour and typography
+from, the rules that hold across pages, and the known open items.
 
 ## 📄 License
 

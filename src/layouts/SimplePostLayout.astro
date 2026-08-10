@@ -46,7 +46,7 @@ const { Content, headings } = await render(post)
         <div class="space-y-1 pb-10 text-center dark:border-gray-700">
           <dl>
             <dt class="sr-only">{t('layouts.postLayout.publishedAt')}</dt>
-            <dd class="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+            <dd class="text-base font-medium leading-6 text-fg-subtle">
               <FormattedDate date={post.data.date} />
             </dd>
           </dl>
@@ -114,9 +114,7 @@ const { Content, headings } = await render(post)
             </DetailsSummary>
           )
         }
-        <div
-          class="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0"
-        >
+        <div class="divide-y divide-hairline xl:col-span-3 xl:row-span-2 xl:pb-0">
           <div class="prose max-w-none pb-8 pt-10 dark:prose-invert">
             <slot />
             <Content />
@@ -135,7 +133,7 @@ const { Content, headings } = await render(post)
           )
         }
         <!--{siteMetadata.comments && (-->
-        <!--        <div class="pb-6 pt-6 text-center text-gray-700 dark:text-gray-300" id="comment">-->
+        <!--        <div class="pb-6 pt-6 text-center text-fg-muted" id="comment">-->
         <!--            <Comments slug={slug} />-->
         <!--        </div>-->
         <!--)}-->

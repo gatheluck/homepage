@@ -2,6 +2,7 @@
 import { type CollectionEntry, getCollection } from 'astro:content'
 
 import RootLayout from '@/layouts/RootLayout.astro'
+import PageHeader from '@/components/PageHeader.astro'
 import Tag from '@/components/Tag.astro'
 import Link from '@/components/Link.astro'
 import { useTranslations } from '@/i18n'
@@ -18,33 +19,24 @@ function tagCount(id: CollectionEntry<'tags'>['id']) {
 ---
 
 <RootLayout title={t('pages.tags.title')} description={t('pages.tags.description')}>
-  <div
-    class="flex flex-col items-start justify-start divide-y divide-gray-200 dark:divide-gray-700 md:mt-24 md:flex-row md:items-center md:justify-center md:space-x-6 md:divide-y-0"
-  >
-    <div class="space-x-2 pb-8 pt-6 md:space-y-5">
-      <h1
-        class="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:border-r-2 md:px-6 md:text-6xl md:leading-14"
-      >
-        {t('pages.tags.allTags')}
-      </h1>
-    </div>
-    <div class="flex max-w-lg flex-wrap">
-      {!tags.length && t('pages.tags.noTags')}
+  <PageHeader title={t('pages.tags.allTags')} description={t('pages.tags.description')} />
+
+  <div class="border-hairline border-t py-10">
+    {!tags.length && <p class="text-fg-subtle">{t('pages.tags.noTags')}</p>}
+    <div class="flex flex-wrap gap-x-3 gap-y-2.5">
       {
-        tags.map((tag) => {
-          return (
-            <div class="mb-2 mr-5 mt-2">
-              <Tag tag={tag} />
-              <Link
-                href={`/tags/${tag.id}`}
-                class="-ml-2 text-sm font-semibold uppercase text-gray-600 dark:text-gray-300"
-                aria-label={t('pages.tags.viewPosts', { tag: tag.data.name })}
-              >
-                {` (${tagCount(tag.id)})`}
-              </Link>
-            </div>
-          )
-        })
+        tags.map((tag) => (
+          <span class="inline-flex items-baseline gap-1.5">
+            <Tag tag={tag} />
+            <Link
+              href={`/tags/${tag.id}`}
+              class="text-xs tabular-nums text-fg-subtle"
+              aria-label={t('pages.tags.viewPosts', { tag: tag.data.name })}
+            >
+              {tagCount(tag.id)}
+            </Link>
+          </span>
+        ))
       }
     </div>
   </div>

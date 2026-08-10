@@ -27,9 +27,9 @@ type Props = {
 
 <html lang={t('siteMetadata.language')} class="scroll-smooth">
   <BaseHead {...Astro.props} />
-  <body class="bg-white text-black antialiased dark:bg-gray-950 dark:text-white">
+  <body class="bg-bg text-fg antialiased">
     <SectionContainer>
-      <div class="flex h-screen flex-col justify-between font-sans">
+      <div class="flex min-h-screen flex-col justify-between font-sans">
         <Header />
         <main class="mb-auto">
           <slot />

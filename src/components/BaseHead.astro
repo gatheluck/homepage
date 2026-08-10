@@ -2,7 +2,12 @@
 import '@/styles/global.css'
 import { SITE_METADATA } from '@/consts'
 import { ClientRouter } from 'astro:transitions'
-import '@fontsource/onest'
+// Only the weights the design uses, latin subsets only.
+import '@fontsource/roboto/latin-100.css'
+import '@fontsource/roboto/latin-300.css'
+import '@fontsource/roboto/latin-400.css'
+import '@fontsource/roboto/latin-500.css'
+import '@fontsource/jetbrains-mono/latin-400.css'
 import { SEO } from 'astro-seo'
 import { getEntry, type CollectionEntry } from 'astro:content'
 import Favicon from '@/assets/favicon.svg'
@@ -129,6 +134,27 @@ const isProduction = import.meta.env.PROD
       }),
     }}
   />
+  {
+    /*
+     * The theme class was only applied once the Solid island hydrated, so every
+     * load painted the light theme first. With dark as the default that flash is
+     * a full white frame, so the class is now resolved here, before first paint.
+     * ThemeSwitcher reads the same localStorage key and stays in sync.
+     */
+  }
+  <script is:inline define:vars={{ defaultTheme: SITE_METADATA.theme }}>
+    ;(() => {
+      const saved = localStorage.getItem('theme')
+      const theme =
+        saved ??
+        (defaultTheme === 'system'
+          ? window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light'
+          : defaultTheme)
+      document.documentElement.classList.add(theme)
+    })()
+  </script>
   {isProduction && <Analytics />}
   <ClientRouter />
 </head>
