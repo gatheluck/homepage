@@ -103,6 +103,26 @@ the per-page `SHOW_TEASERS` flags in `src/consts.ts`.
   item. Being inline also means there are no files to keep in sync and no way
   for two entries to end up sharing one image.
 
+### Sourcing a teaser
+
+Use the artwork the destination already publishes rather than making something
+new — it is the picture people associate with the link, and it needs no upkeep.
+
+- **Talks** use the deck's **first slide**. SpeakerDeck exposes it directly as
+  `og:image`, which is literally `slide_0.jpg`. Slides are 16:9 (1920×1080)
+  against a 40:21 frame, so 72px of height has to go: take **all of it from the
+  top**, which on a title slide is empty margin, and the footer logos survive.
+  Splitting it evenly would clip them.
+- **Blog posts** use the platform's Open Graph image. Substack takes the crop in
+  the URL, so ask it for `w_1200,h_630` and its own smart crop returns the exact
+  ratio with no second resample.
+- Some hosts cannot be read at all — SlideShare answers every route with a bot
+  challenge. Leave `coverImage` off and let the placeholder cover it rather than
+  substituting an unrelated picture.
+
+Always look at the result. These images carry titles and logos near the edges,
+and cropping the wrong axis clips them.
+
 ### Marking a lead role
 
 `organizing` entries carry `isPrimary`. When set, the role appears in the
@@ -215,18 +235,16 @@ page, otherwise the four list pages drift apart again the way they did before.
 - Comments are disabled: `SITE_METADATA.comments.provider` is `null` until this
   site has its own giscus IDs. It previously pointed at the template author's
   repository.
-- **The three remaining talk covers clash.** `2020-adversarial-cover.svg`
-  (purple), `2025-cvpaper-cover.svg` (green) and `2026-aspire-workshop-cover.svg`
-  (orange) are synthetic gradient cards with the talk title typed on them, so
-  they duplicate the adjacent title and put three unrelated saturated hues in a
-  column that is otherwise teal. Replacing them with real slide screenshots is
-  the fix; recolouring them into the accent family is the cheaper one. The three
-  talks whose `coverImage` pointed at another talk's cover, or at
-  `sample-slide-cover.svg`, have had the field removed and now use the
-  generated placeholder.
-- No blog post or publication has an image yet, so those columns are entirely
-  placeholders. `SHOW_TEASERS` can turn a page's column off if that is not
-  wanted in the meantime.
+- **Two talks still have no cover.** `2019-adversarial` is on SlideShare, which
+  answers every route — page, oEmbed, the newer `/slideshow/` form — with a 3KB
+  bot-protection challenge instead of the deck, so the first slide cannot be
+  fetched. `2020-adversarial` has no `slides` field at all, only a link to the
+  SSII programme listing. Both fall back to the generated placeholder. Dropping
+  a 1200×630 JPG next to the entry and pointing `coverImage` at it is all either
+  one needs.
+- No publication has an image yet, so that column is entirely placeholders.
+  `SHOW_TEASERS` can turn a page's column off if that is not wanted in the
+  meantime.
 - A `Default` tag with no posts still shows in the blog sidebar.
 - Talk `venue` fields repeat the talk type ("Invited Talk, ASPIRE ..."), which
   now duplicates the label column.
