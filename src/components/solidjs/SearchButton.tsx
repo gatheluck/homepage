@@ -3,6 +3,8 @@ import { formatDate } from '@/utils'
 
 interface SearchResult {
   id: string
+  /** Destination, which for an external post is the platform rather than this site. */
+  url?: string
   title: string
   summary: string
   content: string
@@ -177,7 +179,7 @@ export default function SearchButton() {
                     {(result) => (
                       <li>
                         <a
-                          href={`/blog/${result.id}`}
+                          href={result.url ?? `/blog/${result.id}`}
                           class="block px-4 py-3 hover:bg-surface transition-colors"
                         >
                           <div class="font-semibold text-fg">{result.title}</div>

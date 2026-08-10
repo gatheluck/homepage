@@ -7,6 +7,7 @@ import EntryList from '@/components/EntryList.astro'
 import Entry from '@/components/Entry.astro'
 import ResourceLinks from '@/components/ResourceLinks.astro'
 import { useTranslations } from '@/i18n'
+import { postUrl } from '@/functions'
 
 const t = useTranslations()
 
@@ -178,7 +179,7 @@ const socialLinks = [
             <Entry
               meta={post.data.date.toISOString().slice(0, 10).replace(/-/g, '.')}
               title={post.data.title}
-              href={post.data.isExternal ? undefined : `/blog/${post.id}`}
+              href={postUrl(post)}
             >
               <p class="measure text-sm leading-6 text-fg-subtle">{post.data.summary}</p>
               <ResourceLinks

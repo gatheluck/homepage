@@ -20,6 +20,26 @@ export const sortBlogPosts = (
 }
 
 /**
+ * Where a post actually lives.
+ *
+ * Posts are written once and published on whichever platform suits them, in
+ * whichever language, so most entries here are records pointing outward rather
+ * than articles hosted on this site. `/blog/<id>` is only generated for posts
+ * that are not external, so linking an external post to that path produces a
+ * 404 - which is what RSS, the search results, the list titles and the teasers
+ * were all doing.
+ *
+ * English is preferred when a post exists in more than one language, matching
+ * the order the links are already displayed in; otherwise the first link wins.
+ */
+export const postUrl = (post: CollectionEntry<'blog'>): string | undefined => {
+  const { isExternal, externalLinks } = post.data
+  if (!isExternal) return `/blog/${post.id}`
+  if (!externalLinks?.length) return undefined
+  return (externalLinks.find((link) => link.language === 'en') ?? externalLinks[0]).url
+}
+
+/**
  * Exclude draft posts from the collection. If the site is built in production mode, draft posts are excluded by default.
  *
  * @param post Blog post
