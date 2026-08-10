@@ -177,6 +177,13 @@ lexicographic, so `2026.09.09` sorts correctly above both `2026.09.08` and a
 month-only `2026.09`. Lists fall back to the entry id purely to guarantee a
 total order, so it never depends on collection iteration order.
 
+**Ask `<Image>` for the CSS width of the slot, not the pixel width.** `densities`
+already emits the 2x file, so `width` must be the layout size — 208 here, giving
+208w and 416w. Passing 416 makes the "1x" variant 2x oversized and the "2x"
+variant 4x, and a retina browser downloads the larger one regardless, since
+density descriptors are chosen by device pixel ratio alone. Getting this wrong
+cost 60% of the site's image bytes.
+
 `astro.config.mjs` uses the default sharp image service. Do not restore
 `passthroughImageService()` — teasers render at ~208px from much larger sources
 and passthrough ships every original at full size.

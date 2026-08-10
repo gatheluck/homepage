@@ -39,8 +39,16 @@ interface Props {
 
 const { image, seed, imageDark, fit = 'cover', class: className } = Astro.props
 
-// Rendered at 208px wide in a 1024px container; 2x for high density displays.
-const TEASER_WIDTH = 416
+/*
+ * The CSS width of the slot, not the pixel width to encode.
+ *
+ * `densities` already emits a 2x variant, so this must be the layout size:
+ * 208px here produces 208w and 416w. Setting it to 416 - as it was - made the
+ * "1x" file 2x oversized and the "2x" file 4x, which a browser on a retina
+ * screen then downloads in full. Density descriptors are chosen by device pixel
+ * ratio alone, so nothing downstream corrects for it.
+ */
+const TEASER_WIDTH = 208
 const isContain = fit === 'contain'
 ---
 
