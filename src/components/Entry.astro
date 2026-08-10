@@ -1,8 +1,7 @@
 ---
 import type { ImageMetadata } from 'astro'
-import { Image } from 'astro:assets'
 import Link from './Link.astro'
-import TeaserPlaceholder from './TeaserPlaceholder.astro'
+import Teaser from './Teaser.astro'
 
 /**
  * A single row of an EntryList.
@@ -51,9 +50,6 @@ const {
   teaserSeed,
 } = Astro.props
 const hasBody = Astro.slots.has('default')
-
-// Rendered at 208px wide in a 1024px container; 2x for high density displays.
-const TEASER_WIDTH = 416
 ---
 
 <li
@@ -81,7 +77,10 @@ const TEASER_WIDTH = 416
     <h3 class="text-fg text-base font-medium leading-6">
       {
         href ? (
-          <Link href={href} class="hover:text-accent transition-colors">
+          <Link
+            href={href}
+            class="hover:text-accent ease-soft underline-offset-4 transition-colors duration-200 hover:underline"
+          >
             {title}
           </Link>
         ) : (
@@ -100,26 +99,7 @@ const TEASER_WIDTH = 416
   {
     teaser && (
       <div class="hidden sm:block sm:pt-1">
-        {/*
-          The aspect ratio is fixed on the wrapper so the row height is known
-          before the image loads and nothing shifts. `alt` is empty because the
-          title sits right beside it - a real alt would be read out twice.
-        */}
-        <div class="ring-hairline aspect-teaser overflow-hidden rounded-lg ring-1">
-          {image ? (
-            <Image
-              src={image}
-              alt=""
-              width={TEASER_WIDTH}
-              densities={[1, 2]}
-              loading="lazy"
-              decoding="async"
-              class="h-full w-full object-cover"
-            />
-          ) : (
-            <TeaserPlaceholder seed={teaserSeed ?? title} />
-          )}
-        </div>
+        <Teaser image={image} seed={teaserSeed ?? title} href={href} />
       </div>
     )
   }

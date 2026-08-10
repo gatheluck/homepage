@@ -14,6 +14,13 @@
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /*
+   * The reference page's easing curve, used there for every interaction. Its
+   * hover transitions sit at 220-300ms; the longer 500-900ms curves are
+   * scroll-in reveals, not responses to the pointer.
+   */
+  --ease-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /*
    * Base size moved from 16px towards the reference's 18px. Body copy sits at
    * weight 300, which reads lighter than 400, so the size increase keeps it
    * legible rather than merely smaller.
@@ -169,6 +176,21 @@ body {
 .active {
   @apply text-fg;
   font-weight: 400;
+}
+
+/*
+ * Anything that moves on hover has to stop moving for people who ask it to.
+ * Colour and underline changes still apply - only the motion is removed.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Keyboard focus was relying on the browser default, which the accent ring replaces. */

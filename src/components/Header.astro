@@ -12,7 +12,11 @@ const t = useTranslations()
 
 <header class="flex items-center justify-between py-8">
   <div class="mr-3 w-16 md:w-24">
-    <a href="/" aria-label={t('siteMetadata.headerTitle')}>
+    <a
+      href="/"
+      aria-label={t('siteMetadata.headerTitle')}
+      class="ease-soft block opacity-100 transition-opacity duration-200 hover:opacity-70"
+    >
       <Logo class="w-full" />
     </a>
   </div>

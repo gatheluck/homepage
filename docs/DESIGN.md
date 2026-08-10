@@ -122,6 +122,35 @@ total order, so it never depends on collection iteration order.
 `passthroughImageService()` — teasers render at ~208px from much larger sources
 and passthrough ships every original at full size.
 
+## Hover and motion
+
+The reference page's hover vocabulary is deliberately tiny. Reading its CSS,
+every hover rule it has is one of: a colour change (seven of them), a 2px
+`translate` on an arrow, a `scale(1.05)`/`scale(1.1)` on two elements, and one
+`border-color`. There is no hover lift and no growing shadow — the 500–900ms
+`transform`/`box-shadow` transitions in that file are scroll-in reveals, not
+pointer responses. Its interaction transitions sit at 220–300ms on
+`cubic-bezier(.2, .8, .2, 1)`, which is the `--ease-soft` token here.
+
+The same restraint applies:
+
+- **Colour is the primary response.** Links change colour; entry titles also
+  gain an underline, because colour alone is a weak affordance for a title that
+  otherwise looks like plain text.
+- **Motion is 2px, or 2%.** The "view all" arrow shifts `translate-x-0.5`
+  toward its destination. A teaser image scales to `1.02` inside its fixed
+  frame, so the frame never moves and the row height never changes.
+- **Nothing moves that is not interactive.** A teaser only responds when the
+  entry has a link, in which case the frame becomes one; otherwise it is an
+  inert `div`. Hover feedback on something unclickable is a lie.
+- **No row-level hover.** The row is not a click target, so highlighting it on
+  hover would imply one. Feedback belongs on the elements that actually respond.
+- **Keyboard parity.** `:focus-visible` draws an accent outline everywhere.
+- **`prefers-reduced-motion: reduce` removes all of it.** Colour and underline
+  changes survive; transforms and transitions do not.
+
+Durations: 200ms for colour and opacity, 300ms for the teaser scale.
+
 ## Shared components
 
 `PageHeader`, `SectionBlock`, `EntryList`, `Entry`, `ResourceLinks` in

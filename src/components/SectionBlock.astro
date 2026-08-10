@@ -30,8 +30,21 @@ const { title, moreHref, moreLabel } = Astro.props
   {
     moreHref && (
       <div class="mt-8">
-        <Link href={moreHref} class="link-accent text-sm underline-offset-4 hover:underline">
-          {moreLabel ?? 'View all'} &rarr;
+        {/*
+          The arrow shifts 2px toward its destination, the one bit of motion the
+          reference page uses on hover besides colour.
+        */}
+        <Link
+          href={moreHref}
+          class="link-accent group inline-flex items-center gap-1.5 text-sm underline-offset-4 hover:underline"
+        >
+          {moreLabel ?? 'View all'}
+          <span
+            class="ease-soft transition-transform duration-200 group-hover:translate-x-0.5"
+            aria-hidden="true"
+          >
+            &rarr;
+          </span>
         </Link>
       </div>
     )
