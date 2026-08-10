@@ -103,6 +103,38 @@ the per-page `SHOW_TEASERS` flags in `src/consts.ts`.
   item. Being inline also means there are no files to keep in sync and no way
   for two entries to end up sharing one image.
 
+### Sourcing a teaser
+
+Use the artwork the destination already publishes rather than making something
+new — it is the picture people associate with the link, and it needs no upkeep.
+
+- **Talks** use the deck's **first slide**. SpeakerDeck exposes it directly as
+  `og:image`, which is literally `slide_0.jpg`.
+- **Slides are 16:9 against a 40:21 frame**, so ~6.7% of the height has to go.
+  Take it **entirely from one edge, and check which one per deck** — splitting it
+  evenly clips both. Most title slides have an empty top and logos along the
+  bottom, so the top is usually right. `2020-adversarial` is the exception: its
+  "メタサーベイ追加版" badge sits top-left and its bottom 120px is a single flat
+  colour, so there the crop comes off the bottom. Measuring beats assuming:
+  `magick <slide> -crop WxH+0+Y +repage -colorspace gray -format
+"min=%[fx:int(255*minima)] max=%[fx:int(255*maxima)]" info:` — a band where
+  min equals max is empty and safe to lose.
+- **Blog posts** use the platform's Open Graph image. Substack takes the crop in
+  the URL, so ask it for `w_1200,h_630` and its own smart crop returns the exact
+  ratio with no second resample.
+- **SlideShare** needs more work but is reachable. `curl` and old headless get a
+  3KB bot challenge on every route, including oEmbed. `--headless=new` with a
+  real user agent and a persistent `--user-data-dir` renders the page normally;
+  the profile keeps working afterwards. Do not screenshot the viewer — its
+  download and share buttons sit on top of the slide. Dump the DOM instead and
+  take the `image.slidesharecdn.com/.../<title>-1-2048.jpg` URL, which is slide
+  one at 2048px with no viewer chrome.
+- If a host genuinely cannot be read, leave `coverImage` off and let the
+  placeholder cover it rather than substituting an unrelated picture.
+
+Always look at the result. These images carry titles and logos near the edges,
+and cropping the wrong axis clips them.
+
 ### Marking a lead role
 
 `organizing` entries carry `isPrimary`. When set, the role appears in the
@@ -215,18 +247,13 @@ page, otherwise the four list pages drift apart again the way they did before.
 - Comments are disabled: `SITE_METADATA.comments.provider` is `null` until this
   site has its own giscus IDs. It previously pointed at the template author's
   repository.
-- **The three remaining talk covers clash.** `2020-adversarial-cover.svg`
-  (purple), `2025-cvpaper-cover.svg` (green) and `2026-aspire-workshop-cover.svg`
-  (orange) are synthetic gradient cards with the talk title typed on them, so
-  they duplicate the adjacent title and put three unrelated saturated hues in a
-  column that is otherwise teal. Replacing them with real slide screenshots is
-  the fix; recolouring them into the accent family is the cheaper one. The three
-  talks whose `coverImage` pointed at another talk's cover, or at
-  `sample-slide-cover.svg`, have had the field removed and now use the
-  generated placeholder.
-- No blog post or publication has an image yet, so those columns are entirely
-  placeholders. `SHOW_TEASERS` can turn a page's column off if that is not
-  wanted in the meantime.
+- The two adversarial talks have near-identical teasers, because the 2020 deck
+  is the meta-survey extension of the 2019 one and reuses its title slide. They
+  are adjacent in the list. What tells them apart is the "メタサーベイ追加版"
+  badge, which is why that crop had to come off the bottom.
+- No publication has an image yet, so that column is entirely placeholders.
+  `SHOW_TEASERS` can turn a page's column off if that is not wanted in the
+  meantime.
 - A `Default` tag with no posts still shows in the blog sidebar.
 - Talk `venue` fields repeat the talk type ("Invited Talk, ASPIRE ..."), which
   now duplicates the label column.
