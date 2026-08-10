@@ -205,7 +205,9 @@ const { Content, headings } = await render(post)
               class="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y"
             >
               {
-                tags && (
+                /* An empty array is truthy, so this has to test length now that
+                   a post can legitimately carry no tags. */
+                tags.length > 0 && (
                   <div class="py-4 xl:py-8">
                     <h2 class="text-xs uppercase tracking-wide text-fg-subtle">
                       {t('layouts.postLayout.tags')}

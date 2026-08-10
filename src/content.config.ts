@@ -25,7 +25,12 @@ const blog = defineCollection({
       title: z.string(),
       cover: image().optional(),
       date: z.coerce.date(),
-      tags: z.array(reference('tags')).default(['default']),
+      // No fallback tag. The starter shipped one that defaulted to a "Default"
+      // tag entry, which then showed up in the sidebar with a count of zero and
+      // published an empty /tags/default/ page. An untagged post is simply
+      // untagged. Note the `authors` default below looks identical but points at
+      // a different collection, where `default` is the real author entry.
+      tags: z.array(reference('tags')).default([]),
       lastmod: z.coerce.date().optional(),
       draft: z.boolean().default(false),
       summary: z.string(),
