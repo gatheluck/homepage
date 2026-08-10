@@ -108,10 +108,16 @@ const isBlogPage = Astro.url.pathname.startsWith('/blog')
               // Internal posts go to their page; external ones go to the platform.
               const href = postUrl(post)
               return (
-                <li class="py-6">
+                <li class:list={['relative py-6', href && 'group']}>
+                  {href && (
+                    <div
+                      class="bg-surface-hover group-hover:shadow-glow ease-soft pointer-events-none absolute -inset-x-4 inset-y-1 rounded-xl opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                      aria-hidden="true"
+                    />
+                  )}
                   <article
                     class:list={[
-                      'grid grid-cols-1 gap-x-8',
+                      'row-box relative grid grid-cols-1 gap-x-8',
                       SHOW_TEASERS.blog && 'sm:grid-cols-[minmax(0,1fr)_13rem]',
                     ]}
                   >
@@ -126,7 +132,7 @@ const isBlogPage = Astro.url.pathname.startsWith('/blog')
                         {href ? (
                           <Link
                             href={href}
-                            class="text-fg hover:text-accent ease-soft underline-offset-4 transition-colors duration-200 hover:underline"
+                            class="row-link text-fg group-hover:text-accent ease-soft underline-offset-4 transition-colors duration-200 group-hover:underline"
                           >
                             {title}
                           </Link>
@@ -160,7 +166,7 @@ const isBlogPage = Astro.url.pathname.startsWith('/blog')
                     </div>
                     {SHOW_TEASERS.blog && (
                       <div class="hidden sm:block">
-                        <Teaser image={cover} seed={id} href={href} />
+                        <Teaser image={cover} seed={id} />
                       </div>
                     )}
                   </article>

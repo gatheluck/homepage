@@ -1,42 +1,35 @@
 ---
 import type { ImageMetadata } from 'astro'
 import { Image } from 'astro:assets'
-import Link from './Link.astro'
 import TeaserPlaceholder from './TeaserPlaceholder.astro'
 
 /**
  * The trailing teaser thumbnail, shared by Entry and the blog list.
  *
- * When the entry has a link the frame becomes one too, because a thumbnail next
- * to a linked title is somewhere people expect to be able to click. It is then
- * marked `aria-hidden` and taken out of the tab order: the title link already
- * points at the same place, and a second identical link only makes the page
- * longer to get through with a screen reader or the keyboard.
+ * Not a link of its own any more. The row it sits in carries a stretched link
+ * covering the whole row, so the thumbnail is already clickable, and dropping
+ * the separate anchor removes the duplicate destination that previously had to
+ * be hidden from assistive technology with `aria-hidden` and `tabindex="-1"`.
+ *
+ * It responds to hover on the surrounding row rather than on itself, so the row
+ * reacts as one thing.
  */
 interface Props {
   image?: ImageMetadata
   /** Stable string used to vary the placeholder when there is no image. */
   seed: string
-  /** Destination. Omit to render a plain, non-interactive frame. */
-  href?: string
   class?: string
 }
 
-const { image, seed, href, class: className } = Astro.props
-
-const Frame = href ? Link : 'div'
-// `as const` so `aria-hidden` narrows to the literal "true" the typings expect.
-const frameProps = href ? ({ href, tabindex: '-1', 'aria-hidden': 'true' } as const) : {}
+const { image, seed, class: className } = Astro.props
 
 // Rendered at 208px wide in a 1024px container; 2x for high density displays.
 const TEASER_WIDTH = 416
 ---
 
-<Frame
-  {...frameProps}
+<div
   class:list={[
-    'ring-hairline aspect-teaser ease-soft block overflow-hidden rounded-lg ring-1 transition duration-200',
-    href && 'hover:ring-accent/50 group/teaser',
+    'ring-hairline group-hover:ring-accent/50 aspect-teaser ease-soft overflow-hidden rounded-lg ring-1 transition duration-200',
     className,
   ]}
 >
@@ -49,13 +42,13 @@ const TEASER_WIDTH = 416
         densities={[1, 2]}
         loading="lazy"
         decoding="async"
-        class="ease-soft h-full w-full object-cover transition-transform duration-300 group-hover/teaser:scale-[1.04]"
+        class="ease-soft h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
       />
     ) : (
       <TeaserPlaceholder
         seed={seed}
-        class="ease-soft transition-transform duration-300 group-hover/teaser:scale-[1.04]"
+        class="ease-soft transition-transform duration-300 group-hover:scale-[1.04]"
       />
     )
   }
-</Frame>
+</div>
