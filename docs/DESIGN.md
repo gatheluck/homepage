@@ -151,7 +151,7 @@ Their logo uses the same teaser frame, so the column stays aligned, but with
 
 - **Contained, never cropped.** Cropping a photo costs a few percent at the
   edges; cropping a wordmark mangles a brand.
-- **Capped against the frame** (`max-h-[64%] max-w-[78%]`) rather than relying on
+- **Capped against the frame** (`max-h-[68%] max-w-[84%]`) rather than relying on
   padding alone, so a wide wordmark and a square mark come out at similar
   optical weight instead of one dwarfing the other.
 - **Two files, one per theme.** A logo is usually single-colour, and a white
