@@ -135,6 +135,33 @@ new — it is the picture people associate with the link, and it needs no upkeep
 Always look at the result. These images carry titles and logos near the edges,
 and cropping the wrong axis clips them.
 
+### Logos
+
+Standing affiliations live in the `organizations` collection and render as their
+own **Research Communities** section on Service & Organization. The heading
+names what the entries are and leaves the depth of involvement to each row's
+role label — `Core Member` versus `Member` — the same split used for
+`Primary Organizer`. "Leadership" would overstate a plain membership, and
+"Activities" would contradict the data: they carry no date — they are ongoing
+memberships — so the left column shows only the role, and the order is an
+explicit `order` field rather than chronology.
+
+Their logo uses the same teaser frame, so the column stays aligned, but with
+`fit="contain"`:
+
+- **Contained, never cropped.** Cropping a photo costs a few percent at the
+  edges; cropping a wordmark mangles a brand.
+- **Capped against the frame** (`max-h-[68%] max-w-[84%]`) rather than relying on
+  padding alone, so a wide wordmark and a square mark come out at similar
+  optical weight instead of one dwarfing the other.
+- **Two files, one per theme.** A logo is usually single-colour, and a white
+  wordmark vanishes on white. `logo` is the dark-ink version for light
+  backgrounds, `logoDark` the light-ink version. Both are rendered and CSS picks
+  one — the theme is a class on the document, not a media query, so `<picture>`
+  cannot resolve it. Supply only `logo` if the artwork works on both.
+- Entries with no logo fall back to `TeaserPlaceholder`, which adapts to the
+  theme on its own.
+
 ### Marking a lead role
 
 `organizing` entries carry `isPrimary`. When set, the role appears in the
@@ -149,6 +176,13 @@ two items would otherwise tie, **record the day in `date`** — the format is
 lexicographic, so `2026.09.09` sorts correctly above both `2026.09.08` and a
 month-only `2026.09`. Lists fall back to the entry id purely to guarantee a
 total order, so it never depends on collection iteration order.
+
+**Ask `<Image>` for the CSS width of the slot, not the pixel width.** `densities`
+already emits the 2x file, so `width` must be the layout size — 208 here, giving
+208w and 416w. Passing 416 makes the "1x" variant 2x oversized and the "2x"
+variant 4x, and a retina browser downloads the larger one regardless, since
+density descriptors are chosen by device pixel ratio alone. Getting this wrong
+cost 60% of the site's image bytes.
 
 `astro.config.mjs` uses the default sharp image service. Do not restore
 `passthroughImageService()` — teasers render at ~208px from much larger sources
