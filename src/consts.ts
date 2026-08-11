@@ -86,6 +86,7 @@ export const PUBLICATION_LINK_LABELS: Record<string, string> = {
   project: 'Project page',
   github: 'Code',
   doi: 'DOI',
+  video: 'Video',
 }
 
 /**

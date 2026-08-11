@@ -52,7 +52,7 @@ export const talkUrl = (talk: CollectionEntry<'talks'>): string | undefined =>
  * the same entries and has to reach the same destination; two copies of this
  * would drift.
  */
-const PUBLICATION_LINK_PRIORITY = ['arxiv', 'doi', 'project', 'pdf', 'github'] as const
+const PUBLICATION_LINK_PRIORITY = ['arxiv', 'doi', 'project', 'pdf', 'github', 'video'] as const
 
 export const publicationUrl = (
   links: readonly { type: string; url: string }[] | undefined
