@@ -85,7 +85,7 @@ const publications = defineCollection({
       links: z
         .array(
           z.object({
-            type: z.enum(['arxiv', 'pdf', 'project', 'github', 'doi']),
+            type: z.enum(['arxiv', 'pdf', 'project', 'github', 'doi', 'model', 'dataset', 'video']),
             url: z.string().url(),
           })
         )

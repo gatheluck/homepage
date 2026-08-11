@@ -86,6 +86,12 @@ export const PUBLICATION_LINK_LABELS: Record<string, string> = {
   project: 'Project page',
   github: 'Code',
   doi: 'DOI',
+  // Released artefacts, kept apart from `github` because a checkpoint or a
+  // corpus is not the code that produced it, and a reader looking for one is
+  // usually not looking for the other.
+  model: 'Model',
+  dataset: 'Dataset',
+  video: 'Video',
 }
 
 /**

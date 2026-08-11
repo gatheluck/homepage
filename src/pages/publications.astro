@@ -24,9 +24,15 @@ const groupedPubs = publications.reduce(
   {} as Record<string, typeof publications>
 )
 
-// Sort within each category by year (descending)
+/*
+ * Newest first within each category, with the id breaking ties.
+ *
+ * Most categories now hold several papers from the same year, and year alone
+ * leaves those in whatever order the collection was read in. The id tiebreak
+ * makes the sequence total, so the list does not reshuffle between builds.
+ */
 Object.keys(groupedPubs).forEach((category) => {
-  groupedPubs[category].sort((a, b) => b.data.year - a.data.year)
+  groupedPubs[category].sort((a, b) => b.data.year - a.data.year || a.id.localeCompare(b.id))
 })
 
 const categoryOrder = ['international', 'journal', 'preprint', 'domestic-reviewed', 'domestic']
